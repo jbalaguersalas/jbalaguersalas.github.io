@@ -1,0 +1,232 @@
+/* ===== Colores y fuentes ===== */
+:root {
+  --fondo: #000000;
+  --tarjeta: #0b0b0d;
+  --borde: #1e1f24;
+  --texto: #d6d8de;
+  --gris: #80858f;
+  --azul: #4da3ff;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--fondo);
+  color: var(--texto);
+  font-family: "Manrope", Arial, sans-serif;
+  line-height: 1.6;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+h1, h2, h3, .logo {
+  font-family: "Sora", Arial, sans-serif;
+}
+
+a {
+  color: var(--texto);
+  text-decoration: none;
+}
+
+/* ===== Cabecera ===== */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 28px 0;
+  border-bottom: 1px solid var(--borde);
+}
+
+.logo {
+  font-size: 22px;
+  font-weight: 700;
+}
+
+nav a {
+  margin-left: 24px;
+  color: var(--gris);
+}
+
+nav a:hover {
+  color: var(--azul);
+}
+
+/* ===== Presentación ===== */
+.inicio {
+  display: flex;
+  align-items: center;
+  gap: 60px;
+  padding: 100px 0;
+  animation: aparecer 1.2s ease;
+}
+
+.foto {
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--azul);
+  box-shadow: 0 0 25px rgba(77, 163, 255, 0.4);
+}
+
+h1 {
+  font-size: 80px;
+  line-height: 1;
+}
+
+.subtitulo {
+  font-family: "Sora", Arial, sans-serif;
+  font-weight: 300;
+  font-size: 26px;
+  color: var(--azul);
+  margin-top: 10px;
+}
+
+.descripcion {
+  color: var(--gris);
+  max-width: 400px;
+  margin: 20px 0 30px;
+}
+
+.boton {
+  display: inline-block;
+  padding: 12px 26px;
+  border: 1px solid var(--azul);
+  border-radius: 30px;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.boton:hover {
+  background-color: var(--azul);
+  color: var(--fondo);
+  box-shadow: 0 0 20px rgba(77, 163, 255, 0.5);
+}
+
+/* ===== Secciones ===== */
+section {
+  padding: 60px 0;
+}
+
+h2 {
+  font-size: 36px;
+  margin-bottom: 30px;
+}
+
+/* ===== Proyectos ===== */
+.proyectos {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.tarjeta {
+  display: block;
+  background-color: var(--tarjeta);
+  border: 1px solid var(--borde);
+  border-radius: 14px;
+  padding: 24px;
+  transition: 0.3s;
+}
+
+.tarjeta:hover {
+  border-color: var(--azul);
+  box-shadow: 0 0 18px rgba(77, 163, 255, 0.25);
+  transform: translateY(-4px);
+}
+
+.tarjeta h3 {
+  font-size: 20px;
+  margin-bottom: 8px;
+}
+
+.tarjeta p {
+  color: var(--gris);
+  margin-bottom: 16px;
+}
+
+.etiqueta {
+  font-size: 13px;
+  color: var(--azul);
+  border: 1px solid var(--borde);
+  border-radius: 20px;
+  padding: 4px 12px;
+}
+
+/* ===== Herramientas ===== */
+.herramientas {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.herramientas li {
+  border: 1px solid var(--borde);
+  border-radius: 30px;
+  padding: 8px 20px;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.herramientas li:hover {
+  border-color: var(--azul);
+  color: var(--azul);
+}
+
+/* ===== Pie de página ===== */
+footer {
+  border-top: 1px solid var(--borde);
+  padding: 30px 0;
+  margin-top: 40px;
+  color: var(--gris);
+  font-size: 14px;
+}
+
+footer a {
+  color: var(--azul);
+}
+
+/* ===== Animación de entrada ===== */
+@keyframes aparecer {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===== Móvil ===== */
+@media (max-width: 700px) {
+  .inicio {
+    flex-direction: column;
+    text-align: center;
+    padding: 50px 0;
+    gap: 30px;
+  }
+
+  .foto {
+    width: 180px;
+    height: 180px;
+  }
+
+  h1 {
+    font-size: 56px;
+  }
+
+  .descripcion {
+    margin: 20px auto 30px;
+  }
+
+  .proyectos {
+    grid-template-columns: 1fr;
+  }
+}
