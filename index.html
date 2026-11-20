@@ -4,15 +4,19 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Shema · Empezando en el desarrollo web</title>
-  <meta name="description" content="Shema, empezando en el desarrollo web. Las prácticas que he hecho en el bootcamp Full Stack de The Bridge.">
+  <meta name="description" content="Shema, estudiante del bootcamp Full Stack de The Bridge. Aquí están las prácticas que he hecho en el curso.">
+  <link rel="canonical" href="https://jbalaguersalas.github.io/">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://jbalaguersalas.github.io/">
   <meta property="og:title" content="Shema · Empezando en el desarrollo web">
-  <meta property="og:description" content="Mis proyectos del bootcamp Full Stack de The Bridge, con su código en GitHub.">
+  <meta property="og:description" content="Las prácticas que he hecho en el bootcamp Full Stack de The Bridge, con su código en GitHub.">
   <meta property="og:image" content="https://jbalaguersalas.github.io/avatar.jpg">
+  <meta name="twitter:card" content="summary">
   <meta name="theme-color" content="#0a0d12">
   <link rel="icon" href="avatar.jpg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@70..100,300..800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <script>
     // Le digo al CSS que hay JavaScript. Si en 5 segundos script.js no ha cargado, lo quito y la web se ve sin animaciones.
@@ -40,7 +44,7 @@
       <a href="#recorrido"><span class="num">02</span> Recorrido</a>
       <a href="#contacto"><span class="num">03</span> Contacto</a>
     </nav>
-    <a class="boton-barra" href="mailto:paysecuredev@protonmail.com">Contacto</a>
+    <a class="boton-barra" href="https://github.com/jbalaguersalas" target="_blank" rel="noopener">GitHub ↗</a>
   </header>
 
   <main id="inicio">
@@ -64,31 +68,21 @@
       <div class="portada-pie">
         <p class="entradilla aparece">Soy Shema y estoy aprendiendo desarrollo web en el bootcamp Full Stack de The Bridge. Aquí están las prácticas que he hecho. Uso mucho la IA para aprender: me explica los errores y me ayuda cuando me atasco.</p>
 
-        <div class="terminal aparece" aria-label="Ejemplo de petición a una API">
+        <div class="terminal aparece" aria-hidden="true">
           <div class="terminal-barra"><span></span><span></span><span></span><b>~/shema</b></div>
-<pre id="terminal"><span class="gris">$</span> curl api.shema.dev/sobre-mi
-<span class="verde">HTTP/1.1 200 OK</span>
-
+<pre id="terminal"><span class="gris">$</span> cat sobre-mi.json
 {
   <span class="acento">"nivel"</span>: "empezando",
-  <span class="acento">"he practicado"</span>: ["HTML", "CSS", "JavaScript", "NestJS"],
+  <span class="acento">"he practicado"</span>: ["HTML", "CSS", "JavaScript"],
   <span class="acento">"aprendo con"</span>: ["el bootcamp", "la IA"]
 }</pre>
         </div>
       </div>
 
-      <a class="bajar aparece" href="#proyectos" aria-label="Bajar a los proyectos">
-        <span>Scroll</span><i></i>
+      <a class="bajar aparece" href="#proyectos">
+        <span>Bajar</span><i aria-hidden="true"></i>
       </a>
     </section>
-
-    <!-- ============ CINTA ============ -->
-    <div class="cinta" aria-hidden="true">
-      <div class="cinta-pista">
-        <span>HTML</span><b>✦</b><span>CSS</span><b>✦</b><span>JavaScript</span><b>✦</b><span>TypeScript</span><b>✦</b><span>NestJS</span><b>✦</b><span>Express</span><b>✦</b><span>PostgreSQL</span><b>✦</b><span>MongoDB</span><b>✦</b><span>Docker</span><b>✦</b><span>GitHub Actions</span><b>✦</b>
-        <span>HTML</span><b>✦</b><span>CSS</span><b>✦</b><span>JavaScript</span><b>✦</b><span>TypeScript</span><b>✦</b><span>NestJS</span><b>✦</b><span>Express</span><b>✦</b><span>PostgreSQL</span><b>✦</b><span>MongoDB</span><b>✦</b><span>Docker</span><b>✦</b><span>GitHub Actions</span><b>✦</b>
-      </div>
-    </div>
 
     <!-- ============ PROYECTOS ============ -->
     <section id="proyectos" class="seccion">
@@ -108,37 +102,37 @@
 
       <div class="rejilla">
 
-        <!-- Portfolio en Docker: la tarjeta grande -->
+        <!-- Maqueta en Docker: la tarjeta grande -->
         <a class="tarjeta grande" data-tipo="frontend" href="https://github.com/jbalaguersalas/-Pr-ctica-Docker-Web-Minimalista" target="_blank" rel="noopener">
           <div class="tarjeta-visual visual-maqueta" aria-hidden="true">
-            <div class="movil"><i class="m-cab"></i><i class="m-img"></i><i class="m-lin"></i><i class="m-lin corto"></i><i class="m-img"></i></div>
-            <div class="escritorio"><i class="e-cab"></i><div class="e-fila"><span><i></i><i class="corto"></i></span><i class="e-img"></i></div><div class="e-fila"><span><i></i><i class="corto"></i></span><i class="e-img"></i></div></div>
+            <div class="movil"><i class="maqueta-cabecera"></i><i class="maqueta-imagen"></i><i></i><i class="corto"></i><i class="maqueta-imagen"></i></div>
+            <div class="escritorio"><i class="maqueta-cabecera"></i><div class="escritorio-fila"><span><i></i><i class="corto"></i></span><i class="maqueta-imagen"></i></div><div class="escritorio-fila"><span><i></i><i class="corto"></i></span><i class="maqueta-imagen"></i></div></div>
             <span class="docker">nginx:alpine</span>
           </div>
           <div class="tarjeta-texto">
             <p class="tarjeta-meta"><span>Maquetación · Docker</span><span>3 páginas</span></p>
-            <h3>Portfolio en Docker</h3>
-            <p>Práctica de maquetación: pasar a HTML y CSS un diseño de Figma de tres páginas, empezando por la versión de móvil. Después la metí en un contenedor de Docker con nginx.</p>
-            <p class="chips"><span>HTML</span><span>CSS</span><span>BEM</span><span>Docker</span></p>
+            <h3>Maqueta de Figma en Docker</h3>
+            <p>Práctica de maquetación: pasar a HTML y CSS el diseño de Figma de un portfolio inventado, empezando por la versión de móvil. Después la metí en un contenedor de Docker con nginx.</p>
+            <p class="chips"><span>HTML</span><span>CSS</span><span>Docker</span></p>
           </div>
           <span class="flecha" aria-hidden="true">↗</span>
         </a>
 
-        <!-- Bikram TypeScript -->
+        <!-- Ejercicios de TypeScript -->
         <a class="tarjeta" data-tipo="typescript" href="https://github.com/jbalaguersalas/Bikram-typescript" target="_blank" rel="noopener">
-          <div class="tarjeta-visual visual-ts" aria-hidden="true">
-            <span class="ts-logo">TS</span>
-            <pre><span class="mor">function</span> <span class="azu">primero</span>&lt;<span class="nar">T</span>&gt;(
-  lista: <span class="nar">T</span>[]
-): <span class="nar">T</span> | <span class="mor">undefined</span> {
-  <span class="mor">return</span> lista[0];
+          <div class="tarjeta-visual visual-typescript" aria-hidden="true">
+            <span class="logo-typescript">TS</span>
+            <pre><span class="morado">function</span> <span class="azul">primero</span>&lt;<span class="naranja">T</span>&gt;(
+  lista: <span class="naranja">T</span>[]
+): <span class="naranja">T</span> | <span class="morado">undefined</span> {
+  <span class="morado">return</span> lista[0];
 }</pre>
           </div>
           <div class="tarjeta-texto">
             <p class="tarjeta-meta"><span>TypeScript</span><span>20 ejercicios</span></p>
             <h3>Ejercicios de TypeScript</h3>
             <p>Veinte ejercicios de clase para practicar tipos, interfaces, clases y genéricos.</p>
-            <p class="chips"><span>TypeScript</span><span>Genéricos</span><span>Clases</span></p>
+            <p class="chips"><span>TypeScript</span></p>
           </div>
           <span class="flecha" aria-hidden="true">↗</span>
         </a>
@@ -146,11 +140,11 @@
         <!-- FitVal -->
         <a class="tarjeta" data-tipo="backend typescript" href="https://github.com/jbalaguersalas/api-gimnasio-fitval" target="_blank" rel="noopener">
           <div class="tarjeta-visual visual-codigo" aria-hidden="true">
-<pre><span class="mor">@UseGuards</span>(JwtGuard, RolesGuard)
-<span class="mor">@Roles</span>(<span class="ver">'staff'</span>)
-<span class="mor">@Delete</span>(<span class="ver">':id'</span>)
-<span class="azu">borrarClase</span>(<span class="nar">@Param</span>(<span class="ver">'id'</span>) id) {
-  <span class="gri">// si tiene reservas → 409</span>
+<pre><span class="morado">@Delete</span>(<span class="verde">':id'</span>)
+<span class="morado">@UseGuards</span>(AuthGuard, StaffGuard)
+<span class="azul">remove</span>(<span class="naranja">@Param</span>(<span class="verde">'id'</span>, ParseIntPipe) id) {
+  <span class="morado">return</span> this.classesService
+    .<span class="azul">remove</span>(id);
 }</pre>
           </div>
           <div class="tarjeta-texto">
@@ -172,7 +166,7 @@
             <p class="tarjeta-meta"><span>DOM</span><span>JavaScript</span></p>
             <h3>Varita mágica</h3>
             <p>Ejercicio de DOM: al pasar el ratón o hacer click sobre una página, cambian las imágenes y los colores.</p>
-            <p class="chips"><span>JavaScript</span><span>Eventos</span><span>DOM</span></p>
+            <p class="chips"><span>JavaScript</span><span>Eventos</span></p>
           </div>
           <span class="flecha" aria-hidden="true">↗</span>
         </a>
@@ -180,16 +174,16 @@
         <!-- Rastro -->
         <a class="tarjeta" data-tipo="backend typescript" href="https://github.com/jbalaguersalas/api-rastro" target="_blank" rel="noopener">
           <div class="tarjeta-visual visual-ramas" aria-hidden="true">
-            <svg viewBox="0 0 240 120" role="presentation">
-              <path class="rama-main" d="M10 60 H230"/>
+            <svg viewBox="0 0 240 120">
+              <path class="rama-principal" d="M10 60 H230"/>
               <path class="rama" d="M40 60 C60 60 60 25 80 25 H110 C130 25 130 60 150 60"/>
               <path class="rama" d="M120 60 C140 60 140 95 160 95 H185 C205 95 205 60 220 60"/>
               <circle cx="10" cy="60" r="5"/><circle cx="80" cy="25" r="4"/><circle cx="110" cy="25" r="4"/><circle cx="150" cy="60" r="5"/><circle cx="160" cy="95" r="4"/><circle cx="185" cy="95" r="4"/><circle cx="220" cy="60" r="5"/>
-              <text x="66" y="14">feat/anuncios</text><text x="148" y="115">feat/ofertas</text><text x="198" y="48">✓ lint</text>
+              <text x="50" y="14">feature/create-listing</text><text x="140" y="115">feature/offers</text><text x="198" y="48">main</text>
             </svg>
           </div>
           <div class="tarjeta-texto">
-            <p class="tarjeta-meta"><span>API REST</span><span>main protegida</span></p>
+            <p class="tarjeta-meta"><span>API REST</span><span>Ramas y PR</span></p>
             <h3>API Rastro</h3>
             <p>Práctica de API para una app inventada de compraventa de segunda mano. Trabajé cada parte en su rama con pull requests.</p>
             <p class="chips"><span>Express</span><span>TypeScript</span><span>MongoDB</span></p>
@@ -197,7 +191,7 @@
           <span class="flecha" aria-hidden="true">↗</span>
         </a>
 
-        <!-- Código asíncrono -->
+        <!-- Peticiones a APIs -->
         <a class="tarjeta" data-tipo="frontend javascript" href="https://github.com/jbalaguersalas/JS-Asynchronous-code" target="_blank" rel="noopener">
           <div class="tarjeta-visual visual-fetch" aria-hidden="true">
             <div class="peticion"><b>GET</b> dog.ceo/api/breeds/image/random</div>
@@ -211,16 +205,16 @@
             <p class="tarjeta-meta"><span>fetch · async/await</span><span>9 ejercicios</span></p>
             <h3>Peticiones a APIs</h3>
             <p>Ejercicios para practicar <code>fetch</code> y async/await con la Dog API y la API de GitHub.</p>
-            <p class="chips"><span>JavaScript</span><span>fetch</span><span>Jasmine</span></p>
+            <p class="chips"><span>JavaScript</span><span>fetch</span></p>
           </div>
           <span class="flecha" aria-hidden="true">↗</span>
         </a>
 
-        <!-- Web CV -->
+        <!-- Currículum web -->
         <a class="tarjeta" data-tipo="frontend" href="https://github.com/jbalaguersalas/web-cv" target="_blank" rel="noopener">
           <div class="tarjeta-visual visual-cv" aria-hidden="true">
             <div class="cv">
-              <div class="cv-cab"><i class="cv-foto"></i><span><i></i><i class="corto"></i></span></div>
+              <div class="cv-fila"><i class="cv-foto"></i><span><i></i><i class="corto"></i></span></div>
               <div class="cv-fila"><em>2022</em><span><i></i><i class="corto"></i></span></div>
               <div class="cv-fila"><em>2020</em><span><i></i><i class="corto"></i></span></div>
               <div class="cv-fila"><em>2018</em><span><i></i><i class="corto"></i></span></div>
@@ -229,8 +223,8 @@
           <div class="tarjeta-texto">
             <p class="tarjeta-meta"><span>Maquetación</span><span>Figma → HTML</span></p>
             <h3>Currículum web</h3>
-            <p>Práctica de maquetación: completar en HTML y CSS una plantilla de currículum sacada de Figma.</p>
-            <p class="chips"><span>HTML</span><span>CSS</span><span>Responsive</span></p>
+            <p>Práctica de maquetación: completar en HTML y CSS una plantilla de currículum de Figma que el profesor dejó empezada.</p>
+            <p class="chips"><span>HTML</span><span>CSS</span></p>
           </div>
           <span class="flecha" aria-hidden="true">↗</span>
         </a>
@@ -238,28 +232,26 @@
         <!-- Libros y pedidos -->
         <a class="tarjeta" data-tipo="backend typescript" href="https://github.com/jbalaguersalas/nestjs-postgresql-supabase-render" target="_blank" rel="noopener">
           <div class="tarjeta-visual visual-codigo" aria-hidden="true">
-<pre><span class="mor">BEGIN</span>;
-<span class="mor">INSERT INTO</span> pedidos ...
-<span class="mor">UPDATE</span> libros
-  <span class="mor">SET</span> stock = stock - <span class="nar">$1</span>
-  <span class="mor">WHERE</span> id = <span class="nar">$2</span>;
-<span class="ver">COMMIT</span>;</pre>
+<pre><span class="morado">await</span> client.<span class="azul">query</span>(<span class="verde">'BEGIN'</span>);
+<span class="verde">`UPDATE books SET stock = stock - </span><span class="naranja">$1</span>
+<span class="verde"> WHERE id = </span><span class="naranja">$2</span><span class="verde">`</span>
+<span class="morado">await</span> client.<span class="azul">query</span>(<span class="verde">'COMMIT'</span>);</pre>
           </div>
           <div class="tarjeta-texto">
             <p class="tarjeta-meta"><span>API REST</span><span>Supabase</span></p>
             <h3>Libros y pedidos</h3>
-            <p>Práctica de API con NestJS y una base de datos PostgreSQL en Supabase.</p>
-            <p class="chips"><span>NestJS</span><span>PostgreSQL</span><span>Supabase</span></p>
+            <p>Práctica de API con NestJS y PostgreSQL. Partí del código que hicimos en clase con el profesor y le añadí los pedidos y los ejercicios del tema.</p>
+            <p class="chips"><span>NestJS</span><span>PostgreSQL</span></p>
           </div>
           <span class="flecha" aria-hidden="true">↗</span>
         </a>
 
-        <!-- SQL gimnasio -->
+        <!-- Base de datos del gimnasio -->
         <a class="tarjeta" data-tipo="backend" href="https://github.com/jbalaguersalas/Proyecto-SQL-Gimnasio" target="_blank" rel="noopener">
           <div class="tarjeta-visual visual-tablas" aria-hidden="true">
-            <div class="tabla t1"><b>socios</b><i>id</i><i>nombre</i><i>plan_id</i></div>
-            <div class="tabla t2"><b>clases</b><i>id</i><i>monitor_id</i><i>hora</i></div>
-            <div class="tabla t3"><b>reservas</b><i>socio_id</i><i>clase_id</i></div>
+            <div class="tabla tabla-socios"><b>socios</b><i>id</i><i>nombre</i><i>plan_id</i></div>
+            <div class="tabla tabla-clases"><b>clases</b><i>id</i><i>monitor_id</i><i>hora</i></div>
+            <div class="tabla tabla-reservas"><b>reservas</b><i>socio_id</i><i>clase_id</i></div>
             <svg viewBox="0 0 240 130" class="relaciones"><path d="M70 40 C95 40 95 95 125 95"/><path d="M175 40 C195 40 195 80 175 95"/></svg>
           </div>
           <div class="tarjeta-texto">
@@ -276,55 +268,53 @@
       <a class="enlace-flecha" href="https://github.com/jbalaguersalas?tab=repositories" target="_blank" rel="noopener"><span>Ver todos mis repositorios en GitHub</span> <i aria-hidden="true">→</i></a>
     </section>
 
-    <!-- ============ RECORRIDO (scroll horizontal) ============ -->
-    <section id="recorrido" class="recorrido">
-      <div class="recorrido-fijo">
-        <div class="titulo recorrido-titulo">
-          <span class="num">02 / Recorrido</span>
-          <h2 class="partir">Mis tres meses en The Bridge</h2>
-        </div>
-        <div class="pista">
-          <article class="etapa">
-            <span class="etapa-mes">Sep</span>
-            <p class="mono">Septiembre 2026</p>
-            <h3>Git, HTML y CSS</h3>
-            <p>Ramas, merges y mis primeros conflictos. Después, mis primeras páginas y un currículum sacado de Figma.</p>
-            <p class="chips"><span>Git</span><span>HTML</span><span>CSS</span></p>
-          </article>
-          <article class="etapa">
-            <span class="etapa-mes">Oct</span>
-            <p class="mono">Octubre 2026</p>
-            <h3>JavaScript, DOM y TypeScript</h3>
-            <p>map, filter y reduce, peticiones con async/await y tests de Jasmine. Al final del mes metí una web en Docker.</p>
-            <p class="chips"><span>JavaScript</span><span>TypeScript</span><span>Docker</span></p>
-          </article>
-          <article class="etapa">
-            <span class="etapa-mes">Nov</span>
-            <p class="mono">Noviembre 2026</p>
-            <h3>Bases de datos y APIs</h3>
-            <p>Primero SQL y MongoDB, después Express y NestJS. Login con JWT y CI en cada pull request.</p>
-            <p class="chips"><span>PostgreSQL</span><span>NestJS</span><span>CI</span></p>
-          </article>
-          <article class="etapa etapa-final">
-            <span class="etapa-mes">Ahora</span>
-            <p class="mono">Lo siguiente</p>
-            <h3>Seguir aprendiendo</h3>
-            <p>Sigo con el bootcamp y practicando por mi cuenta.</p>
-          </article>
-        </div>
+    <!-- ============ RECORRIDO ============ -->
+    <section id="recorrido" class="seccion">
+      <div class="titulo">
+        <span class="num">02 / Recorrido</span>
+        <h2 class="partir">Mis tres meses en The Bridge</h2>
+      </div>
+      <div class="etapas">
+        <article class="etapa">
+          <span class="etapa-mes" aria-hidden="true">Sep</span>
+          <p class="mono">Septiembre 2026</p>
+          <h3>Git, HTML y CSS</h3>
+          <p>Ramas, merges y mis primeros conflictos. Después, mis primeras páginas y un currículum sacado de Figma.</p>
+          <p class="chips"><span>Git</span><span>HTML</span><span>CSS</span></p>
+        </article>
+        <article class="etapa">
+          <span class="etapa-mes" aria-hidden="true">Oct</span>
+          <p class="mono">Octubre 2026</p>
+          <h3>JavaScript, DOM y TypeScript</h3>
+          <p>map, filter y reduce, peticiones con async/await y ejercicios que había que hacer pasar los tests de Jasmine que nos daban. Al final del mes metí una web en Docker.</p>
+          <p class="chips"><span>JavaScript</span><span>TypeScript</span><span>Docker</span></p>
+        </article>
+        <article class="etapa">
+          <span class="etapa-mes" aria-hidden="true">Nov</span>
+          <p class="mono">Noviembre 2026</p>
+          <h3>Bases de datos y APIs</h3>
+          <p>Primero SQL y MongoDB, después Express y NestJS. Login con JWT y lint automático con GitHub Actions en los pull requests.</p>
+          <p class="chips"><span>PostgreSQL</span><span>NestJS</span><span>GitHub Actions</span></p>
+        </article>
+        <article class="etapa etapa-final">
+          <span class="etapa-mes" aria-hidden="true">Ahora</span>
+          <p class="mono">Lo siguiente</p>
+          <h3>Seguir aprendiendo</h3>
+          <p>Sigo con el bootcamp y practicando por mi cuenta.</p>
+        </article>
       </div>
     </section>
 
     <!-- ============ HERRAMIENTAS ============ -->
-    <section class="seccion stack-seccion">
+    <section class="seccion">
       <div class="titulo">
         <span class="num">Herramientas</span>
         <h2 class="partir">Lo que he tocado en el bootcamp</h2>
       </div>
-      <div class="stack-grupos">
+      <div class="herramientas">
         <div class="grupo">
           <p class="mono">Frontend</p>
-          <ul><li>HTML</li><li>CSS · BEM</li><li>JavaScript</li><li>TypeScript</li></ul>
+          <ul><li>HTML</li><li>CSS</li><li>JavaScript</li><li>TypeScript</li></ul>
         </div>
         <div class="grupo">
           <p class="mono">Backend</p>

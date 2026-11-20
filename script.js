@@ -5,7 +5,10 @@ const gsapHaCargado = window.gsap && window.ScrollTrigger && window.Flip;
 const hayAnimaciones = gsapHaCargado && !pideMenosMovimiento;
 
 const miCorreo = "paysecuredev@protonmail.com";
-const colorAzul = "77, 163, 255";
+
+// El azul lo saco del CSS para tenerlo en un solo sitio
+const estilosDeLaPagina = getComputedStyle(document.documentElement);
+const colorAzul = estilosDeLaPagina.getPropertyValue("--acento-rgb").trim();
 const colorPuntoApagado = "rgba(230, 235, 242, 0.11)";
 
 // Animaciones cortas para que la página se sienta ágil y no haya que esperar
@@ -59,12 +62,12 @@ function activarFiltros() {
 
       if (posicionesAntes) {
         Flip.from(posicionesAntes, {
-          duration: 0.7,
-          ease: "expo.out",
+          duration: 0.6,
+          ease: "power3.out",
           absolute: true,
           stagger: 0.03,
           onEnter: (tarjetasQueEntran) => {
-            gsap.fromTo(tarjetasQueEntran, { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.6 });
+            gsap.fromTo(tarjetasQueEntran, { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.5 });
           },
           onLeave: (tarjetasQueSalen) => {
             gsap.to(tarjetasQueSalen, { opacity: 0, scale: 0.9, duration: 0.3 });
@@ -86,22 +89,31 @@ function activarBotonCopiar() {
   const botonCopiar = document.getElementById("copiar");
   const textoDelBoton = botonCopiar.querySelector("span");
   const mensajeAviso = document.getElementById("aviso");
+  let temporizadorDelAviso = null;
 
   botonCopiar.addEventListener("click", () => {
+    clearTimeout(temporizadorDelAviso);
+
+    // Algunos navegadores no dejan copiar (por ejemplo si la web no va por https).
+    // En ese caso enseño el correo para que se pueda copiar a mano y no lo borro.
+    if (!navigator.clipboard) {
+      mensajeAviso.textContent = miCorreo;
+      return;
+    }
+
     navigator.clipboard.writeText(miCorreo)
       .then(() => {
         textoDelBoton.textContent = "¡Copiado!";
         mensajeAviso.textContent = "Correo copiado";
+
+        temporizadorDelAviso = setTimeout(() => {
+          textoDelBoton.textContent = "Copiar correo";
+          mensajeAviso.textContent = "";
+        }, 2500);
       })
       .catch(() => {
-        // Si el navegador no deja copiar, al menos enseño el correo
         mensajeAviso.textContent = miCorreo;
       });
-
-    setTimeout(() => {
-      textoDelBoton.textContent = "Copiar correo";
-      mensajeAviso.textContent = "";
-    }, 2500);
   });
 }
 
@@ -111,8 +123,9 @@ function activarBarraDeArriba() {
   const barraDeArriba = document.querySelector(".barra");
   const barraDeProgreso = document.querySelector(".progreso");
   let scrollAnterior = 0;
+  let esperandoAlNavegador = false;
 
-  window.addEventListener("scroll", () => {
+  function actualizarBarras() {
     const scrollActual = window.scrollY;
     const estaBajando = scrollActual > scrollAnterior;
 
@@ -125,7 +138,16 @@ function activarBarraDeArriba() {
     const scrollMaximo = document.body.scrollHeight - window.innerHeight;
     const porcentajeLeido = scrollActual / scrollMaximo;
     barraDeProgreso.style.transform = "scaleX(" + porcentajeLeido + ")";
-  });
+
+    esperandoAlNavegador = false;
+  }
+
+  // requestAnimationFrame hace que solo actualice una vez por fotograma aunque el scroll avise muchas veces
+  window.addEventListener("scroll", () => {
+    if (esperandoAlNavegador) return;
+    esperandoAlNavegador = true;
+    requestAnimationFrame(actualizarBarras);
+  }, { passive: true });
 
   // Marca en el menú la sección que estás viendo
   const enlacesDelMenu = document.querySelectorAll(".barra nav a");
@@ -165,8 +187,8 @@ function empezarAnimaciones() {
 function animarEntradaDePortada() {
   const entradaPortada = gsap.timeline();
   entradaPortada.to(".titular .trozo", { yPercent: 0, duration: 0.9, stagger: 0.1, ease: "power3.out" });
-  entradaPortada.to(".rotador span:first-child", { yPercent: 0, opacity: 1, duration: 1, ease: "expo.out" }, "<0.3");
-  entradaPortada.to(".aparece", { opacity: 1, y: 0, duration: 0.9, stagger: 0.08, ease: "expo.out" }, "<0.2");
+  entradaPortada.to(".rotador span:first-child", { yPercent: 0, opacity: 1, duration: 0.8, ease: "power3.out" }, "<0.3");
+  entradaPortada.to(".aparece", { opacity: 1, y: 0, duration: 0.7, stagger: 0.08, ease: "power3.out" }, "<0.2");
 
   escribirTerminal();
   setTimeout(cambiarPalabraDeColor, 3000);
@@ -190,18 +212,21 @@ function escribirTerminal() {
 }
 
 
-// ===== La palabra de color del titular va cambiando =====
+// ===== La palabra azul del titular va cambiando =====
 function cambiarPalabraDeColor() {
   const palabras = document.querySelectorAll(".rotador span");
   let palabraVisible = 0;
 
   setInterval(() => {
+    // Si la pestaña no se está viendo, no hago nada
+    if (document.hidden) return;
+
     const palabraQueSale = palabras[palabraVisible];
     palabraVisible = (palabraVisible + 1) % palabras.length;
     const palabraQueEntra = palabras[palabraVisible];
 
-    gsap.to(palabraQueSale, { yPercent: -110, opacity: 0, duration: 0.7, ease: "expo.inOut" });
-    gsap.fromTo(palabraQueEntra, { yPercent: 110, opacity: 0 }, { yPercent: 0, opacity: 1, duration: 0.7, ease: "expo.inOut" });
+    gsap.to(palabraQueSale, { yPercent: -110, opacity: 0, duration: 0.6, ease: "power3.inOut" });
+    gsap.fromTo(palabraQueEntra, { yPercent: 110, opacity: 0 }, { yPercent: 0, opacity: 1, duration: 0.6, ease: "power3.inOut" });
   }, 2200);
 }
 
@@ -223,6 +248,7 @@ function partirTitulosEnPalabras() {
 
 // ===== Fondo de puntos de la portada =====
 // Una rejilla de puntos en un canvas. Los que están cerca del ratón se apartan y se ponen azules.
+// Solo repinto mientras algo se mueve. Cuando los puntos vuelven a su sitio, paro.
 function dibujarFondoDePuntos() {
   const lienzo = document.getElementById("puntos");
   const pincel = lienzo.getContext("2d");
@@ -232,26 +258,38 @@ function dibujarFondoDePuntos() {
   const radioDelRaton = 160;
   const cuantoSeApartan = 22;
   const suavidad = 0.15;
+  const ratonFuera = { x: -1000, y: -1000 };
 
   let listaDePuntos = [];
-  let posicionRaton = { x: -1000, y: -1000 };
-  let portadaVisible = true;
+  let posicionRaton = { ...ratonFuera };
+  let anchoPortada = 0;
+  let altoPortada = 0;
+  let hayQueRepintar = true;
+  let temporizadorDeResize = null;
 
   function crearPuntos() {
-    lienzo.width = portada.offsetWidth;
-    lienzo.height = portada.offsetHeight;
-    listaDePuntos = [];
+    // En pantallas retina el canvas tiene que tener más píxeles para no verse borroso
+    const densidadDePantalla = Math.min(window.devicePixelRatio || 1, 2);
+    anchoPortada = portada.offsetWidth;
+    altoPortada = portada.offsetHeight;
+    lienzo.width = anchoPortada * densidadDePantalla;
+    lienzo.height = altoPortada * densidadDePantalla;
+    pincel.setTransform(densidadDePantalla, 0, 0, densidadDePantalla, 0, 0);
 
-    for (let x = separacionEntrePuntos / 2; x < lienzo.width; x += separacionEntrePuntos) {
-      for (let y = separacionEntrePuntos / 2; y < lienzo.height; y += separacionEntrePuntos) {
+    listaDePuntos = [];
+    for (let x = separacionEntrePuntos / 2; x < anchoPortada; x += separacionEntrePuntos) {
+      for (let y = separacionEntrePuntos / 2; y < altoPortada; y += separacionEntrePuntos) {
         listaDePuntos.push({ x: x, y: y, xOriginal: x, yOriginal: y });
       }
     }
+    hayQueRepintar = true;
   }
 
   function pintarPuntos() {
-    if (!portadaVisible) return;
-    pincel.clearRect(0, 0, lienzo.width, lienzo.height);
+    if (!hayQueRepintar) return;
+    pincel.clearRect(0, 0, anchoPortada, altoPortada);
+
+    let algunPuntoSeMueve = false;
 
     listaDePuntos.forEach((punto) => {
       const distanciaX = punto.xOriginal - posicionRaton.x;
@@ -270,8 +308,11 @@ function dibujarFondoDePuntos() {
       }
 
       // Cada punto se acerca poco a poco a donde tiene que estar
-      punto.x += (destinoX - punto.x) * suavidad;
-      punto.y += (destinoY - punto.y) * suavidad;
+      const pasoX = (destinoX - punto.x) * suavidad;
+      const pasoY = (destinoY - punto.y) * suavidad;
+      punto.x += pasoX;
+      punto.y += pasoY;
+      if (Math.abs(pasoX) > 0.01 || Math.abs(pasoY) > 0.01) algunPuntoSeMueve = true;
 
       if (cercania > 0) {
         const opacidad = 0.25 + cercania * 0.75;
@@ -285,27 +326,34 @@ function dibujarFondoDePuntos() {
       pincel.arc(punto.x, punto.y, tamanoDelPunto, 0, Math.PI * 2);
       pincel.fill();
     });
+
+    // Si ya está todo quieto y el ratón está fuera, dejo de pintar hasta que vuelva
+    const ratonEstaFuera = posicionRaton.x === ratonFuera.x;
+    if (!algunPuntoSeMueve && ratonEstaFuera) hayQueRepintar = false;
   }
 
   crearPuntos();
   gsap.ticker.add(pintarPuntos);
-  window.addEventListener("resize", crearPuntos);
+
+  // Espero a que acabes de cambiar el tamaño de la ventana antes de recalcular
+  window.addEventListener("resize", () => {
+    clearTimeout(temporizadorDeResize);
+    temporizadorDeResize = setTimeout(crearPuntos, 200);
+  });
+
+  // En el móvil no hay ratón: los puntos se pintan una vez y ya
+  if (!usaRaton) return;
 
   portada.addEventListener("mousemove", (evento) => {
     const cajaPortada = portada.getBoundingClientRect();
     posicionRaton.x = evento.clientX - cajaPortada.left;
     posicionRaton.y = evento.clientY - cajaPortada.top;
+    hayQueRepintar = true;
   });
 
   portada.addEventListener("mouseleave", () => {
-    posicionRaton = { x: -1000, y: -1000 };
+    posicionRaton = { ...ratonFuera };
   });
-
-  // Si la portada no se ve, no pinto nada para no gastar
-  const vigilanteDePortada = new IntersectionObserver((entradas) => {
-    portadaVisible = entradas[0].isIntersecting;
-  });
-  vigilanteDePortada.observe(portada);
 }
 
 
