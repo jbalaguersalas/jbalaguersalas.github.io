@@ -1188,3 +1188,9 @@ html { overflow-x: clip; }
 .etapa:hover { border-color: var(--linea-2); translate: 0 -6px; }
 
 .grupo { align-content: start; }
+
+/* Las letras en cursiva se salen un poco de su caja. Con este hueco no se cortan. */
+.linea {
+  padding: 0 0.15em 0.12em;
+  margin: 0 -0.15em;
+}

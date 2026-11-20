@@ -345,30 +345,6 @@ function animarAlHacerScroll() {
     });
   });
 
-  // Números que suben de 0 a su valor
-  document.querySelectorAll(".contador").forEach((contador) => {
-    const valorDelContador = { actual: 0 };
-    contador.textContent = "0";
-
-    gsap.to(valorDelContador, {
-      actual: Number(contador.dataset.fin),
-      duration: 1.2,
-      ease: "power2.out",
-      onUpdate: () => {
-        contador.textContent = Math.round(valorDelContador.actual);
-      },
-      scrollTrigger: { trigger: contador, start: "top 92%" },
-    });
-  });
-
-  gsap.from(".numero", {
-    ...entradaRapida,
-    y: 24,
-    opacity: 0,
-    stagger: 0.06,
-    scrollTrigger: { trigger: ".numeros", start: "top 88%" },
-  });
-
   gsap.from(".filtro", {
     ...entradaRapida,
     y: 12,
