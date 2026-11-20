@@ -566,9 +566,7 @@ code {
   border: 1px solid var(--linea);
   border-radius: 18px;
   overflow: hidden;
-  transition: border-color 0.4s;
-  transform-style: preserve-3d;
-  will-change: transform;
+  transition: border-color 0.4s, translate 0.4s var(--curva);
 }
 
 .tarjeta::before {
@@ -583,7 +581,7 @@ code {
   transition: opacity 0.4s;
 }
 
-.tarjeta:hover { border-color: rgba(var(--acento-rgb), 0.35); }
+.tarjeta:hover { border-color: rgba(var(--acento-rgb), 0.35); translate: 0 -6px; }
 .tarjeta:hover::before { opacity: 1; }
 
 .tarjeta.fuera { display: none; }
@@ -930,30 +928,6 @@ code {
   .pista { grid-template-columns: repeat(2, 1fr); }
 }
 
-/* Con JavaScript y pantalla grande, la pista se mueve en horizontal */
-@media (min-width: 1000px) {
-  .recorrido.horizontal { padding-top: 0; }
-  .recorrido.horizontal .recorrido-fijo {
-    max-width: none;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    overflow: hidden;
-  }
-  .recorrido.horizontal .recorrido-titulo {
-    width: 100%;
-    max-width: calc(var(--ancho) - 2 * var(--margen));
-    margin-inline: auto;
-  }
-  .recorrido.horizontal .pista {
-    display: flex;
-    width: max-content;
-    gap: 24px;
-    padding-left: max(0px, calc((100vw - var(--ancho)) / 2));
-  }
-  .recorrido.horizontal .etapa { width: 460px; min-height: 400px; }
-}
 
 
 /* ===== Stack ===== */
@@ -1117,13 +1091,6 @@ html { overflow-x: clip; }
 /* La portada empieza escondida y GSAP la saca al cargar */
 .js .titular { opacity: 0; }
 
-/* Con la sección fija el título tiene que caber en una línea */
-@media (min-width: 1000px) {
-  .recorrido.horizontal .recorrido-titulo h2 {
-    font-size: clamp(46px, 6vw, 88px);
-    max-width: none;
-  }
-}
 
 /* ===== Dibujo de la tarjeta de peticiones (fetch) ===== */
 .visual-fetch .peticion {
@@ -1209,3 +1176,15 @@ html { overflow-x: clip; }
 @media (max-width: 480px) {
   .terminal pre { font-size: 11.5px; padding: 16px; }
 }
+
+/* El recorrido en ordenador va en cuatro columnas */
+@media (min-width: 1100px) {
+  .pista { grid-template-columns: repeat(4, 1fr); }
+  .etapa { min-height: 380px; }
+  .etapa-mes { font-size: 120px; }
+}
+
+.etapa { transition: border-color 0.4s, translate 0.4s var(--curva); }
+.etapa:hover { border-color: var(--linea-2); translate: 0 -6px; }
+
+.grupo { align-content: start; }

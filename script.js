@@ -8,6 +8,9 @@ const miCorreo = "josebala115@gmail.com";
 const colorAzul = "77, 163, 255";
 const colorPuntoApagado = "rgba(230, 235, 242, 0.11)";
 
+// Animaciones cortas para que la página se sienta ágil y no haya que esperar
+const entradaRapida = { duration: 0.7, ease: "power3.out" };
+
 // Le digo al <head> que el script ha cargado bien
 document.documentElement.classList.add("listo");
 
@@ -68,7 +71,7 @@ function activarFiltros() {
           },
           onComplete: () => {
             // Flip a veces deja alguna tarjeta movida, así que las devuelvo a su sitio
-            gsap.set(tarjetas, { x: 0, y: 0 });
+            gsap.set(tarjetas, { clearProps: "transform,translate" });
             ScrollTrigger.refresh();
           },
         });
@@ -154,7 +157,6 @@ function empezarAnimaciones() {
   dibujarFondoDePuntos();
   seguirRatonConLaLuz();
   animarAlHacerScroll();
-  animarRecorrido();
   animarEntradaDePortada();
 }
 
@@ -162,7 +164,7 @@ function empezarAnimaciones() {
 // ===== Entrada de la portada =====
 function animarEntradaDePortada() {
   const entradaPortada = gsap.timeline();
-  entradaPortada.to(".titular .trozo", { yPercent: 0, duration: 1.2, stagger: 0.12, ease: "expo.out" });
+  entradaPortada.to(".titular .trozo", { yPercent: 0, duration: 0.9, stagger: 0.1, ease: "power3.out" });
   entradaPortada.to(".rotador span:first-child", { yPercent: 0, opacity: 1, duration: 1, ease: "expo.out" }, "<0.3");
   entradaPortada.to(".aparece", { opacity: 1, y: 0, duration: 0.9, stagger: 0.08, ease: "expo.out" }, "<0.2");
 
@@ -200,7 +202,7 @@ function cambiarPalabraDeColor() {
 
     gsap.to(palabraQueSale, { yPercent: -110, opacity: 0, duration: 0.7, ease: "expo.inOut" });
     gsap.fromTo(palabraQueEntra, { yPercent: 110, opacity: 0 }, { yPercent: 0, opacity: 1, duration: 0.7, ease: "expo.inOut" });
-  }, 2500);
+  }, 2200);
 }
 
 
@@ -327,27 +329,20 @@ function animarAlHacerScroll() {
   // Títulos palabra a palabra
   document.querySelectorAll(".partir").forEach((titulo) => {
     gsap.from(titulo.querySelectorAll(".palabra > span"), {
+      ...entradaRapida,
       yPercent: 110,
-      duration: 1.1,
-      stagger: 0.06,
-      ease: "expo.out",
-      scrollTrigger: { trigger: titulo, start: "top 85%" },
+      stagger: 0.04,
+      scrollTrigger: { trigger: titulo, start: "top 88%" },
     });
   });
 
   document.querySelectorAll(".titulo .num, .titulo > p").forEach((textoPequeno) => {
     gsap.from(textoPequeno, {
+      ...entradaRapida,
       opacity: 0,
-      y: 20,
-      duration: 0.9,
-      scrollTrigger: { trigger: textoPequeno, start: "top 90%" },
+      y: 16,
+      scrollTrigger: { trigger: textoPequeno, start: "top 92%" },
     });
-  });
-
-  // La cinta de tecnologías gira un poco mientras bajas
-  gsap.to(".cinta", {
-    rotate: 1.2,
-    scrollTrigger: { trigger: ".cinta", start: "top bottom", end: "bottom top", scrub: true },
   });
 
   // Números que suben de 0 a su valor
@@ -357,39 +352,45 @@ function animarAlHacerScroll() {
 
     gsap.to(valorDelContador, {
       actual: Number(contador.dataset.fin),
-      duration: 1.6,
-      ease: "power3.out",
+      duration: 1.2,
+      ease: "power2.out",
       onUpdate: () => {
         contador.textContent = Math.round(valorDelContador.actual);
       },
-      scrollTrigger: { trigger: contador, start: "top 90%" },
+      scrollTrigger: { trigger: contador, start: "top 92%" },
     });
   });
 
   gsap.from(".numero", {
-    y: 40,
+    ...entradaRapida,
+    y: 24,
     opacity: 0,
-    stagger: 0.1,
-    duration: 1,
-    ease: "expo.out",
-    scrollTrigger: { trigger: ".numeros", start: "top 85%" },
+    stagger: 0.06,
+    scrollTrigger: { trigger: ".numeros", start: "top 88%" },
   });
 
   gsap.from(".filtro", {
-    y: 20,
+    ...entradaRapida,
+    y: 12,
     opacity: 0,
-    stagger: 0.05,
-    duration: 0.7,
-    scrollTrigger: { trigger: ".filtros", start: "top 90%" },
+    stagger: 0.04,
+    scrollTrigger: { trigger: ".filtros", start: "top 92%" },
   });
 
-  // Las tarjetas salen por grupos según van entrando en pantalla
-  gsap.set(".tarjeta", { y: 70, opacity: 0 });
-  ScrollTrigger.batch(".tarjeta", {
-    start: "top 90%",
+  // Las tarjetas salen por grupos según van entrando en pantalla.
+  // Al terminar borro el transform para que funcione el efecto de subir al pasar el ratón (está en el CSS).
+  gsap.set(".tarjeta, .etapa", { y: 40, opacity: 0 });
+  ScrollTrigger.batch(".tarjeta, .etapa", {
+    start: "top 92%",
     once: true,
     onEnter: (grupoDeTarjetas) => {
-      gsap.to(grupoDeTarjetas, { y: 0, opacity: 1, duration: 1.1, stagger: 0.1, ease: "expo.out" });
+      gsap.to(grupoDeTarjetas, {
+        ...entradaRapida,
+        y: 0,
+        opacity: 1,
+        stagger: 0.07,
+        clearProps: "transform,translate",
+      });
     },
   });
 
@@ -397,100 +398,33 @@ function animarAlHacerScroll() {
   const dibujoDeRamas = document.querySelector(".visual-ramas");
   ScrollTrigger.create({
     trigger: dibujoDeRamas,
-    start: "top 75%",
+    start: "top 80%",
     once: true,
     onEnter: () => dibujoDeRamas.classList.add("dibujado"),
   });
 
   document.querySelectorAll(".grupo").forEach((grupoDeHerramientas) => {
     gsap.from(grupoDeHerramientas.querySelectorAll(".mono, li"), {
-      y: 30,
+      ...entradaRapida,
+      y: 16,
       opacity: 0,
-      stagger: 0.06,
-      duration: 0.8,
-      scrollTrigger: { trigger: grupoDeHerramientas, start: "top 88%" },
+      stagger: 0.04,
+      scrollTrigger: { trigger: grupoDeHerramientas, start: "top 90%" },
     });
   });
 
   // Contacto
   gsap.to(".contacto-titulo .trozo", {
+    ...entradaRapida,
     yPercent: 0,
-    duration: 1.2,
-    stagger: 0.12,
-    ease: "expo.out",
-    scrollTrigger: { trigger: ".contacto-titulo", start: "top 85%" },
+    scrollTrigger: { trigger: ".contacto-titulo", start: "top 88%" },
   });
 
   gsap.from(".contacto > p, .contacto-acciones, .redes", {
-    y: 30,
+    ...entradaRapida,
+    y: 16,
     opacity: 0,
-    stagger: 0.1,
-    duration: 0.9,
+    stagger: 0.06,
     scrollTrigger: { trigger: ".contacto-acciones", start: "top 95%" },
-  });
-
-  // La portada se va apagando al bajar
-  gsap.to(".titular, .portada-pie", {
-    yPercent: -12,
-    opacity: 0.25,
-    ease: "none",
-    scrollTrigger: { trigger: ".portada", start: "top top", end: "bottom top", scrub: true },
-  });
-}
-
-
-// ===== Recorrido =====
-// En pantallas grandes la sección se queda fija y las tarjetas pasan de lado.
-// En el móvil solo aparecen hacia arriba.
-function animarRecorrido() {
-  const tamanosDePantalla = gsap.matchMedia();
-  const seccionRecorrido = document.querySelector(".recorrido");
-  const pistaDeTarjetas = document.querySelector(".pista");
-
-  tamanosDePantalla.add("(min-width: 1000px)", () => {
-    seccionRecorrido.classList.add("horizontal");
-
-    // Lo que tiene que moverse la pista para que se vea entera la última tarjeta
-    const distanciaAMover = () => pistaDeTarjetas.scrollWidth - window.innerWidth + window.innerWidth * 0.06;
-
-    const moverPista = gsap.to(pistaDeTarjetas, {
-      x: () => -distanciaAMover(),
-      ease: "none",
-      scrollTrigger: {
-        trigger: ".recorrido-fijo",
-        start: "top top",
-        end: () => "+=" + distanciaAMover(),
-        pin: true,
-        scrub: 0.8,
-        invalidateOnRefresh: true,
-      },
-    });
-
-    // containerAnimation sirve para usar ScrollTrigger dentro del movimiento de lado
-    document.querySelectorAll(".etapa").forEach((etapa) => {
-      gsap.from(etapa, {
-        opacity: 0.25,
-        scale: 0.94,
-        scrollTrigger: { trigger: etapa, containerAnimation: moverPista, start: "left 95%", end: "left 60%", scrub: true },
-      });
-
-      gsap.from(etapa.querySelector(".etapa-mes"), {
-        xPercent: 40,
-        scrollTrigger: { trigger: etapa, containerAnimation: moverPista, start: "left right", end: "right left", scrub: true },
-      });
-    });
-
-    // Si la pantalla se hace pequeña, quito la clase
-    return () => seccionRecorrido.classList.remove("horizontal");
-  });
-
-  tamanosDePantalla.add("(max-width: 999px)", () => {
-    gsap.from(".etapa", {
-      y: 60,
-      opacity: 0,
-      stagger: 0.12,
-      duration: 1,
-      scrollTrigger: { trigger: ".pista", start: "top 85%" },
-    });
   });
 }
