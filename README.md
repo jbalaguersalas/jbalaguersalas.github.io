@@ -2,7 +2,7 @@
 
 Mi portfolio, publicado en **https://jbalaguersalas.github.io/**
 
-La hice a mano con HTML y CSS, sin frameworks ni JavaScript. Son dos archivos: `index.html` y `style.css`.
+La hice a mano con HTML, CSS y un poco de JavaScript, sin frameworks. Son tres archivos: `index.html`, `style.css` y `script.js`.
 
 ## Qué tiene
 
@@ -14,13 +14,21 @@ La hice a mano con HTML y CSS, sin frameworks ni JavaScript. Son dos archivos: `
 
 ## Diseño
 
-Quería algo que no se pareciera a las plantillas de siempre, así que fui a un estilo de revista: fondo color papel, titulares grandes y estrechos y un solo color de acento, el naranja. Los datos (tecnologías, commits, fechas) van en letra monoespaciada, como en el código.
+Quería algo que no se pareciera a las plantillas de siempre, así que fui a un estilo de revista: fondo negro, titulares grandes y estrechos y un solo color de acento, el naranja. Los datos (tecnologías, commits, fechas) van en letra monoespaciada, como en el código.
 
 - Fuentes: **Archivo**, que es variable y me deja estrechar los titulares con `font-stretch`, e **IBM Plex Mono**.
-- Si el ordenador tiene el modo oscuro activado, la web cambia de colores sola con `prefers-color-scheme`.
 - Está hecha primero para móvil y tiene dos saltos: tablet (720px) y ordenador (1000px).
-- Todos los colores están en variables en `:root`, así que cambiar la paleta es tocar seis líneas.
+- Todos los colores están en variables en `:root`, así que cambiar la paleta es tocar siete líneas.
 
 ## Cómo verla en local
 
 Abre `index.html` en el navegador. No hace falta instalar nada.
+
+## Lo que hace `script.js`
+
+- Saca las líneas de la terminal de la portada una a una, como si estuviera escribiendo.
+- Pide a la API de GitHub cuántos repos tengo y cuál fue mi último push, y lo pone en la portada.
+- Pinta mi gráfica de contribuciones de las últimas 16 semanas con los datos de `github-contributions-api.jogruber.de`.
+- Hace que las secciones aparezcan al bajar con `IntersectionObserver`, sube los contadores de 0 a su número y mueve la luz naranja de los proyectos con el ratón.
+
+Si alguna petición falla, la web sigue funcionando con los datos que ya trae el HTML. Y si el sistema tiene activado "reducir movimiento", no hay animaciones.
