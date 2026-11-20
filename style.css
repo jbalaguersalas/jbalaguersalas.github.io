@@ -109,134 +109,7 @@ code {
 .saltar:focus { transform: none; }
 
 
-/* ===== Pantalla de carga ===== */
-.cargador { display: none; }
-
-.js .cargador {
-  position: fixed;
-  inset: 0;
-  z-index: 300;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: var(--margen);
-  background: var(--fondo-2);
-}
-
-.cargador-nombre {
-  display: flex;
-  flex-direction: column;
-  font-size: clamp(48px, 10vw, 140px);
-  font-weight: 800;
-  font-stretch: 70%;
-  line-height: 0.9;
-}
-
-.cargador-rol {
-  font-family: var(--mono);
-  font-size: 14px;
-  font-weight: 400;
-  color: var(--gris);
-  margin-top: 16px;
-}
-
-.cargador-num {
-  align-self: flex-end;
-  font-size: clamp(64px, 16vw, 220px);
-  font-weight: 800;
-  font-stretch: 70%;
-  line-height: 0.8;
-  font-variant-numeric: tabular-nums;
-  color: var(--acento);
-}
-
-.cargador-barra {
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  height: 3px;
-  background: var(--linea);
-}
-.cargador-barra i {
-  display: block;
-  height: 100%;
-  width: 100%;
-  background: var(--acento);
-  transform: scaleX(0);
-  transform-origin: left;
-}
-
-
-/* ===== Cursor, grano y barra de progreso ===== */
-.cursor, .cursor-punto { display: none; }
-
-@media (pointer: fine) {
-  .js .cursor, .js .cursor-punto {
-    display: block;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 250;
-    pointer-events: none;
-    border-radius: 50%;
-  }
-  .js .cursor {
-    width: 38px;
-    height: 38px;
-    margin: -19px 0 0 -19px;
-    border: 1px solid rgba(237, 237, 234, 0.45);
-    transition: width 0.35s var(--curva), height 0.35s var(--curva), margin 0.35s var(--curva), background 0.35s, border-color 0.35s;
-  }
-  .js .cursor-punto {
-    width: 5px;
-    height: 5px;
-    margin: -2.5px 0 0 -2.5px;
-    background: var(--acento);
-  }
-  .js .cursor.encima {
-    width: 72px;
-    height: 72px;
-    margin: -36px 0 0 -36px;
-    background: var(--acento-suave);
-    border-color: var(--acento);
-  }
-  .js .cursor.ver::after {
-    content: "Ver ↗";
-    position: absolute;
-    inset: 0;
-    display: grid;
-    place-items: center;
-    font-family: var(--mono);
-    font-size: 11px;
-    color: var(--texto);
-  }
-  .js .cursor.ver {
-    width: 84px;
-    height: 84px;
-    margin: -42px 0 0 -42px;
-    background: var(--acento);
-    border-color: var(--acento);
-  }
-}
-
-.grano {
-  position: fixed;
-  inset: -50%;
-  z-index: 150;
-  pointer-events: none;
-  opacity: 0.045;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  animation: grano 1s steps(4) infinite;
-}
-
-@keyframes grano {
-  0% { transform: translate(0, 0); }
-  25% { transform: translate(-3%, 2%); }
-  50% { transform: translate(2%, -3%); }
-  75% { transform: translate(-2%, -2%); }
-}
-
+/* ===== Barra de progreso ===== */
 .progreso {
   position: fixed;
   top: 0;
@@ -1234,16 +1107,15 @@ footer {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
-  .grano, .aura { display: none; }
+  .aura { display: none; }
 }
 
 
 /* ===== Arreglos ===== */
 html { overflow-x: clip; }
 
-/* El cursor no sale hasta que mueves el ratón */
-.js .cursor, .js .cursor-punto { opacity: 0; }
-.con-cursor .cursor, .con-cursor .cursor-punto { opacity: 1; }
+/* La portada empieza escondida y GSAP la saca al cargar */
+.js .titular { opacity: 0; }
 
 /* Con la sección fija el título tiene que caber en una línea */
 @media (min-width: 1000px) {

@@ -29,16 +29,6 @@
 </head>
 <body>
 
-  <!-- Pantalla de carga -->
-  <div class="cargador" aria-hidden="true">
-    <div class="cargador-nombre"><span>Shema</span><span class="cargador-rol">Full Stack junior</span></div>
-    <div class="cargador-num"><span id="carga">0</span>%</div>
-    <div class="cargador-barra"><i></i></div>
-  </div>
-
-  <div class="cursor" aria-hidden="true"></div>
-  <div class="cursor-punto" aria-hidden="true"></div>
-  <div class="grano" aria-hidden="true"></div>
   <div class="progreso" aria-hidden="true"></div>
 
   <a class="saltar" href="#proyectos">Saltar a los proyectos</a>
@@ -50,7 +40,7 @@
       <a href="#recorrido"><span class="num">02</span> Recorrido</a>
       <a href="#contacto"><span class="num">03</span> Contacto</a>
     </nav>
-    <a class="boton-barra magnetico" href="mailto:josebala115@gmail.com">Hablemos</a>
+    <a class="boton-barra" href="mailto:josebala115@gmail.com">Hablemos</a>
   </header>
 
   <main id="inicio">
@@ -72,7 +62,7 @@
       </h1>
 
       <div class="portada-pie">
-        <p class="entradilla aparece">Soy Shema, desarrollador Full Stack junior. Estoy terminando el bootcamp de The Bridge y aquí enseño lo que he hecho en él: APIs con NestJS y Express, webs maquetadas a mano y ejercicios de JavaScript y TypeScript.</p>
+        <p class="entradilla aparece">Soy Shema, desarrollador Full Stack junior. Estoy terminando el bootcamp de The Bridge y aquí enseño lo que he hecho en él: APIs con NestJS y Express, webs maquetadas a mano y ejercicios de JavaScript y TypeScript. Cuando me atasco, me apoyo en la IA para entender el error y seguir avanzando.</p>
 
         <div class="terminal aparece" aria-label="Ejemplo de petición a una API">
           <div class="terminal-barra"><span></span><span></span><span></span><b>~/shema</b></div>
@@ -84,6 +74,7 @@
   <span class="acento">"backend"</span>: ["NestJS", "Express"],
   <span class="acento">"frontend"</span>: ["HTML", "CSS", "TypeScript"],
   <span class="acento">"datos"</span>: ["PostgreSQL", "MongoDB"],
+  <span class="acento">"si me atasco"</span>: "me apoyo en la IA",
   <span class="acento">"busco"</span>: "mi primer equipo"
 }</pre>
         </div>
@@ -357,7 +348,7 @@
         </div>
         <div class="grupo">
           <p class="mono">Flujo</p>
-          <ul><li>Git · GitHub</li><li>GitHub Actions</li><li>Docker</li><li>Postman</li></ul>
+          <ul><li>Git · GitHub</li><li>GitHub Actions</li><li>Docker</li><li>Postman</li><li>IA como apoyo</li></ul>
         </div>
       </div>
     </section>
@@ -368,8 +359,8 @@
       <h2 class="contacto-titulo"><span class="linea"><span class="trozo">¿Me das</span></span><span class="linea"><span class="trozo"><em>una oportunidad?</em></span></span></h2>
       <p>Busco mi primer empleo o unas prácticas como desarrollador junior. Si crees que puedo encajar en tu equipo, mándame un correo.</p>
       <div class="contacto-acciones">
-        <a class="boton magnetico" href="mailto:josebala115@gmail.com"><span>josebala115@gmail.com</span></a>
-        <button class="boton boton-borde magnetico" id="copiar" type="button"><span>Copiar correo</span></button>
+        <a class="boton" href="mailto:josebala115@gmail.com"><span>josebala115@gmail.com</span></a>
+        <button class="boton boton-borde" id="copiar" type="button"><span>Copiar correo</span></button>
       </div>
       <p class="aviso" id="aviso" role="status" aria-live="polite"></p>
       <div class="redes">

@@ -144,57 +144,18 @@ function activarBarraDeArriba() {
 function empezarAnimaciones() {
   partirTitulosEnPalabras();
 
-  // Escondo la portada para que entre cuando termine la pantalla de carga
+  // Coloco la portada abajo para que suba al cargar la página.
+  // El CSS la tiene escondida hasta este momento para que no se vea un parpadeo.
   gsap.set(".titular .trozo, .contacto-titulo .trozo", { yPercent: 115 });
   gsap.set(".aparece", { opacity: 0, y: 24 });
   gsap.set(".rotador span", { yPercent: 110, opacity: 0 });
+  gsap.set(".titular", { opacity: 1 });
 
-  activarCursor();
   dibujarFondoDePuntos();
-  inclinarTarjetas();
-  activarBotonesMagneticos();
+  seguirRatonConLaLuz();
   animarAlHacerScroll();
   animarRecorrido();
-  mostrarPantallaDeCarga();
-}
-
-
-// ===== Pantalla de carga =====
-function mostrarPantallaDeCarga() {
-  const pantallaDeCarga = document.querySelector(".cargador");
-  const numeroDeCarga = document.getElementById("carga");
-  document.body.classList.add("cargando");
-
-  // La primera vez dura más. Si recargas la página en la misma visita, va rápida.
-  let segundosDeCarga = 1.6;
-  try {
-    if (sessionStorage.getItem("cargaVista")) segundosDeCarga = 0.5;
-    sessionStorage.setItem("cargaVista", "si");
-  } catch (error) {
-    // En modo incógnito a veces no deja usar sessionStorage, no pasa nada
-  }
-
-  const progresoDeCarga = { porcentaje: 0 };
-  const animacionDeCarga = gsap.timeline({ onComplete: quitarPantallaDeCarga });
-
-  animacionDeCarga.from(".cargador-nombre span", { yPercent: 100, opacity: 0, stagger: 0.1, duration: 0.8, ease: "expo.out" }, 0);
-  animacionDeCarga.to(progresoDeCarga, {
-    porcentaje: 100,
-    duration: segundosDeCarga,
-    ease: "power2.inOut",
-    onUpdate: () => {
-      numeroDeCarga.textContent = Math.round(progresoDeCarga.porcentaje);
-    },
-  }, 0);
-  animacionDeCarga.to(".cargador-barra i", { scaleX: 1, duration: segundosDeCarga, ease: "power2.inOut" }, 0);
-  animacionDeCarga.to(pantallaDeCarga, { yPercent: -100, duration: 0.9, ease: "expo.inOut" }, "+=0.15");
-
-  function quitarPantallaDeCarga() {
-    pantallaDeCarga.remove();
-    document.body.classList.remove("cargando");
-    ScrollTrigger.refresh();
-    animarEntradaDePortada();
-  }
+  animarEntradaDePortada();
 }
 
 
@@ -254,38 +215,6 @@ function partirTitulosEnPalabras() {
     titulo.innerHTML = palabras
       .map((palabra) => '<span class="palabra" aria-hidden="true"><span>' + palabra + "</span></span>")
       .join(" ");
-  });
-}
-
-
-// ===== Cursor =====
-function activarCursor() {
-  if (!usaRaton) return;
-
-  const aroDelCursor = document.querySelector(".cursor");
-  const puntoDelCursor = document.querySelector(".cursor-punto");
-
-  // quickTo es como gsap.to pero pensado para llamarlo muchas veces seguidas
-  const moverAroX = gsap.quickTo(aroDelCursor, "x", { duration: 0.5, ease: "power3" });
-  const moverAroY = gsap.quickTo(aroDelCursor, "y", { duration: 0.5, ease: "power3" });
-  const moverPuntoX = gsap.quickTo(puntoDelCursor, "x", { duration: 0.1 });
-  const moverPuntoY = gsap.quickTo(puntoDelCursor, "y", { duration: 0.1 });
-
-  window.addEventListener("mousemove", (evento) => {
-    document.body.classList.add("con-cursor");
-    moverAroX(evento.clientX);
-    moverAroY(evento.clientY);
-    moverPuntoX(evento.clientX);
-    moverPuntoY(evento.clientY);
-  });
-
-  // Encima de las tarjetas pone "Ver". Encima de enlaces y botones solo crece.
-  document.querySelectorAll("a, button").forEach((elementoPulsable) => {
-    const esTarjeta = elementoPulsable.classList.contains("tarjeta");
-    const claseDelCursor = esTarjeta ? "ver" : "encima";
-
-    elementoPulsable.addEventListener("mouseenter", () => aroDelCursor.classList.add(claseDelCursor));
-    elementoPulsable.addEventListener("mouseleave", () => aroDelCursor.classList.remove(claseDelCursor));
   });
 }
 
@@ -378,53 +307,16 @@ function dibujarFondoDePuntos() {
 }
 
 
-// ===== Tarjetas: luz e inclinación con el ratón =====
-function inclinarTarjetas() {
+// ===== Luz de las tarjetas =====
+// Una luz azul suave sigue al ratón por encima de cada tarjeta
+function seguirRatonConLaLuz() {
   if (!usaRaton) return;
 
   document.querySelectorAll(".tarjeta").forEach((tarjeta) => {
-    gsap.set(tarjeta, { transformPerspective: 1100 });
-    const girarEnX = gsap.quickTo(tarjeta, "rotationX", { duration: 0.6, ease: "power3" });
-    const girarEnY = gsap.quickTo(tarjeta, "rotationY", { duration: 0.6, ease: "power3" });
-
-    // La grande se inclina menos porque si no queda raro
-    const gradosMaximos = tarjeta.classList.contains("grande") ? 3 : 6;
-
     tarjeta.addEventListener("mousemove", (evento) => {
       const cajaTarjeta = tarjeta.getBoundingClientRect();
-      const ratonX = evento.clientX - cajaTarjeta.left;
-      const ratonY = evento.clientY - cajaTarjeta.top;
-
-      // La luz sigue al ratón con estas dos variables de CSS
-      tarjeta.style.setProperty("--x", ratonX + "px");
-      tarjeta.style.setProperty("--y", ratonY + "px");
-
-      girarEnY((ratonX / cajaTarjeta.width - 0.5) * gradosMaximos);
-      girarEnX((0.5 - ratonY / cajaTarjeta.height) * gradosMaximos);
-    });
-
-    tarjeta.addEventListener("mouseleave", () => {
-      girarEnX(0);
-      girarEnY(0);
-    });
-  });
-}
-
-
-// ===== Botones que se van hacia el ratón =====
-function activarBotonesMagneticos() {
-  if (!usaRaton) return;
-
-  document.querySelectorAll(".magnetico").forEach((boton) => {
-    boton.addEventListener("mousemove", (evento) => {
-      const cajaBoton = boton.getBoundingClientRect();
-      const distanciaAlCentroX = evento.clientX - cajaBoton.left - cajaBoton.width / 2;
-      const distanciaAlCentroY = evento.clientY - cajaBoton.top - cajaBoton.height / 2;
-      gsap.to(boton, { x: distanciaAlCentroX * 0.3, y: distanciaAlCentroY * 0.35, duration: 0.4 });
-    });
-
-    boton.addEventListener("mouseleave", () => {
-      gsap.to(boton, { x: 0, y: 0, duration: 0.8, ease: "elastic.out(1, 0.4)" });
+      tarjeta.style.setProperty("--x", evento.clientX - cajaTarjeta.left + "px");
+      tarjeta.style.setProperty("--y", evento.clientY - cajaTarjeta.top + "px");
     });
   });
 }
@@ -535,12 +427,6 @@ function animarAlHacerScroll() {
     stagger: 0.1,
     duration: 0.9,
     scrollTrigger: { trigger: ".contacto-acciones", start: "top 95%" },
-  });
-
-  // Mi nombre gigante del pie sube despacio
-  gsap.from(".pie-grande", {
-    yPercent: 40,
-    scrollTrigger: { trigger: "footer", start: "top bottom", end: "bottom bottom", scrub: true },
   });
 
   // La portada se va apagando al bajar
