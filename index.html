@@ -3,162 +3,210 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Shema | Desarrollador full stack</title>
-  <meta name="description" content="Portfolio de Shema, desarrollador full stack: APIs con NestJS y Express, PostgreSQL, MongoDB, Docker y webs con HTML, CSS y JavaScript.">
-  <meta property="og:title" content="Shema | Desarrollador full stack">
-  <meta property="og:description" content="APIs con NestJS y Express, bases de datos SQL y NoSQL, Docker y CI con GitHub Actions.">
+  <title>Shema · Full stack</title>
+  <meta name="description" content="Shema, estudiante Full Stack en The Bridge. APIs con NestJS y Express, PostgreSQL, MongoDB y Docker.">
+  <meta property="og:title" content="Shema · Full stack">
   <meta property="og:image" content="https://jbalaguersalas.github.io/avatar.jpg">
-  <meta property="og:url" content="https://jbalaguersalas.github.io/">
-  <meta name="theme-color" content="#000000">
   <link rel="icon" href="avatar.jpg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;600;700&family=Manrope:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <header>
-    <a class="logo" href="#">Shema</a>
+  <header class="barra">
+    <a class="marca" href="#"><img src="avatar.jpg" alt=""> Shema</a>
     <nav>
-      <a href="#proyectos">Proyectos</a>
-      <a href="#herramientas">Herramientas</a>
-      <a href="#contacto">Contacto</a>
+      <a href="#proyectos"><span class="num">01</span> Proyectos</a>
+      <a href="#aprendido"><span class="num">02</span> Aprendido</a>
+      <a href="#recorrido"><span class="num">03</span> Recorrido</a>
+      <a href="#contacto"><span class="num">04</span> Contacto</a>
     </nav>
   </header>
 
   <main>
 
-    <!-- Presentación -->
-    <section class="inicio">
-      <img class="foto" src="avatar.jpg" alt="Foto de perfil de Shema" width="260" height="260">
-      <div>
-        <h1>Shema</h1>
-        <p class="subtitulo">Desarrollador full stack</p>
-        <p class="descripcion">Estudio Full Stack en The Bridge. Hago APIs con NestJS y Express, guardo los datos en PostgreSQL o MongoDB y maqueto webs con HTML y CSS.</p>
-        <div class="acciones">
-          <a class="boton" href="#proyectos">Ver mis proyectos</a>
-          <a class="boton boton--secundario" href="https://github.com/jbalaguersalas" target="_blank" rel="noopener">GitHub</a>
-        </div>
+    <!-- Portada -->
+    <section class="portada">
+      <p class="mono">Estudiante Full Stack · The Bridge</p>
+      <h1>Hago la parte de la web <em>que no se ve.</em></h1>
+
+      <div class="portada-pie">
+        <p class="entradilla">Soy Shema. Construyo APIs con NestJS y Express, guardo los datos en PostgreSQL y MongoDB y las levanto con Docker. También maqueto la parte que sí se ve, con HTML y CSS a mano.</p>
+
+<pre class="codigo"><span class="rojo">GET</span> /api/shema
+<span class="verde">200 OK</span>
+
+{
+  <span class="rojo">"rol"</span>: "backend + frontend",
+  <span class="rojo">"apis"</span>: ["NestJS", "Express"],
+  <span class="rojo">"datos"</span>: ["PostgreSQL", "MongoDB"],
+  <span class="rojo">"repos"</span>: 29
+}</pre>
       </div>
     </section>
 
     <!-- Proyectos -->
     <section id="proyectos">
-      <h2>Proyectos</h2>
+      <div class="titulo">
+        <span class="num">01</span>
+        <h2>Proyectos</h2>
+        <p>Lo más completo que he hecho. Cada uno enlaza a su código.</p>
+      </div>
 
-      <div class="proyectos">
-        <a class="tarjeta tarjeta--destacada" href="https://github.com/jbalaguersalas/api-gimnasio-fitval" target="_blank" rel="noopener">
-          <h3>API gimnasio FitVal</h3>
-          <p>La API que usaría la web de un gimnasio: planes, horario de clases y login con JWT. Guardo las contraseñas con argon2 y solo el personal puede crear o borrar clases.</p>
-          <div class="etiquetas">
-            <span class="etiqueta">NestJS</span>
-            <span class="etiqueta">PostgreSQL</span>
-            <span class="etiqueta">JWT</span>
-            <span class="etiqueta">Docker</span>
-          </div>
-        </a>
+      <div class="proyecto">
+        <span class="num-gris">01</span>
+        <div>
+          <h3><a href="https://github.com/jbalaguersalas/api-gimnasio-fitval" target="_blank">API gimnasio FitVal</a></h3>
+          <p>La API que usaría la web de un gimnasio: planes, horario de clases y login con JWT. Guardo las contraseñas con argon2 y solo el personal puede crear o borrar clases. Si una clase tiene reservas, la API no deja borrarla.</p>
+          <p class="datos">9 rutas · 5 PR · 17 commits</p>
+        </div>
+        <p class="stack">NestJS · PostgreSQL · JWT · Docker</p>
+      </div>
 
-        <a class="tarjeta tarjeta--destacada" href="https://github.com/jbalaguersalas/api-rastro" target="_blank" rel="noopener">
-          <h3>API Rastro</h3>
-          <p>API para comprar y vender cosas de segunda mano. Busca anuncios por categoría, ciudad o precio y avisa si alguien oferta por algo ya vendido. Cada cambio pasó por una PR con lint automático.</p>
-          <div class="etiquetas">
-            <span class="etiqueta">Express</span>
-            <span class="etiqueta">TypeScript</span>
-            <span class="etiqueta">MongoDB</span>
-            <span class="etiqueta">GitHub Actions</span>
-          </div>
-        </a>
+      <div class="proyecto">
+        <span class="num-gris">02</span>
+        <div>
+          <h3><a href="https://github.com/jbalaguersalas/api-rastro" target="_blank">API Rastro</a></h3>
+          <p>Una app inventada para comprar y vender cosas de segunda mano. Busca anuncios por categoría, ciudad o precio, suma visitas y avisa si alguien oferta por algo ya vendido. Hice cada parte en su rama y GitHub pasaba el lint antes de dejarme mezclar.</p>
+          <p class="datos">7 partes · 25 commits · main protegida</p>
+        </div>
+        <p class="stack">Express · TypeScript · MongoDB · GitHub Actions</p>
+      </div>
 
-        <a class="tarjeta" href="https://github.com/jbalaguersalas/nestjs-postgresql-supabase-render" target="_blank" rel="noopener">
-          <h3>API de libros y pedidos</h3>
-          <p>API REST con SQL parametrizado, DTOs validados, filtro global de errores y despliegue en Render con Supabase.</p>
-          <div class="etiquetas">
-            <span class="etiqueta">NestJS</span>
-            <span class="etiqueta">Supabase</span>
-            <span class="etiqueta">Render</span>
-          </div>
-        </a>
+      <div class="proyecto">
+        <span class="num-gris">03</span>
+        <div>
+          <h3><a href="https://github.com/jbalaguersalas/nestjs-postgresql-supabase-render" target="_blank">API de libros y pedidos</a></h3>
+          <p>API REST con SQL escrito a mano y parámetros <code>$1</code>, pedidos dentro de una transacción, helmet, límite de peticiones y un filtro global de errores. Base de datos en Supabase y lista para desplegar en Render.</p>
+          <p class="datos">colección Postman · 15 commits</p>
+        </div>
+        <p class="stack">NestJS · Supabase · Render</p>
+      </div>
 
-        <a class="tarjeta" href="https://github.com/jbalaguersalas/Proyecto-SQL-Gimnasio" target="_blank" rel="noopener">
-          <h3>Base de datos de un gimnasio</h3>
-          <p>Diseño del modelo relacional, creación de tablas y consultas SQL sobre socios, clases y reservas.</p>
-          <div class="etiquetas">
-            <span class="etiqueta">SQL</span>
-            <span class="etiqueta">PostgreSQL</span>
-          </div>
-        </a>
+      <div class="proyecto">
+        <span class="num-gris">04</span>
+        <div>
+          <h3><a href="https://github.com/jbalaguersalas/Proyecto-SQL-Gimnasio" target="_blank">Base de datos del gimnasio</a></h3>
+          <p>Diseñé el modelo de un gimnasio desde cero: socios, planes, tarjetas, monitores, clases y reservas, con sus claves foráneas. Luego le hice consultas con JOIN y agrupaciones. FitVal usa esta misma base.</p>
+          <p class="datos">8 tablas · 29 commits</p>
+        </div>
+        <p class="stack">SQL · PostgreSQL</p>
+      </div>
 
-        <a class="tarjeta" href="https://github.com/jbalaguersalas/-Pr-ctica-Docker-Web-Minimalista" target="_blank" rel="noopener">
-          <h3>Web minimalista en Docker</h3>
-          <p>Portfolio responsive maquetado con BEM y servido desde un contenedor con Dockerfile y Compose.</p>
-          <div class="etiquetas">
-            <span class="etiqueta">HTML</span>
-            <span class="etiqueta">CSS</span>
-            <span class="etiqueta">Docker</span>
-          </div>
-        </a>
+      <div class="proyecto">
+        <span class="num-gris">05</span>
+        <div>
+          <h3><a href="https://github.com/jbalaguersalas/mongodb-rastro" target="_blank">Rastro en MongoDB</a></h3>
+          <p>Antes de la API, la base de datos: consultas, actualizaciones y agregaciones sobre usuarios, anuncios y ofertas desde la shell de Mongo.</p>
+          <p class="datos">24 commits</p>
+        </div>
+        <p class="stack">MongoDB · Docker</p>
+      </div>
 
-        <a class="tarjeta" href="https://github.com/jbalaguersalas/web-cv" target="_blank" rel="noopener">
-          <h3>Currículum web</h3>
-          <p>Mi currículum convertido en una página web.</p>
-          <div class="etiquetas">
-            <span class="etiqueta">HTML</span>
-            <span class="etiqueta">CSS</span>
-          </div>
-        </a>
+      <div class="proyecto">
+        <span class="num-gris">06</span>
+        <div>
+          <h3><a href="https://github.com/jbalaguersalas/-Pr-ctica-Docker-Web-Minimalista" target="_blank">Web minimalista en Docker</a></h3>
+          <p>Maqueté un portfolio a partir de un diseño dado, con BEM y pensado primero para móvil, y lo sirvo desde un contenedor con nginx.</p>
+        </div>
+        <p class="stack">HTML · CSS · Docker</p>
+      </div>
+
+      <a class="enlace" href="https://github.com/jbalaguersalas?tab=repositories" target="_blank">Ver los 29 repositorios en GitHub →</a>
+    </section>
+
+    <!-- Aprendido -->
+    <section id="aprendido">
+      <div class="titulo">
+        <span class="num">02</span>
+        <h2>Lo que he aprendido</h2>
+        <p>Apuntes sacados de mis propios proyectos.</p>
+      </div>
+
+      <div class="apuntes">
+        <div class="apunte">
+          <h3>No me fío del usuario</h3>
+          <p>Si alguien publica un anuncio diciendo que ya tiene 9999 visitas, lo ignoro y le pongo 0. Las visitas y el estado los decide la app.</p>
+          <span class="origen">↳ api-rastro</span>
+        </div>
+        <div class="apunte">
+          <h3>Lo que llega por la URL es texto</h3>
+          <p>Si buscas anuncios de hasta 380 €, a mí me llega <code>"380"</code>. Si no lo convierto a número, la búsqueda no encuentra nada.</p>
+          <span class="origen">↳ api-rastro</span>
+        </div>
+        <div class="apunte">
+          <h3>A veces toca guardar una copia</h3>
+          <p>Cada oferta guarda el precio que tenía el anuncio en ese momento. Si el vendedor lo baja después, la oferta sigue mostrando el de antes.</p>
+          <span class="origen">↳ api-rastro</span>
+        </div>
+        <div class="apunte">
+          <h3>Quién puede hacer qué</h3>
+          <p>En FitVal un guard lee el token y comprueba el rol antes de dejar crear o borrar una clase. Las contraseñas nunca se guardan tal cual.</p>
+          <span class="origen">↳ api-gimnasio-fitval</span>
+        </div>
+        <div class="apunte">
+          <h3>La base de datos también pone reglas</h3>
+          <p>Un socio no puede tener dos tarjetas: lo resuelvo con un <code>UNIQUE</code> en la clave foránea, sin tocar código.</p>
+          <span class="origen">↳ Proyecto-SQL-Gimnasio</span>
+        </div>
+        <div class="apunte">
+          <h3>Trabajar como en una empresa</h3>
+          <p>Rama principal protegida, una rama por tarea y una PR que no entra hasta que pasa el lint en GitHub Actions.</p>
+          <span class="origen">↳ api-rastro · api-gimnasio-fitval</span>
+        </div>
       </div>
     </section>
 
-    <!-- Herramientas -->
-    <section id="herramientas">
-      <h2>Herramientas</h2>
+    <!-- Recorrido -->
+    <section id="recorrido">
+      <div class="titulo">
+        <span class="num">03</span>
+        <h2>Recorrido</h2>
+        <p>Tres meses de bootcamp, contados por mis commits.</p>
+      </div>
 
-      <h3 class="grupo">Backend</h3>
-      <ul class="herramientas">
-        <li>Node.js</li>
-        <li>TypeScript</li>
-        <li>NestJS</li>
-        <li>Express</li>
-      </ul>
+      <div class="meses">
+        <div class="mes">
+          <span class="mono">Sep 2026</span>
+          <h3>Git, HTML y CSS</h3>
+          <p>Primeros commits, ramas y merges, y mis primeras páginas en HTML con etiquetas semánticas y formularios.</p>
+        </div>
+        <div class="mes">
+          <span class="mono">Oct 2026</span>
+          <h3>JavaScript, DOM y TypeScript</h3>
+          <p>Arrays, objetos, map, filter y reduce, async/await con APIs reales, tests con Jasmine y 20 ejercicios de tipos en TypeScript. Convertí mi currículum en una web y metí otra en Docker.</p>
+        </div>
+        <div class="mes">
+          <span class="mono">Nov 2026</span>
+          <h3>Bases de datos y APIs</h3>
+          <p>SQL y MongoDB, después Express y NestJS. Autenticación con JWT, CI en cada PR y APIs preparadas para desplegar en Render.</p>
+        </div>
+      </div>
 
-      <h3 class="grupo">Bases de datos</h3>
-      <ul class="herramientas">
-        <li>PostgreSQL</li>
-        <li>MongoDB</li>
-        <li>Supabase</li>
-      </ul>
-
-      <h3 class="grupo">Frontend</h3>
-      <ul class="herramientas">
-        <li>HTML</li>
-        <li>CSS</li>
-        <li>JavaScript</li>
-      </ul>
-
-      <h3 class="grupo">Flujo de trabajo</h3>
-      <ul class="herramientas">
-        <li>Git</li>
-        <li>GitHub Actions</li>
-        <li>Docker</li>
-        <li>Render</li>
-      </ul>
+      <div class="herramientas">
+        <p><span class="mono">Backend</span> Node.js / TypeScript / NestJS / Express</p>
+        <p><span class="mono">Datos</span> PostgreSQL / MongoDB / Supabase</p>
+        <p><span class="mono">Frontend</span> HTML / CSS / JavaScript</p>
+        <p><span class="mono">Flujo</span> Git / GitHub Actions / Docker / Render / Postman</p>
+      </div>
     </section>
 
     <!-- Contacto -->
-    <section id="contacto">
-      <h2>Contacto</h2>
-      <p class="descripcion">Si buscas a alguien para tu equipo o quieres comentar algún proyecto, mándame un correo.</p>
-      <div class="acciones">
-        <a class="boton" href="mailto:josebala115@gmail.com">Enviar email</a>
-        <a class="boton boton--secundario" href="https://github.com/jbalaguersalas" target="_blank" rel="noopener">GitHub</a>
-      </div>
+    <section id="contacto" class="contacto">
+      <span class="num">04</span>
+      <h2>¿Hablamos?</h2>
+      <p>Si buscas a alguien para tu equipo o quieres comentar algún proyecto, mándame un correo.</p>
+      <a class="correo" href="mailto:josebala115@gmail.com">josebala115@gmail.com</a>
+      <a class="enlace" href="https://github.com/jbalaguersalas" target="_blank">github.com/jbalaguersalas →</a>
     </section>
 
   </main>
 
   <footer>
-    <p>Hecho por Shema · <a href="https://github.com/jbalaguersalas">GitHub</a></p>
+    <p>Hecha a mano con HTML y CSS.</p>
+    <a href="https://github.com/jbalaguersalas/jbalaguersalas.github.io" target="_blank">Código de esta web</a>
   </footer>
 
 </body>

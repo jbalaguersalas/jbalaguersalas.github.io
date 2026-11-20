@@ -1,44 +1,26 @@
 # Mi web personal
 
-Mi portfolio como desarrollador full stack. Lo hice durante el bootcamp de Full Stack de The Bridge para tener en un solo sitio los proyectos que he ido haciendo.
+Mi portfolio, publicado en **https://jbalaguersalas.github.io/**
 
-Está publicada con GitHub Pages: <https://jbalaguersalas.github.io/>
+La hice a mano con HTML y CSS, sin frameworks ni JavaScript. Son dos archivos: `index.html` y `style.css`.
 
-## Qué hay en la web
+## Qué tiene
 
-Es una sola página con cuatro partes. El menú de arriba lleva a cada una:
+- **Portada** con una frase que resume lo que hago y una petición de ejemplo a una API, porque lo que más me gusta es el backend.
+- **Proyectos**: mis seis trabajos más completos del bootcamp, con su tecnología y enlace al código.
+- **Lo que he aprendido**: apuntes que saqué de mis propios proyectos, cada uno con el repo de donde viene.
+- **Recorrido**: lo que hice cada mes del bootcamp.
+- **Contacto**.
 
-- **Inicio**: mi foto, una frase sobre lo que hago y dos botones, uno para ir a los proyectos y otro a mi GitHub.
-- **Proyectos**: seis tarjetas que enlazan a su repositorio. Las dos primeras están destacadas con el borde azul:
-  - [API gimnasio FitVal](https://github.com/jbalaguersalas/api-gimnasio-fitval): NestJS, PostgreSQL, login con JWT y Docker.
-  - [API Rastro](https://github.com/jbalaguersalas/api-rastro): Express, TypeScript, MongoDB y GitHub Actions.
-  - [API de libros y pedidos](https://github.com/jbalaguersalas/nestjs-postgresql-supabase-render): NestJS con Supabase, desplegada en Render.
-  - [Base de datos de un gimnasio](https://github.com/jbalaguersalas/Proyecto-SQL-Gimnasio): modelo relacional y consultas en PostgreSQL.
-  - [Web minimalista en Docker](https://github.com/jbalaguersalas/-Pr-ctica-Docker-Web-Minimalista): una web maquetada y servida con nginx desde un contenedor.
-  - [Currículum web](https://github.com/jbalaguersalas/web-cv): un CV en HTML y CSS.
-- **Herramientas**: lo que uso, en cuatro grupos: backend, bases de datos, frontend y flujo de trabajo.
-- **Contacto**: un botón para escribirme y otro a GitHub.
+## Diseño
 
-## Cómo está hecha
+Quería algo que no se pareciera a las plantillas de siempre, así que fui a un estilo de revista: fondo color papel, titulares grandes y estrechos y un solo color de acento, el naranja. Los datos (tecnologías, commits, fechas) van en letra monoespaciada, como en el código.
 
-Solo HTML y CSS, sin frameworks ni JavaScript. Hay tres archivos: `index.html`, `style.css` y `avatar.jpg`.
+- Fuentes: **Archivo**, que es variable y me deja estrechar los titulares con `font-stretch`, e **IBM Plex Mono**.
+- Si el ordenador tiene el modo oscuro activado, la web cambia de colores sola con `prefers-color-scheme`.
+- Está hecha primero para móvil y tiene dos saltos: tablet (720px) y ordenador (1000px).
+- Todos los colores están en variables en `:root`, así que cambiar la paleta es tocar seis líneas.
 
-- **Diseño oscuro con azul.** Los colores están en variables en `:root`: fondo negro (`--fondo`), tarjetas casi negras (`--tarjeta`) y un azul (`--azul: #4da3ff`) para los enlaces, los bordes y los botones.
-- **Tipografías** de Google Fonts: Sora para los títulos y Manrope para el texto.
-- **Efectos al pasar el ratón**: las tarjetas se iluminan con un borde azul y una sombra, y los botones cambian de color con una transición de 0,3 segundos.
-- **Proyectos en rejilla** de dos columnas con CSS Grid.
-- **Responsive**: por debajo de 700px la foto se pone encima del texto y los proyectos pasan a una columna.
-- **Accesibilidad**: si el sistema tiene activado "reducir movimiento", quito las transiciones con `prefers-reduced-motion`.
-- **Al compartir el enlace**: las etiquetas `og:` del `head` hacen que salga con título, descripción y foto.
+## Cómo verla en local
 
-## Cómo verla
-
-En <https://jbalaguersalas.github.io/>, o descargando el repositorio y abriendo `index.html` en el navegador.
-
-## Qué aprendí
-
-**A publicar una web gratis con GitHub Pages.** Si el repositorio se llama `usuario.github.io`, GitHub publica el `index.html` de la rama `main` en esa dirección.
-
-**A organizar los colores con variables.** Si quiero cambiar el azul, lo cambio en un sitio y se actualiza en toda la página.
-
-**A contar mis proyectos en pocas líneas.** Cada tarjeta tiene una frase y unas etiquetas. Tuve que elegir qué era lo más importante de cada uno.
+Abre `index.html` en el navegador. No hace falta instalar nada.
