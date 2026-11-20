@@ -2,33 +2,34 @@
 
 Mi portfolio, publicado en **https://jbalaguersalas.github.io/**
 
-La hice a mano con HTML, CSS y un poco de JavaScript, sin frameworks. Son tres archivos: `index.html`, `style.css` y `script.js`.
+La hice con HTML, CSS y JavaScript, sin frameworks. Para las animaciones uso GSAP con sus plugins ScrollTrigger y Flip, que cargo desde cdnjs. Son tres archivos: `index.html`, `style.css` y `script.js`.
 
 ## Qué tiene
 
-- **Portada** con una frase que resume lo que hago y una petición de ejemplo a una API, porque lo que más me gusta es el backend.
-- **Proyectos**: mis seis trabajos más completos del bootcamp, con su tecnología y enlace al código.
-- **Lo que he aprendido**: apuntes que saqué de mis propios proyectos, cada uno con el repo de donde viene.
-- **Recorrido**: lo que hice cada mes del bootcamp.
-- **Contacto**.
+- **Pantalla de carga** con un contador hasta 100. Si recargas la página en la misma visita, dura menos.
+- **Portada** con un titular en el que la palabra naranja va cambiando (APIs, interfaces, extensiones, webs), un fondo de puntos que se apartan del ratón y una terminal que escribe sola.
+- **Proyectos**: nueve tarjetas con filtros (Backend, Frontend, TypeScript y Herramientas). La más grande es PaySecure, mi extensión de navegador. Cada tarjeta tiene un dibujo hecho con HTML y CSS, sin imágenes.
+- **Recorrido**: mis tres meses de bootcamp. En el ordenador la sección se queda fija y las tarjetas pasan de lado mientras bajas.
+- **Herramientas**, **apuntes** de lo que aprendí en cada repo y **contacto**, con un botón para copiar mi correo.
 
 ## Diseño
 
-Quería algo que no se pareciera a las plantillas de siempre, así que fui a un estilo de revista: fondo negro, titulares grandes y estrechos y un solo color de acento, el naranja. Los datos (tecnologías, commits, fechas) van en letra monoespaciada, como en el código.
+Fondo negro, titulares grandes y estrechos y un solo color de acento, el naranja. Los datos van en letra monoespaciada, como en el código.
 
 - Fuentes: **Archivo**, que es variable y me deja estrechar los titulares con `font-stretch`, e **IBM Plex Mono**.
-- Está hecha primero para móvil y tiene dos saltos: tablet (720px) y ordenador (1000px).
-- Todos los colores están en variables en `:root`, así que cambiar la paleta es tocar siete líneas.
+- La hice primero para móvil. Los saltos están en 720px, 900px, 1000px y 1100px.
+- Los colores están en variables en `:root`.
+
+## Animaciones
+
+- Los títulos se parten en palabras desde JavaScript y suben una a una al aparecer.
+- Las tarjetas se inclinan un poco con el ratón y llevan una luz que lo sigue.
+- Al filtrar, Flip mueve las tarjetas a su nuevo sitio en vez de saltar.
+- El cursor es un círculo que crece encima de los enlaces. En las tarjetas pone "Ver".
+- Los botones de contacto se van un poco hacia el ratón.
+
+En el móvil no hay cursor ni inclinación, porque no hay ratón. Si el sistema tiene activado "reducir movimiento", o si GSAP no carga, la web se ve entera sin animaciones.
 
 ## Cómo verla en local
 
-Abre `index.html` en el navegador. No hace falta instalar nada.
-
-## Lo que hace `script.js`
-
-- Saca las líneas de la terminal de la portada una a una, como si estuviera escribiendo.
-- Pide a la API de GitHub cuántos repos tengo y cuál fue mi último push, y lo pone en la portada.
-- Pinta mi gráfica de contribuciones de las últimas 16 semanas con los datos de `github-contributions-api.jogruber.de`.
-- Hace que las secciones aparezcan al bajar con `IntersectionObserver`, sube los contadores de 0 a su número y mueve la luz naranja de los proyectos con el ratón.
-
-Si alguna petición falla, la web sigue funcionando con los datos que ya trae el HTML. Y si el sistema tiene activado "reducir movimiento", no hay animaciones.
+Abre `index.html` en el navegador. Necesitas internet para las fuentes y GSAP.
