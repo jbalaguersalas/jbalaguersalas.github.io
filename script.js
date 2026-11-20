@@ -1,67 +1,73 @@
 // ===== Ajustes =====
-const sinAnimaciones = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-const tieneRaton = window.matchMedia("(pointer: fine)").matches;
-const hayGsap = window.gsap && window.ScrollTrigger && window.Flip;
+const pideMenosMovimiento = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const usaRaton = window.matchMedia("(pointer: fine)").matches;
+const gsapHaCargado = window.gsap && window.ScrollTrigger && window.Flip;
+const hayAnimaciones = gsapHaCargado && !pideMenosMovimiento;
 
-// Esto le dice al <head> que el script ha cargado bien
+const miCorreo = "josebala115@gmail.com";
+const colorAzul = "77, 163, 255";
+const colorPuntoApagado = "rgba(230, 235, 242, 0.11)";
+
+// Le digo al <head> que el script ha cargado bien
 document.documentElement.classList.add("listo");
 
-filtros();
-botonCopiar();
-barraDeArriba();
+activarFiltros();
+activarBotonCopiar();
+activarBarraDeArriba();
 
-if (hayGsap && !sinAnimaciones) {
+if (hayAnimaciones) {
   gsap.registerPlugin(ScrollTrigger, Flip);
-  animaciones();
+  empezarAnimaciones();
 } else {
-  // Sin GSAP o con "reducir movimiento" se ve todo normal, sin animar
+  // Sin GSAP o con "reducir movimiento" la web se ve entera, sin animar
   document.documentElement.classList.remove("js");
 }
 
 
 // ===== Filtros de proyectos =====
-function filtros() {
-  const botones = document.querySelectorAll(".filtro");
+function activarFiltros() {
+  const botonesFiltro = document.querySelectorAll(".filtro");
   const tarjetas = document.querySelectorAll(".tarjeta");
 
-  botones.forEach((boton) => {
-    boton.addEventListener("click", () => {
-      const filtro = boton.dataset.filtro;
+  botonesFiltro.forEach((botonPulsado) => {
+    botonPulsado.addEventListener("click", () => {
+      const filtroElegido = botonPulsado.dataset.filtro;
 
-      botones.forEach((b) => {
-        b.classList.remove("activo");
-        b.setAttribute("aria-pressed", "false");
+      botonesFiltro.forEach((boton) => {
+        boton.classList.remove("activo");
+        boton.setAttribute("aria-pressed", "false");
       });
-      boton.classList.add("activo");
-      boton.setAttribute("aria-pressed", "true");
+      botonPulsado.classList.add("activo");
+      botonPulsado.setAttribute("aria-pressed", "true");
 
-      // Flip guarda dónde está cada tarjeta para luego animar el cambio
-      // Antes saco las tarjetas que aún no habían aparecido con el scroll, si no se quedan invisibles
-      let estado;
-      if (hayGsap && !sinAnimaciones) {
+      // Flip guarda dónde está cada tarjeta para luego animar el cambio.
+      // Antes saco las tarjetas que todavía no habían aparecido con el scroll, si no se quedan invisibles.
+      let posicionesAntes = null;
+      if (hayAnimaciones) {
         gsap.set(tarjetas, { opacity: 1, y: 0 });
-        estado = Flip.getState(tarjetas);
+        posicionesAntes = Flip.getState(tarjetas);
       }
 
       tarjetas.forEach((tarjeta) => {
-        const tipos = tarjeta.dataset.tipo.split(" ");
-        if (filtro === "todos" || tipos.includes(filtro)) {
-          tarjeta.classList.remove("fuera");
-        } else {
-          tarjeta.classList.add("fuera");
-        }
+        const tiposDeLaTarjeta = tarjeta.dataset.tipo.split(" ");
+        const seQueda = filtroElegido === "todos" || tiposDeLaTarjeta.includes(filtroElegido);
+        tarjeta.classList.toggle("fuera", !seQueda);
       });
 
-      if (estado) {
-        Flip.from(estado, {
+      if (posicionesAntes) {
+        Flip.from(posicionesAntes, {
           duration: 0.7,
           ease: "expo.out",
           absolute: true,
           stagger: 0.03,
-          onEnter: (els) => gsap.fromTo(els, { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.6 }),
-          onLeave: (els) => gsap.to(els, { opacity: 0, scale: 0.9, duration: 0.3 }),
+          onEnter: (tarjetasQueEntran) => {
+            gsap.fromTo(tarjetasQueEntran, { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.6 });
+          },
+          onLeave: (tarjetasQueSalen) => {
+            gsap.to(tarjetasQueSalen, { opacity: 0, scale: 0.9, duration: 0.3 });
+          },
           onComplete: () => {
-            // Flip a veces deja la tarjeta movida, así que la devuelvo a su sitio
+            // Flip a veces deja alguna tarjeta movida, así que las devuelvo a su sitio
             gsap.set(tarjetas, { x: 0, y: 0 });
             ScrollTrigger.refresh();
           },
@@ -73,323 +79,350 @@ function filtros() {
 
 
 // ===== Botón de copiar el correo =====
-function botonCopiar() {
-  const boton = document.getElementById("copiar");
-  const texto = boton.querySelector("span");
-  const aviso = document.getElementById("aviso");
+function activarBotonCopiar() {
+  const botonCopiar = document.getElementById("copiar");
+  const textoDelBoton = botonCopiar.querySelector("span");
+  const mensajeAviso = document.getElementById("aviso");
 
-  boton.addEventListener("click", () => {
-    navigator.clipboard.writeText("josebala115@gmail.com")
+  botonCopiar.addEventListener("click", () => {
+    navigator.clipboard.writeText(miCorreo)
       .then(() => {
-        texto.textContent = "¡Copiado!";
-        aviso.textContent = "Correo copiado";
+        textoDelBoton.textContent = "¡Copiado!";
+        mensajeAviso.textContent = "Correo copiado";
       })
       .catch(() => {
         // Si el navegador no deja copiar, al menos enseño el correo
-        aviso.textContent = "josebala115@gmail.com";
+        mensajeAviso.textContent = miCorreo;
       });
 
     setTimeout(() => {
-      texto.textContent = "Copiar correo";
-      aviso.textContent = "";
+      textoDelBoton.textContent = "Copiar correo";
+      mensajeAviso.textContent = "";
     }, 2500);
   });
 }
 
 
 // ===== Barra de arriba y barra de progreso =====
-function barraDeArriba() {
-  const barra = document.querySelector(".barra");
-  const progreso = document.querySelector(".progreso");
+function activarBarraDeArriba() {
+  const barraDeArriba = document.querySelector(".barra");
+  const barraDeProgreso = document.querySelector(".progreso");
   let scrollAnterior = 0;
 
   window.addEventListener("scroll", () => {
-    const y = window.scrollY;
+    const scrollActual = window.scrollY;
+    const estaBajando = scrollActual > scrollAnterior;
 
-    // Fondo oscuro al bajar un poco
-    barra.classList.toggle("solida", y > 40);
+    // Fondo oscuro en cuanto bajas un poco
+    barraDeArriba.classList.toggle("solida", scrollActual > 40);
     // Se esconde si bajas y vuelve si subes
-    barra.classList.toggle("oculta", y > scrollAnterior && y > 400);
-    scrollAnterior = y;
+    barraDeArriba.classList.toggle("oculta", estaBajando && scrollActual > 400);
+    scrollAnterior = scrollActual;
 
-    const total = document.body.scrollHeight - window.innerHeight;
-    progreso.style.transform = "scaleX(" + y / total + ")";
+    const scrollMaximo = document.body.scrollHeight - window.innerHeight;
+    const porcentajeLeido = scrollActual / scrollMaximo;
+    barraDeProgreso.style.transform = "scaleX(" + porcentajeLeido + ")";
   });
 
   // Marca en el menú la sección que estás viendo
-  const enlaces = document.querySelectorAll(".barra nav a");
-  const observador = new IntersectionObserver((entradas) => {
-    entradas.forEach((entrada) => {
-      if (entrada.isIntersecting) {
-        enlaces.forEach((a) => {
-          a.classList.toggle("actual", a.getAttribute("href") === "#" + entrada.target.id);
-        });
-      }
+  const enlacesDelMenu = document.querySelectorAll(".barra nav a");
+  const vigilanteDeSecciones = new IntersectionObserver((secciones) => {
+    secciones.forEach((seccion) => {
+      if (!seccion.isIntersecting) return;
+      enlacesDelMenu.forEach((enlace) => {
+        const esLaSeccionActual = enlace.getAttribute("href") === "#" + seccion.target.id;
+        enlace.classList.toggle("actual", esLaSeccionActual);
+      });
     });
   }, { rootMargin: "-45% 0px -50% 0px" });
 
-  document.querySelectorAll("section[id]").forEach((s) => observador.observe(s));
+  document.querySelectorAll("section[id]").forEach((seccion) => vigilanteDeSecciones.observe(seccion));
 }
 
 
 // ===== Animaciones con GSAP =====
-function animaciones() {
-  partirTitulos();
+function empezarAnimaciones() {
+  partirTitulosEnPalabras();
 
-  // Escondo lo de la portada para que entre después de la carga
+  // Escondo la portada para que entre cuando termine la pantalla de carga
   gsap.set(".titular .trozo, .contacto-titulo .trozo", { yPercent: 115 });
   gsap.set(".aparece", { opacity: 0, y: 24 });
   gsap.set(".rotador span", { yPercent: 110, opacity: 0 });
 
-  cursor();
-  fondoDePuntos();
-  tarjetas3d();
-  botonesMagneticos();
-  alHacerScroll();
-  recorrido();
-  pantallaDeCarga();
+  activarCursor();
+  dibujarFondoDePuntos();
+  inclinarTarjetas();
+  activarBotonesMagneticos();
+  animarAlHacerScroll();
+  animarRecorrido();
+  mostrarPantallaDeCarga();
 }
 
 
 // ===== Pantalla de carga =====
-function pantallaDeCarga() {
-  const cargador = document.querySelector(".cargador");
-  const numero = document.getElementById("carga");
+function mostrarPantallaDeCarga() {
+  const pantallaDeCarga = document.querySelector(".cargador");
+  const numeroDeCarga = document.getElementById("carga");
   document.body.classList.add("cargando");
 
-  // Si ya la has visto en esta visita, va más rápido
-  let tiempo = 1.6;
+  // La primera vez dura más. Si recargas la página en la misma visita, va rápida.
+  let segundosDeCarga = 1.6;
   try {
-    if (sessionStorage.getItem("visto")) tiempo = 0.5;
-    sessionStorage.setItem("visto", "si");
-  } catch (e) {}
+    if (sessionStorage.getItem("cargaVista")) segundosDeCarga = 0.5;
+    sessionStorage.setItem("cargaVista", "si");
+  } catch (error) {
+    // En modo incógnito a veces no deja usar sessionStorage, no pasa nada
+  }
 
-  const contador = { valor: 0 };
-  const tl = gsap.timeline({ onComplete: terminarCarga });
+  const progresoDeCarga = { porcentaje: 0 };
+  const animacionDeCarga = gsap.timeline({ onComplete: quitarPantallaDeCarga });
 
-  tl.from(".cargador-nombre span", { yPercent: 100, opacity: 0, stagger: 0.1, duration: 0.8, ease: "expo.out" }, 0);
-  tl.to(contador, {
-    valor: 100,
-    duration: tiempo,
+  animacionDeCarga.from(".cargador-nombre span", { yPercent: 100, opacity: 0, stagger: 0.1, duration: 0.8, ease: "expo.out" }, 0);
+  animacionDeCarga.to(progresoDeCarga, {
+    porcentaje: 100,
+    duration: segundosDeCarga,
     ease: "power2.inOut",
-    onUpdate: () => (numero.textContent = Math.round(contador.valor)),
+    onUpdate: () => {
+      numeroDeCarga.textContent = Math.round(progresoDeCarga.porcentaje);
+    },
   }, 0);
-  tl.to(".cargador-barra i", { scaleX: 1, duration: tiempo, ease: "power2.inOut" }, 0);
-  tl.to(cargador, { yPercent: -100, duration: 0.9, ease: "expo.inOut" }, "+=0.15");
+  animacionDeCarga.to(".cargador-barra i", { scaleX: 1, duration: segundosDeCarga, ease: "power2.inOut" }, 0);
+  animacionDeCarga.to(pantallaDeCarga, { yPercent: -100, duration: 0.9, ease: "expo.inOut" }, "+=0.15");
 
-  function terminarCarga() {
-    cargador.remove();
+  function quitarPantallaDeCarga() {
+    pantallaDeCarga.remove();
     document.body.classList.remove("cargando");
     ScrollTrigger.refresh();
-    entrarPortada();
+    animarEntradaDePortada();
   }
 }
 
 
 // ===== Entrada de la portada =====
-function entrarPortada() {
-  const tl = gsap.timeline();
-  tl.to(".titular .trozo", { yPercent: 0, duration: 1.2, stagger: 0.12, ease: "expo.out" });
-  tl.to(".rotador span:first-child", { yPercent: 0, opacity: 1, duration: 1, ease: "expo.out" }, "<0.15");
-  tl.to(".aparece", { opacity: 1, y: 0, duration: 0.9, stagger: 0.08, ease: "expo.out" }, "<0.2");
+function animarEntradaDePortada() {
+  const entradaPortada = gsap.timeline();
+  entradaPortada.to(".titular .trozo", { yPercent: 0, duration: 1.2, stagger: 0.12, ease: "expo.out" });
+  entradaPortada.to(".rotador span:first-child", { yPercent: 0, opacity: 1, duration: 1, ease: "expo.out" }, "<0.3");
+  entradaPortada.to(".aparece", { opacity: 1, y: 0, duration: 0.9, stagger: 0.08, ease: "expo.out" }, "<0.2");
 
   escribirTerminal();
-  setTimeout(cambiarPalabra, 3000);
+  setTimeout(cambiarPalabraDeColor, 3000);
 }
 
 
 // ===== La terminal escribe línea a línea =====
 function escribirTerminal() {
   const terminal = document.getElementById("terminal");
-  const lineas = terminal.innerHTML.split("\n");
-  const cursorTerminal = '<span class="cursor-terminal"></span>';
+  const lineasDeLaTerminal = terminal.innerHTML.split("\n");
+  const cursorParpadeante = '<span class="cursor-terminal"></span>';
+  const esperaEntreLineas = 150;
 
-  terminal.innerHTML = cursorTerminal;
-  lineas.forEach((linea, i) => {
+  terminal.innerHTML = cursorParpadeante;
+  lineasDeLaTerminal.forEach((linea, numeroDeLinea) => {
     setTimeout(() => {
-      terminal.innerHTML = lineas.slice(0, i + 1).join("\n") + cursorTerminal;
-    }, 500 + i * 150);
+      const lineasEscritas = lineasDeLaTerminal.slice(0, numeroDeLinea + 1).join("\n");
+      terminal.innerHTML = lineasEscritas + cursorParpadeante;
+    }, 500 + numeroDeLinea * esperaEntreLineas);
   });
 }
 
 
-// ===== La palabra naranja va cambiando =====
-function cambiarPalabra() {
+// ===== La palabra de color del titular va cambiando =====
+function cambiarPalabraDeColor() {
   const palabras = document.querySelectorAll(".rotador span");
-  let actual = 0;
+  let palabraVisible = 0;
 
   setInterval(() => {
-    const vieja = palabras[actual];
-    actual = (actual + 1) % palabras.length;
-    const nueva = palabras[actual];
+    const palabraQueSale = palabras[palabraVisible];
+    palabraVisible = (palabraVisible + 1) % palabras.length;
+    const palabraQueEntra = palabras[palabraVisible];
 
-    gsap.to(vieja, { yPercent: -110, opacity: 0, duration: 0.7, ease: "expo.inOut" });
-    gsap.fromTo(nueva, { yPercent: 110, opacity: 0 }, { yPercent: 0, opacity: 1, duration: 0.7, ease: "expo.inOut" });
+    gsap.to(palabraQueSale, { yPercent: -110, opacity: 0, duration: 0.7, ease: "expo.inOut" });
+    gsap.fromTo(palabraQueEntra, { yPercent: 110, opacity: 0 }, { yPercent: 0, opacity: 1, duration: 0.7, ease: "expo.inOut" });
   }, 2500);
 }
 
 
 // ===== Partir los títulos en palabras =====
-// Cada palabra va dentro de un span para poder subirlas una a una
-function partirTitulos() {
+// Meto cada palabra en un span para poder subirlas una a una
+function partirTitulosEnPalabras() {
   document.querySelectorAll(".partir").forEach((titulo) => {
-    const palabras = titulo.textContent.split(" ");
-    titulo.setAttribute("aria-label", titulo.textContent);
+    const textoDelTitulo = titulo.textContent;
+    const palabras = textoDelTitulo.split(" ");
+
+    titulo.setAttribute("aria-label", textoDelTitulo);
     titulo.innerHTML = palabras
-      .map((p) => '<span class="palabra" aria-hidden="true"><span>' + p + "</span></span>")
+      .map((palabra) => '<span class="palabra" aria-hidden="true"><span>' + palabra + "</span></span>")
       .join(" ");
   });
 }
 
 
 // ===== Cursor =====
-function cursor() {
-  if (!tieneRaton) return;
+function activarCursor() {
+  if (!usaRaton) return;
 
-  const aro = document.querySelector(".cursor");
-  const punto = document.querySelector(".cursor-punto");
+  const aroDelCursor = document.querySelector(".cursor");
+  const puntoDelCursor = document.querySelector(".cursor-punto");
 
   // quickTo es como gsap.to pero pensado para llamarlo muchas veces seguidas
-  const aroX = gsap.quickTo(aro, "x", { duration: 0.5, ease: "power3" });
-  const aroY = gsap.quickTo(aro, "y", { duration: 0.5, ease: "power3" });
-  const puntoX = gsap.quickTo(punto, "x", { duration: 0.1 });
-  const puntoY = gsap.quickTo(punto, "y", { duration: 0.1 });
+  const moverAroX = gsap.quickTo(aroDelCursor, "x", { duration: 0.5, ease: "power3" });
+  const moverAroY = gsap.quickTo(aroDelCursor, "y", { duration: 0.5, ease: "power3" });
+  const moverPuntoX = gsap.quickTo(puntoDelCursor, "x", { duration: 0.1 });
+  const moverPuntoY = gsap.quickTo(puntoDelCursor, "y", { duration: 0.1 });
 
-  window.addEventListener("mousemove", (e) => {
+  window.addEventListener("mousemove", (evento) => {
     document.body.classList.add("con-cursor");
-    aroX(e.clientX);
-    aroY(e.clientY);
-    puntoX(e.clientX);
-    puntoY(e.clientY);
+    moverAroX(evento.clientX);
+    moverAroY(evento.clientY);
+    moverPuntoX(evento.clientX);
+    moverPuntoY(evento.clientY);
   });
 
-  // Encima de las tarjetas pone "Ver", encima de enlaces y botones solo crece
-  document.querySelectorAll("a, button").forEach((el) => {
-    let clase = "encima";
-    if (el.classList.contains("tarjeta")) clase = "ver";
-    el.addEventListener("mouseenter", () => aro.classList.add(clase));
-    el.addEventListener("mouseleave", () => aro.classList.remove(clase));
+  // Encima de las tarjetas pone "Ver". Encima de enlaces y botones solo crece.
+  document.querySelectorAll("a, button").forEach((elementoPulsable) => {
+    const esTarjeta = elementoPulsable.classList.contains("tarjeta");
+    const claseDelCursor = esTarjeta ? "ver" : "encima";
+
+    elementoPulsable.addEventListener("mouseenter", () => aroDelCursor.classList.add(claseDelCursor));
+    elementoPulsable.addEventListener("mouseleave", () => aroDelCursor.classList.remove(claseDelCursor));
   });
 }
 
 
 // ===== Fondo de puntos de la portada =====
-// Una rejilla de puntos en un canvas. Los que están cerca del ratón se apartan y se ponen naranjas.
-function fondoDePuntos() {
-  const canvas = document.getElementById("puntos");
-  const ctx = canvas.getContext("2d");
+// Una rejilla de puntos en un canvas. Los que están cerca del ratón se apartan y se ponen azules.
+function dibujarFondoDePuntos() {
+  const lienzo = document.getElementById("puntos");
+  const pincel = lienzo.getContext("2d");
   const portada = document.querySelector(".portada");
-  const hueco = 34;
-  const radio = 160;
-  let puntos = [];
-  let raton = { x: -1000, y: -1000 };
-  let seVe = true;
+
+  const separacionEntrePuntos = 34;
+  const radioDelRaton = 160;
+  const cuantoSeApartan = 22;
+  const suavidad = 0.15;
+
+  let listaDePuntos = [];
+  let posicionRaton = { x: -1000, y: -1000 };
+  let portadaVisible = true;
 
   function crearPuntos() {
-    canvas.width = portada.offsetWidth;
-    canvas.height = portada.offsetHeight;
-    puntos = [];
-    for (let x = hueco / 2; x < canvas.width; x += hueco) {
-      for (let y = hueco / 2; y < canvas.height; y += hueco) {
-        puntos.push({ x: x, y: y, xInicial: x, yInicial: y });
+    lienzo.width = portada.offsetWidth;
+    lienzo.height = portada.offsetHeight;
+    listaDePuntos = [];
+
+    for (let x = separacionEntrePuntos / 2; x < lienzo.width; x += separacionEntrePuntos) {
+      for (let y = separacionEntrePuntos / 2; y < lienzo.height; y += separacionEntrePuntos) {
+        listaDePuntos.push({ x: x, y: y, xOriginal: x, yOriginal: y });
       }
     }
   }
 
-  function dibujar() {
-    if (!seVe) return;
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+  function pintarPuntos() {
+    if (!portadaVisible) return;
+    pincel.clearRect(0, 0, lienzo.width, lienzo.height);
 
-    puntos.forEach((p) => {
-      const dx = p.xInicial - raton.x;
-      const dy = p.yInicial - raton.y;
-      const distancia = Math.sqrt(dx * dx + dy * dy);
-      let cerca = 0;
-      let destinoX = p.xInicial;
-      let destinoY = p.yInicial;
+    listaDePuntos.forEach((punto) => {
+      const distanciaX = punto.xOriginal - posicionRaton.x;
+      const distanciaY = punto.yOriginal - posicionRaton.y;
+      const distanciaAlRaton = Math.sqrt(distanciaX * distanciaX + distanciaY * distanciaY);
 
-      if (distancia < radio && distancia > 0) {
-        cerca = 1 - distancia / radio;
-        destinoX += (dx / distancia) * cerca * 22;
-        destinoY += (dy / distancia) * cerca * 22;
+      // cercania va de 0 (lejos) a 1 (justo debajo del ratón)
+      let cercania = 0;
+      let destinoX = punto.xOriginal;
+      let destinoY = punto.yOriginal;
+
+      if (distanciaAlRaton < radioDelRaton && distanciaAlRaton > 0) {
+        cercania = 1 - distanciaAlRaton / radioDelRaton;
+        destinoX += (distanciaX / distanciaAlRaton) * cercania * cuantoSeApartan;
+        destinoY += (distanciaY / distanciaAlRaton) * cercania * cuantoSeApartan;
       }
 
-      // Se mueven poco a poco hacia su sitio
-      p.x += (destinoX - p.x) * 0.15;
-      p.y += (destinoY - p.y) * 0.15;
+      // Cada punto se acerca poco a poco a donde tiene que estar
+      punto.x += (destinoX - punto.x) * suavidad;
+      punto.y += (destinoY - punto.y) * suavidad;
 
-      if (cerca > 0) {
-        ctx.fillStyle = "rgba(255, 107, 53, " + (0.25 + cerca * 0.75) + ")";
+      if (cercania > 0) {
+        const opacidad = 0.25 + cercania * 0.75;
+        pincel.fillStyle = "rgba(" + colorAzul + ", " + opacidad + ")";
       } else {
-        ctx.fillStyle = "rgba(237, 237, 234, 0.11)";
+        pincel.fillStyle = colorPuntoApagado;
       }
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, 1 + cerca * 1.6, 0, Math.PI * 2);
-      ctx.fill();
+
+      const tamanoDelPunto = 1 + cercania * 1.6;
+      pincel.beginPath();
+      pincel.arc(punto.x, punto.y, tamanoDelPunto, 0, Math.PI * 2);
+      pincel.fill();
     });
   }
 
   crearPuntos();
-  gsap.ticker.add(dibujar);
+  gsap.ticker.add(pintarPuntos);
   window.addEventListener("resize", crearPuntos);
 
-  portada.addEventListener("mousemove", (e) => {
-    const caja = portada.getBoundingClientRect();
-    raton.x = e.clientX - caja.left;
-    raton.y = e.clientY - caja.top;
-  });
-  portada.addEventListener("mouseleave", () => {
-    raton = { x: -1000, y: -1000 };
+  portada.addEventListener("mousemove", (evento) => {
+    const cajaPortada = portada.getBoundingClientRect();
+    posicionRaton.x = evento.clientX - cajaPortada.left;
+    posicionRaton.y = evento.clientY - cajaPortada.top;
   });
 
-  // Si la portada no se ve, no dibujo nada para no gastar
-  new IntersectionObserver((entradas) => {
-    seVe = entradas[0].isIntersecting;
-  }).observe(portada);
+  portada.addEventListener("mouseleave", () => {
+    posicionRaton = { x: -1000, y: -1000 };
+  });
+
+  // Si la portada no se ve, no pinto nada para no gastar
+  const vigilanteDePortada = new IntersectionObserver((entradas) => {
+    portadaVisible = entradas[0].isIntersecting;
+  });
+  vigilanteDePortada.observe(portada);
 }
 
 
 // ===== Tarjetas: luz e inclinación con el ratón =====
-function tarjetas3d() {
-  if (!tieneRaton) return;
+function inclinarTarjetas() {
+  if (!usaRaton) return;
 
   document.querySelectorAll(".tarjeta").forEach((tarjeta) => {
     gsap.set(tarjeta, { transformPerspective: 1100 });
-    const giroX = gsap.quickTo(tarjeta, "rotationX", { duration: 0.6, ease: "power3" });
-    const giroY = gsap.quickTo(tarjeta, "rotationY", { duration: 0.6, ease: "power3" });
+    const girarEnX = gsap.quickTo(tarjeta, "rotationX", { duration: 0.6, ease: "power3" });
+    const girarEnY = gsap.quickTo(tarjeta, "rotationY", { duration: 0.6, ease: "power3" });
+
     // La grande se inclina menos porque si no queda raro
-    const fuerza = tarjeta.classList.contains("grande") ? 3 : 6;
+    const gradosMaximos = tarjeta.classList.contains("grande") ? 3 : 6;
 
-    tarjeta.addEventListener("mousemove", (e) => {
-      const caja = tarjeta.getBoundingClientRect();
-      const x = e.clientX - caja.left;
-      const y = e.clientY - caja.top;
+    tarjeta.addEventListener("mousemove", (evento) => {
+      const cajaTarjeta = tarjeta.getBoundingClientRect();
+      const ratonX = evento.clientX - cajaTarjeta.left;
+      const ratonY = evento.clientY - cajaTarjeta.top;
 
-      tarjeta.style.setProperty("--x", x + "px");
-      tarjeta.style.setProperty("--y", y + "px");
-      giroY((x / caja.width - 0.5) * fuerza);
-      giroX((0.5 - y / caja.height) * fuerza);
+      // La luz sigue al ratón con estas dos variables de CSS
+      tarjeta.style.setProperty("--x", ratonX + "px");
+      tarjeta.style.setProperty("--y", ratonY + "px");
+
+      girarEnY((ratonX / cajaTarjeta.width - 0.5) * gradosMaximos);
+      girarEnX((0.5 - ratonY / cajaTarjeta.height) * gradosMaximos);
     });
 
     tarjeta.addEventListener("mouseleave", () => {
-      giroX(0);
-      giroY(0);
+      girarEnX(0);
+      girarEnY(0);
     });
   });
 }
 
 
 // ===== Botones que se van hacia el ratón =====
-function botonesMagneticos() {
-  if (!tieneRaton) return;
+function activarBotonesMagneticos() {
+  if (!usaRaton) return;
 
   document.querySelectorAll(".magnetico").forEach((boton) => {
-    boton.addEventListener("mousemove", (e) => {
-      const caja = boton.getBoundingClientRect();
-      const x = e.clientX - caja.left - caja.width / 2;
-      const y = e.clientY - caja.top - caja.height / 2;
-      gsap.to(boton, { x: x * 0.3, y: y * 0.35, duration: 0.4 });
+    boton.addEventListener("mousemove", (evento) => {
+      const cajaBoton = boton.getBoundingClientRect();
+      const distanciaAlCentroX = evento.clientX - cajaBoton.left - cajaBoton.width / 2;
+      const distanciaAlCentroY = evento.clientY - cajaBoton.top - cajaBoton.height / 2;
+      gsap.to(boton, { x: distanciaAlCentroX * 0.3, y: distanciaAlCentroY * 0.35, duration: 0.4 });
     });
+
     boton.addEventListener("mouseleave", () => {
       gsap.to(boton, { x: 0, y: 0, duration: 0.8, ease: "elastic.out(1, 0.4)" });
     });
@@ -398,7 +431,7 @@ function botonesMagneticos() {
 
 
 // ===== Cosas que aparecen al hacer scroll =====
-function alHacerScroll() {
+function animarAlHacerScroll() {
   // Títulos palabra a palabra
   document.querySelectorAll(".partir").forEach((titulo) => {
     gsap.from(titulo.querySelectorAll(".palabra > span"), {
@@ -410,69 +443,97 @@ function alHacerScroll() {
     });
   });
 
-  document.querySelectorAll(".titulo .num, .titulo > p").forEach((el) => {
-    gsap.from(el, { opacity: 0, y: 20, duration: 0.9, scrollTrigger: { trigger: el, start: "top 90%" } });
+  document.querySelectorAll(".titulo .num, .titulo > p").forEach((textoPequeno) => {
+    gsap.from(textoPequeno, {
+      opacity: 0,
+      y: 20,
+      duration: 0.9,
+      scrollTrigger: { trigger: textoPequeno, start: "top 90%" },
+    });
   });
 
-  // La cinta gira un poco mientras bajas
+  // La cinta de tecnologías gira un poco mientras bajas
   gsap.to(".cinta", {
     rotate: 1.2,
     scrollTrigger: { trigger: ".cinta", start: "top bottom", end: "bottom top", scrub: true },
   });
 
   // Números que suben de 0 a su valor
-  document.querySelectorAll(".contador").forEach((el) => {
-    const numero = { valor: 0 };
-    el.textContent = "0";
-    gsap.to(numero, {
-      valor: el.dataset.fin,
+  document.querySelectorAll(".contador").forEach((contador) => {
+    const valorDelContador = { actual: 0 };
+    contador.textContent = "0";
+
+    gsap.to(valorDelContador, {
+      actual: Number(contador.dataset.fin),
       duration: 1.6,
       ease: "power3.out",
-      onUpdate: () => (el.textContent = Math.round(numero.valor)),
-      scrollTrigger: { trigger: el, start: "top 90%" },
+      onUpdate: () => {
+        contador.textContent = Math.round(valorDelContador.actual);
+      },
+      scrollTrigger: { trigger: contador, start: "top 90%" },
     });
   });
 
   gsap.from(".numero", {
-    y: 40, opacity: 0, stagger: 0.1, duration: 1, ease: "expo.out",
+    y: 40,
+    opacity: 0,
+    stagger: 0.1,
+    duration: 1,
+    ease: "expo.out",
     scrollTrigger: { trigger: ".numeros", start: "top 85%" },
   });
 
   gsap.from(".filtro", {
-    y: 20, opacity: 0, stagger: 0.05, duration: 0.7,
+    y: 20,
+    opacity: 0,
+    stagger: 0.05,
+    duration: 0.7,
     scrollTrigger: { trigger: ".filtros", start: "top 90%" },
   });
 
-  // Tarjetas y apuntes: batch los saca por grupos según van entrando en pantalla
-  gsap.set(".tarjeta, .apunte", { y: 70, opacity: 0 });
-  ScrollTrigger.batch(".tarjeta, .apunte", {
+  // Las tarjetas salen por grupos según van entrando en pantalla
+  gsap.set(".tarjeta", { y: 70, opacity: 0 });
+  ScrollTrigger.batch(".tarjeta", {
     start: "top 90%",
     once: true,
-    onEnter: (grupo) => gsap.to(grupo, { y: 0, opacity: 1, duration: 1.1, stagger: 0.1, ease: "expo.out" }),
+    onEnter: (grupoDeTarjetas) => {
+      gsap.to(grupoDeTarjetas, { y: 0, opacity: 1, duration: 1.1, stagger: 0.1, ease: "expo.out" });
+    },
   });
 
   // Las ramas de git del dibujo de Rastro se pintan solas
+  const dibujoDeRamas = document.querySelector(".visual-ramas");
   ScrollTrigger.create({
-    trigger: ".visual-ramas",
+    trigger: dibujoDeRamas,
     start: "top 75%",
     once: true,
-    onEnter: () => document.querySelector(".visual-ramas").classList.add("dibujado"),
+    onEnter: () => dibujoDeRamas.classList.add("dibujado"),
   });
 
-  document.querySelectorAll(".grupo").forEach((grupo) => {
-    gsap.from(grupo.querySelectorAll(".mono, li"), {
-      y: 30, opacity: 0, stagger: 0.06, duration: 0.8,
-      scrollTrigger: { trigger: grupo, start: "top 88%" },
+  document.querySelectorAll(".grupo").forEach((grupoDeHerramientas) => {
+    gsap.from(grupoDeHerramientas.querySelectorAll(".mono, li"), {
+      y: 30,
+      opacity: 0,
+      stagger: 0.06,
+      duration: 0.8,
+      scrollTrigger: { trigger: grupoDeHerramientas, start: "top 88%" },
     });
   });
 
   // Contacto
   gsap.to(".contacto-titulo .trozo", {
-    yPercent: 0, duration: 1.2, stagger: 0.12, ease: "expo.out",
+    yPercent: 0,
+    duration: 1.2,
+    stagger: 0.12,
+    ease: "expo.out",
     scrollTrigger: { trigger: ".contacto-titulo", start: "top 85%" },
   });
+
   gsap.from(".contacto > p, .contacto-acciones, .redes", {
-    y: 30, opacity: 0, stagger: 0.1, duration: 0.9,
+    y: 30,
+    opacity: 0,
+    stagger: 0.1,
+    duration: 0.9,
     scrollTrigger: { trigger: ".contacto-acciones", start: "top 95%" },
   });
 
@@ -495,50 +556,54 @@ function alHacerScroll() {
 // ===== Recorrido =====
 // En pantallas grandes la sección se queda fija y las tarjetas pasan de lado.
 // En el móvil solo aparecen hacia arriba.
-function recorrido() {
-  const mm = gsap.matchMedia();
-  const seccion = document.querySelector(".recorrido");
-  const pista = document.querySelector(".pista");
+function animarRecorrido() {
+  const tamanosDePantalla = gsap.matchMedia();
+  const seccionRecorrido = document.querySelector(".recorrido");
+  const pistaDeTarjetas = document.querySelector(".pista");
 
-  mm.add("(min-width: 1000px)", () => {
-    seccion.classList.add("horizontal");
+  tamanosDePantalla.add("(min-width: 1000px)", () => {
+    seccionRecorrido.classList.add("horizontal");
 
-    // Lo que tiene que moverse la pista para que se vea la última tarjeta
-    const cuanto = () => pista.scrollWidth - window.innerWidth + window.innerWidth * 0.06;
+    // Lo que tiene que moverse la pista para que se vea entera la última tarjeta
+    const distanciaAMover = () => pistaDeTarjetas.scrollWidth - window.innerWidth + window.innerWidth * 0.06;
 
-    const mover = gsap.to(pista, {
-      x: () => -cuanto(),
+    const moverPista = gsap.to(pistaDeTarjetas, {
+      x: () => -distanciaAMover(),
       ease: "none",
       scrollTrigger: {
         trigger: ".recorrido-fijo",
         start: "top top",
-        end: () => "+=" + cuanto(),
+        end: () => "+=" + distanciaAMover(),
         pin: true,
         scrub: 0.8,
         invalidateOnRefresh: true,
       },
     });
 
-    // containerAnimation sirve para usar ScrollTrigger dentro del scroll de lado
+    // containerAnimation sirve para usar ScrollTrigger dentro del movimiento de lado
     document.querySelectorAll(".etapa").forEach((etapa) => {
       gsap.from(etapa, {
         opacity: 0.25,
         scale: 0.94,
-        scrollTrigger: { trigger: etapa, containerAnimation: mover, start: "left 95%", end: "left 60%", scrub: true },
+        scrollTrigger: { trigger: etapa, containerAnimation: moverPista, start: "left 95%", end: "left 60%", scrub: true },
       });
+
       gsap.from(etapa.querySelector(".etapa-mes"), {
         xPercent: 40,
-        scrollTrigger: { trigger: etapa, containerAnimation: mover, start: "left right", end: "right left", scrub: true },
+        scrollTrigger: { trigger: etapa, containerAnimation: moverPista, start: "left right", end: "right left", scrub: true },
       });
     });
 
-    // Al hacer la pantalla pequeña se quita la clase
-    return () => seccion.classList.remove("horizontal");
+    // Si la pantalla se hace pequeña, quito la clase
+    return () => seccionRecorrido.classList.remove("horizontal");
   });
 
-  mm.add("(max-width: 999px)", () => {
+  tamanosDePantalla.add("(max-width: 999px)", () => {
     gsap.from(".etapa", {
-      y: 60, opacity: 0, stagger: 0.12, duration: 1,
+      y: 60,
+      opacity: 0,
+      stagger: 0.12,
+      duration: 1,
       scrollTrigger: { trigger: ".pista", start: "top 85%" },
     });
   });

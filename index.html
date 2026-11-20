@@ -3,22 +3,23 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Shema · Desarrollador Full Stack</title>
-  <meta name="description" content="Shema, desarrollador Full Stack. APIs con NestJS y Express, interfaces con HTML, CSS y TypeScript, y una extensión de navegador para comprar con menos rastreo.">
-  <meta property="og:title" content="Shema · Desarrollador Full Stack">
-  <meta property="og:description" content="APIs, interfaces y una extensión de navegador. Proyectos con su código en GitHub.">
+  <title>Shema · Desarrollador Full Stack junior</title>
+  <meta name="description" content="Shema, desarrollador Full Stack junior formado en The Bridge. Mis proyectos del bootcamp: APIs con NestJS y Express, webs con HTML y CSS, JavaScript y TypeScript.">
+  <meta property="og:title" content="Shema · Desarrollador Full Stack junior">
+  <meta property="og:description" content="Mis proyectos del bootcamp Full Stack de The Bridge, con su código en GitHub.">
   <meta property="og:image" content="https://jbalaguersalas.github.io/avatar.jpg">
-  <meta name="theme-color" content="#09090a">
+  <meta name="theme-color" content="#0a0d12">
   <link rel="icon" href="avatar.jpg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <script>
-    // Aviso al CSS de que hay JavaScript. Si algo falla en 5 s, se quita y la web se ve sin animaciones.
+    // Le digo al CSS que hay JavaScript. Si en 5 segundos script.js no ha cargado, lo quito y la web se ve sin animaciones.
     document.documentElement.classList.add("js");
     setTimeout(function () {
-      if (!document.documentElement.classList.contains("listo")) document.documentElement.classList.remove("js");
+      const scriptCargado = document.documentElement.classList.contains("listo");
+      if (!scriptCargado) document.documentElement.classList.remove("js");
     }, 5000);
   </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
@@ -30,7 +31,7 @@
 
   <!-- Pantalla de carga -->
   <div class="cargador" aria-hidden="true">
-    <div class="cargador-nombre"><span>Shema</span><span class="cargador-rol">Full Stack</span></div>
+    <div class="cargador-nombre"><span>Shema</span><span class="cargador-rol">Full Stack junior</span></div>
     <div class="cargador-num"><span id="carga">0</span>%</div>
     <div class="cargador-barra"><i></i></div>
   </div>
@@ -47,8 +48,7 @@
     <nav aria-label="Secciones">
       <a href="#proyectos"><span class="num">01</span> Proyectos</a>
       <a href="#recorrido"><span class="num">02</span> Recorrido</a>
-      <a href="#aprendido"><span class="num">03</span> Apuntes</a>
-      <a href="#contacto"><span class="num">04</span> Contacto</a>
+      <a href="#contacto"><span class="num">03</span> Contacto</a>
     </nav>
     <a class="boton-barra magnetico" href="mailto:josebala115@gmail.com">Hablemos</a>
   </header>
@@ -61,18 +61,18 @@
       <div class="aura" aria-hidden="true"></div>
 
       <div class="portada-arriba">
-        <p class="etiqueta aparece"><span class="punto"></span> Disponible para prácticas y primer empleo</p>
+        <p class="etiqueta aparece"><span class="punto"></span> Junior · Buscando mi primer empleo</p>
         <p class="etiqueta aparece">The Bridge · Full Stack 2026</p>
       </div>
 
-      <h1 class="titular" aria-label="Programo APIs, interfaces y extensiones de principio a fin.">
-        <span class="linea"><span class="trozo">Programo</span></span>
-        <span class="linea"><span class="trozo"><span class="rotador" aria-hidden="true"><span>APIs</span><span>interfaces</span><span>extensiones</span><span>webs</span></span></span></span>
-        <span class="linea"><span class="trozo">de principio <em>a fin.</em></span></span>
+      <h1 class="titular" aria-label="Estoy empezando y ya programo APIs, webs e interfaces.">
+        <span class="linea"><span class="trozo">Estoy empezando</span></span>
+        <span class="linea"><span class="trozo">y ya programo</span></span>
+        <span class="linea"><span class="trozo"><span class="rotador" aria-hidden="true"><span>APIs.</span><span>webs.</span><span>interfaces.</span></span></span></span>
       </h1>
 
       <div class="portada-pie">
-        <p class="entradilla aparece">Soy Shema y estudio Full Stack en The Bridge. Casi todo lo que hago es backend con NestJS, Express y SQL, aunque también maqueto webs a mano y he programado una extensión para el navegador.</p>
+        <p class="entradilla aparece">Soy Shema, desarrollador Full Stack junior. Estoy terminando el bootcamp de The Bridge y aquí enseño lo que he hecho en él: APIs con NestJS y Express, webs maquetadas a mano y ejercicios de JavaScript y TypeScript.</p>
 
         <div class="terminal aparece" aria-label="Ejemplo de petición a una API">
           <div class="terminal-barra"><span></span><span></span><span></span><b>~/shema</b></div>
@@ -80,6 +80,7 @@
 <span class="verde">HTTP/1.1 200 OK</span>
 
 {
+  <span class="acento">"nivel"</span>: "junior",
   <span class="acento">"backend"</span>: ["NestJS", "Express"],
   <span class="acento">"frontend"</span>: ["HTML", "CSS", "TypeScript"],
   <span class="acento">"datos"</span>: ["PostgreSQL", "MongoDB"],
@@ -96,61 +97,68 @@
     <!-- ============ CINTA ============ -->
     <div class="cinta" aria-hidden="true">
       <div class="cinta-pista">
-        <span>NestJS</span><b>✦</b><span>TypeScript</span><b>✦</b><span>Express</span><b>✦</b><span>PostgreSQL</span><b>✦</b><span>MongoDB</span><b>✦</b><span>HTML</span><b>✦</b><span>CSS</span><b>✦</b><span>JavaScript</span><b>✦</b><span>Docker</span><b>✦</b><span>GitHub Actions</span><b>✦</b><span>Chrome Extensions</span><b>✦</b>
-        <span>NestJS</span><b>✦</b><span>TypeScript</span><b>✦</b><span>Express</span><b>✦</b><span>PostgreSQL</span><b>✦</b><span>MongoDB</span><b>✦</b><span>HTML</span><b>✦</b><span>CSS</span><b>✦</b><span>JavaScript</span><b>✦</b><span>Docker</span><b>✦</b><span>GitHub Actions</span><b>✦</b><span>Chrome Extensions</span><b>✦</b>
+        <span>HTML</span><b>✦</b><span>CSS</span><b>✦</b><span>JavaScript</span><b>✦</b><span>TypeScript</span><b>✦</b><span>NestJS</span><b>✦</b><span>Express</span><b>✦</b><span>PostgreSQL</span><b>✦</b><span>MongoDB</span><b>✦</b><span>Docker</span><b>✦</b><span>GitHub Actions</span><b>✦</b>
+        <span>HTML</span><b>✦</b><span>CSS</span><b>✦</b><span>JavaScript</span><b>✦</b><span>TypeScript</span><b>✦</b><span>NestJS</span><b>✦</b><span>Express</span><b>✦</b><span>PostgreSQL</span><b>✦</b><span>MongoDB</span><b>✦</b><span>Docker</span><b>✦</b><span>GitHub Actions</span><b>✦</b>
       </div>
     </div>
 
     <!-- ============ NÚMEROS ============ -->
     <div class="numeros">
-      <div class="numero"><b class="contador" data-fin="29">29</b><span>repositorios públicos</span></div>
+      <div class="numero"><b class="contador" data-fin="3">3</b><span>meses de bootcamp</span></div>
+      <div class="numero"><b class="contador" data-fin="28">28</b><span>repositorios públicos</span></div>
       <div class="numero"><b class="contador" data-fin="9">9</b><span>proyectos destacados</span></div>
       <div class="numero"><b class="contador" data-fin="20">20</b><span>ejercicios de TypeScript</span></div>
-      <div class="numero"><b class="contador" data-fin="1">1</b><span>extensión de navegador</span></div>
     </div>
 
     <!-- ============ PROYECTOS ============ -->
     <section id="proyectos" class="seccion">
       <div class="titulo">
         <span class="num">01 / Proyectos</span>
-        <h2 class="partir">Cosas que he construido</h2>
-        <p>Hay APIs, maquetación, TypeScript y una extensión de navegador. Pincha en cualquiera para ver el código.</p>
+        <h2 class="partir">Lo que he hecho en el bootcamp</h2>
+        <p>Maquetación, JavaScript, TypeScript y APIs. Pincha en cualquiera para ver el código.</p>
       </div>
 
       <div class="filtros" role="group" aria-label="Filtrar proyectos">
         <button class="filtro activo" data-filtro="todos" aria-pressed="true">Todos <sup>9</sup></button>
-        <button class="filtro" data-filtro="backend" aria-pressed="false">Backend <sup>4</sup></button>
-        <button class="filtro" data-filtro="frontend" aria-pressed="false">Frontend <sup>5</sup></button>
+        <button class="filtro" data-filtro="frontend" aria-pressed="false">Frontend <sup>4</sup></button>
+        <button class="filtro" data-filtro="javascript" aria-pressed="false">JavaScript <sup>2</sup></button>
         <button class="filtro" data-filtro="typescript" aria-pressed="false">TypeScript <sup>4</sup></button>
-        <button class="filtro" data-filtro="herramientas" aria-pressed="false">Herramientas <sup>2</sup></button>
+        <button class="filtro" data-filtro="backend" aria-pressed="false">Backend <sup>4</sup></button>
       </div>
 
       <div class="rejilla">
 
-        <!-- PaySecure: el grande -->
-        <a class="tarjeta grande" data-tipo="herramientas frontend" href="https://github.com/jbalaguersalas/PaySecure" target="_blank" rel="noopener">
-          <div class="tarjeta-visual visual-extension" aria-hidden="true">
-            <div class="navegador">
-              <div class="navegador-barra"><span></span><span></span><span></span><i>tienda.com/pago</i><b class="escudo">12</b></div>
-              <div class="navegador-cuerpo">
-                <div class="popup">
-                  <p class="popup-titulo"><span class="escudo-mini"></span> PaySecure</p>
-                  <p class="popup-dato"><b>12</b> rastreadores frenados</p>
-                  <ul>
-                    <li><span>analytics.js</span><em>bloqueado</em></li>
-                    <li><span>pixel.ads</span><em>bloqueado</em></li>
-                    <li><span>session-rec</span><em>bloqueado</em></li>
-                    <li class="ok"><span>pasarela de pago</span><em>permitido</em></li>
-                  </ul>
-                </div>
-              </div>
-            </div>
+        <!-- Portfolio en Docker: la tarjeta grande -->
+        <a class="tarjeta grande" data-tipo="frontend" href="https://github.com/jbalaguersalas/-Pr-ctica-Docker-Web-Minimalista" target="_blank" rel="noopener">
+          <div class="tarjeta-visual visual-maqueta" aria-hidden="true">
+            <div class="movil"><i class="m-cab"></i><i class="m-img"></i><i class="m-lin"></i><i class="m-lin corto"></i><i class="m-img"></i></div>
+            <div class="escritorio"><i class="e-cab"></i><div class="e-fila"><span><i></i><i class="corto"></i></span><i class="e-img"></i></div><div class="e-fila"><span><i></i><i class="corto"></i></span><i class="e-img"></i></div></div>
+            <span class="docker">nginx:alpine</span>
           </div>
           <div class="tarjeta-texto">
-            <p class="tarjeta-meta"><span>Extensión de navegador</span><span>v10.1 · GPLv3</span></p>
-            <h3>PaySecure</h3>
-            <p>Es mi proyecto más grande. La extensión funciona en Chrome, Edge y Firefox y bloquea rastreadores, anuncios y grabación de sesión mientras compras. Dejo pasar la pasarela de pago, la verificación del banco y el antifraude de la tienda. Tampoco envío datos a ningún servidor: le paso al navegador una lista de reglas y él hace el bloqueo.</p>
-            <p class="chips"><span>Manifest V3</span><span>JavaScript</span><span>declarativeNetRequest</span><span>Service Worker</span></p>
+            <p class="tarjeta-meta"><span>Maquetación · Docker</span><span>3 páginas</span></p>
+            <h3>Portfolio en Docker</h3>
+            <p>Pasé a HTML y CSS un diseño de Figma de tres páginas. Usé nombres de clase BEM y empecé por la versión de móvil, con saltos a 600, 800 y 1280 píxeles. Después metí la web en un contenedor con nginx, así que se levanta con <code>docker compose up</code>.</p>
+            <p class="chips"><span>HTML</span><span>CSS</span><span>BEM</span><span>Docker</span></p>
+          </div>
+          <span class="flecha" aria-hidden="true">↗</span>
+        </a>
+
+        <!-- Bikram TypeScript -->
+        <a class="tarjeta" data-tipo="typescript" href="https://github.com/jbalaguersalas/Bikram-typescript" target="_blank" rel="noopener">
+          <div class="tarjeta-visual visual-ts" aria-hidden="true">
+            <span class="ts-logo">TS</span>
+            <pre><span class="mor">function</span> <span class="azu">primero</span>&lt;<span class="nar">T</span>&gt;(
+  lista: <span class="nar">T</span>[]
+): <span class="nar">T</span> | <span class="mor">undefined</span> {
+  <span class="mor">return</span> lista[0];
+}</pre>
+          </div>
+          <div class="tarjeta-texto">
+            <p class="tarjeta-meta"><span>TypeScript</span><span>20 ejercicios</span></p>
+            <h3>TypeScript paso a paso</h3>
+            <p>Veinte ejercicios que empiezan con tipos básicos y terminan con genéricos, clases con campos privados, <code>enum</code> y una función <code>async</code> con <code>Record</code>.</p>
+            <p class="chips"><span>TypeScript</span><span>Genéricos</span><span>Clases</span></p>
           </div>
           <span class="flecha" aria-hidden="true">↗</span>
         </a>
@@ -169,26 +177,22 @@
             <p class="tarjeta-meta"><span>API REST</span><span>9 rutas</span></p>
             <h3>API gimnasio FitVal</h3>
             <p>La API de un gimnasio con planes, horario de clases y login con JWT. Cifro las contraseñas con argon2 y, si una clase tiene reservas, no dejo borrarla.</p>
-            <p class="chips"><span>NestJS</span><span>PostgreSQL</span><span>JWT</span><span>Docker</span></p>
+            <p class="chips"><span>NestJS</span><span>PostgreSQL</span><span>JWT</span></p>
           </div>
           <span class="flecha" aria-hidden="true">↗</span>
         </a>
 
-        <!-- Bikram TypeScript -->
-        <a class="tarjeta" data-tipo="typescript frontend" href="https://github.com/jbalaguersalas/Bikram-typescript" target="_blank" rel="noopener">
-          <div class="tarjeta-visual visual-ts" aria-hidden="true">
-            <span class="ts-logo">TS</span>
-            <pre><span class="mor">function</span> <span class="azu">primero</span>&lt;<span class="nar">T</span>&gt;(
-  lista: <span class="nar">T</span>[]
-): <span class="nar">T</span> | <span class="mor">undefined</span> {
-  <span class="mor">return</span> lista[0];
-}</pre>
+        <!-- Varita mágica -->
+        <a class="tarjeta" data-tipo="frontend javascript" href="https://github.com/jbalaguersalas/DOM-varita-magica" target="_blank" rel="noopener">
+          <div class="tarjeta-visual visual-varita" aria-hidden="true">
+            <div class="parrafos"><i></i><i></i><i class="corto"></i><i></i><i class="corto"></i></div>
+            <span class="varita">✦</span>
           </div>
           <div class="tarjeta-texto">
-            <p class="tarjeta-meta"><span>TypeScript</span><span>20 ejercicios</span></p>
-            <h3>TypeScript de cero a genéricos</h3>
-            <p>Empecé con tipos básicos y acabé con genéricos, clases con campos privados y <code>enum</code>. El último, una función <code>async</code> con <code>Record</code>, me costó bastante.</p>
-            <p class="chips"><span>TypeScript</span><span>Genéricos</span><span>POO</span></p>
+            <p class="tarjeta-meta"><span>DOM</span><span>JavaScript</span></p>
+            <h3>Varita mágica</h3>
+            <p>Sobre una página de un blog, el ratón hace de varita: al pasar por encima o hacer click cambio imágenes y colores. Guardo el valor original en <code>dataset</code> para devolverlo al salir.</p>
+            <p class="chips"><span>JavaScript</span><span>Eventos</span><span>DOM</span></p>
           </div>
           <span class="flecha" aria-hidden="true">↗</span>
         </a>
@@ -208,74 +212,26 @@
             <p class="tarjeta-meta"><span>API REST</span><span>main protegida</span></p>
             <h3>API Rastro</h3>
             <p>Una app inventada de compraventa de segunda mano. Puedes buscar por categoría, ciudad o precio. Hice cada parte en su rama y GitHub pasaba el lint antes de dejarme mezclar.</p>
-            <p class="chips"><span>Express</span><span>TypeScript</span><span>MongoDB</span><span>GitHub Actions</span></p>
+            <p class="chips"><span>Express</span><span>TypeScript</span><span>MongoDB</span></p>
           </div>
           <span class="flecha" aria-hidden="true">↗</span>
         </a>
 
-        <!-- Varita mágica -->
-        <a class="tarjeta" data-tipo="frontend" href="https://github.com/jbalaguersalas/DOM-varita-magica" target="_blank" rel="noopener">
-          <div class="tarjeta-visual visual-varita" aria-hidden="true">
-            <div class="parrafos"><i></i><i></i><i class="corto"></i><i></i><i class="corto"></i></div>
-            <span class="varita">✦</span>
+        <!-- Código asíncrono -->
+        <a class="tarjeta" data-tipo="frontend javascript" href="https://github.com/jbalaguersalas/JS-Asynchronous-code" target="_blank" rel="noopener">
+          <div class="tarjeta-visual visual-fetch" aria-hidden="true">
+            <div class="peticion"><b>GET</b> dog.ceo/api/breeds/image/random</div>
+            <div class="perfil-github">
+              <i class="perfil-foto"></i>
+              <span><i></i><i class="corto"></i></span>
+              <em>repos: 28</em>
+            </div>
           </div>
           <div class="tarjeta-texto">
-            <p class="tarjeta-meta"><span>DOM</span><span>JavaScript</span></p>
-            <h3>Varita mágica</h3>
-            <p>Sobre una página de un blog, el ratón hace de varita: al pasar por encima o hacer click cambio imágenes y colores. Guardo el valor original en <code>dataset</code> para devolverlo al salir.</p>
-            <p class="chips"><span>JavaScript</span><span>Eventos</span><span>Delegación</span></p>
-          </div>
-          <span class="flecha" aria-hidden="true">↗</span>
-        </a>
-
-        <!-- Web minimalista en Docker -->
-        <a class="tarjeta" data-tipo="frontend herramientas" href="https://github.com/jbalaguersalas/-Pr-ctica-Docker-Web-Minimalista" target="_blank" rel="noopener">
-          <div class="tarjeta-visual visual-maqueta" aria-hidden="true">
-            <div class="movil"><i class="m-cab"></i><i class="m-img"></i><i class="m-lin"></i><i class="m-lin corto"></i><i class="m-img"></i></div>
-            <div class="escritorio"><i class="e-cab"></i><div class="e-fila"><span><i></i><i class="corto"></i></span><i class="e-img"></i></div><div class="e-fila"><span><i></i><i class="corto"></i></span><i class="e-img"></i></div></div>
-            <span class="docker">nginx:alpine</span>
-          </div>
-          <div class="tarjeta-texto">
-            <p class="tarjeta-meta"><span>Maquetación</span><span>3 páginas</span></p>
-            <h3>Portfolio en Docker</h3>
-            <p>Maqueté un diseño de Figma con BEM, primero para móvil. Luego lo metí en un contenedor con nginx y se levanta con <code>docker compose up</code>.</p>
-            <p class="chips"><span>HTML</span><span>CSS</span><span>BEM</span><span>Docker</span></p>
-          </div>
-          <span class="flecha" aria-hidden="true">↗</span>
-        </a>
-
-        <!-- Libros y pedidos -->
-        <a class="tarjeta" data-tipo="backend typescript" href="https://github.com/jbalaguersalas/nestjs-postgresql-supabase-render" target="_blank" rel="noopener">
-          <div class="tarjeta-visual visual-codigo" aria-hidden="true">
-<pre><span class="mor">BEGIN</span>;
-<span class="mor">INSERT INTO</span> pedidos ...
-<span class="mor">UPDATE</span> libros
-  <span class="mor">SET</span> stock = stock - <span class="nar">$1</span>
-  <span class="mor">WHERE</span> id = <span class="nar">$2</span>;
-<span class="ver">COMMIT</span>;</pre>
-          </div>
-          <div class="tarjeta-texto">
-            <p class="tarjeta-meta"><span>API REST</span><span>Supabase · Render</span></p>
-            <h3>Libros y pedidos</h3>
-            <p>Escribí el SQL a mano con parámetros <code>$1</code> y meto cada pedido en una transacción. También tiene helmet y límite de peticiones.</p>
-            <p class="chips"><span>NestJS</span><span>PostgreSQL</span><span>Supabase</span></p>
-          </div>
-          <span class="flecha" aria-hidden="true">↗</span>
-        </a>
-
-        <!-- SQL gimnasio -->
-        <a class="tarjeta" data-tipo="backend" href="https://github.com/jbalaguersalas/Proyecto-SQL-Gimnasio" target="_blank" rel="noopener">
-          <div class="tarjeta-visual visual-tablas" aria-hidden="true">
-            <div class="tabla t1"><b>socios</b><i>id</i><i>nombre</i><i>plan_id</i></div>
-            <div class="tabla t2"><b>clases</b><i>id</i><i>monitor_id</i><i>hora</i></div>
-            <div class="tabla t3"><b>reservas</b><i>socio_id</i><i>clase_id</i></div>
-            <svg viewBox="0 0 240 130" class="relaciones"><path d="M70 40 C95 40 95 95 125 95"/><path d="M175 40 C195 40 195 80 175 95"/></svg>
-          </div>
-          <div class="tarjeta-texto">
-            <p class="tarjeta-meta"><span>Base de datos</span><span>8 tablas</span></p>
-            <h3>Modelo SQL del gimnasio</h3>
-            <p>Diseñé desde cero las tablas de socios, planes, monitores, clases y reservas, y les hice consultas con JOIN. FitVal usa esta misma base.</p>
-            <p class="chips"><span>SQL</span><span>PostgreSQL</span><span>Modelado</span></p>
+            <p class="tarjeta-meta"><span>fetch · async/await</span><span>9 ejercicios</span></p>
+            <h3>Peticiones a APIs</h3>
+            <p>Pido fotos de perros a la Dog API y perfiles a la API de GitHub. Con lo que me llega pinto una tarjeta en la página, y con <code>Promise.all</code> espero varias peticiones a la vez.</p>
+            <p class="chips"><span>JavaScript</span><span>fetch</span><span>Jasmine</span></p>
           </div>
           <span class="flecha" aria-hidden="true">↗</span>
         </a>
@@ -299,9 +255,45 @@
           <span class="flecha" aria-hidden="true">↗</span>
         </a>
 
+        <!-- Libros y pedidos -->
+        <a class="tarjeta" data-tipo="backend typescript" href="https://github.com/jbalaguersalas/nestjs-postgresql-supabase-render" target="_blank" rel="noopener">
+          <div class="tarjeta-visual visual-codigo" aria-hidden="true">
+<pre><span class="mor">BEGIN</span>;
+<span class="mor">INSERT INTO</span> pedidos ...
+<span class="mor">UPDATE</span> libros
+  <span class="mor">SET</span> stock = stock - <span class="nar">$1</span>
+  <span class="mor">WHERE</span> id = <span class="nar">$2</span>;
+<span class="ver">COMMIT</span>;</pre>
+          </div>
+          <div class="tarjeta-texto">
+            <p class="tarjeta-meta"><span>API REST</span><span>Supabase</span></p>
+            <h3>Libros y pedidos</h3>
+            <p>Escribí el SQL a mano con parámetros <code>$1</code> y meto cada pedido en una transacción. También tiene helmet y límite de peticiones.</p>
+            <p class="chips"><span>NestJS</span><span>PostgreSQL</span><span>Supabase</span></p>
+          </div>
+          <span class="flecha" aria-hidden="true">↗</span>
+        </a>
+
+        <!-- SQL gimnasio -->
+        <a class="tarjeta" data-tipo="backend" href="https://github.com/jbalaguersalas/Proyecto-SQL-Gimnasio" target="_blank" rel="noopener">
+          <div class="tarjeta-visual visual-tablas" aria-hidden="true">
+            <div class="tabla t1"><b>socios</b><i>id</i><i>nombre</i><i>plan_id</i></div>
+            <div class="tabla t2"><b>clases</b><i>id</i><i>monitor_id</i><i>hora</i></div>
+            <div class="tabla t3"><b>reservas</b><i>socio_id</i><i>clase_id</i></div>
+            <svg viewBox="0 0 240 130" class="relaciones"><path d="M70 40 C95 40 95 95 125 95"/><path d="M175 40 C195 40 195 80 175 95"/></svg>
+          </div>
+          <div class="tarjeta-texto">
+            <p class="tarjeta-meta"><span>Base de datos</span><span>8 tablas</span></p>
+            <h3>Modelo SQL del gimnasio</h3>
+            <p>Diseñé desde cero las tablas de socios, planes, monitores, clases y reservas, y les hice consultas con JOIN. FitVal usa esta misma base.</p>
+            <p class="chips"><span>SQL</span><span>PostgreSQL</span></p>
+          </div>
+          <span class="flecha" aria-hidden="true">↗</span>
+        </a>
+
       </div>
 
-      <a class="enlace-flecha" href="https://github.com/jbalaguersalas?tab=repositories" target="_blank" rel="noopener"><span>Ver los 29 repositorios en GitHub</span> <i aria-hidden="true">→</i></a>
+      <a class="enlace-flecha" href="https://github.com/jbalaguersalas?tab=repositories" target="_blank" rel="noopener"><span>Ver todos mis repositorios en GitHub</span> <i aria-hidden="true">→</i></a>
     </section>
 
     <!-- ============ RECORRIDO (scroll horizontal) ============ -->
@@ -316,113 +308,65 @@
             <span class="etapa-mes">Sep</span>
             <p class="mono">Septiembre 2026</p>
             <h3>Git, HTML y CSS</h3>
-            <p>Aprendí ramas y merges y resolví mis primeros conflictos. También hice mis primeras páginas y un currículum sacado de Figma.</p>
+            <p>Ramas, merges y mis primeros conflictos. Después, mis primeras páginas y un currículum sacado de Figma.</p>
             <p class="chips"><span>Git</span><span>HTML</span><span>CSS</span></p>
           </article>
           <article class="etapa">
             <span class="etapa-mes">Oct</span>
             <p class="mono">Octubre 2026</p>
             <h3>JavaScript, DOM y TypeScript</h3>
-            <p>Practiqué map, filter y reduce, hice peticiones con async/await y pasé tests de Jasmine. Al final del mes metí una web en Docker.</p>
+            <p>map, filter y reduce, peticiones con async/await y tests de Jasmine. Al final del mes metí una web en Docker.</p>
             <p class="chips"><span>JavaScript</span><span>TypeScript</span><span>Docker</span></p>
           </article>
           <article class="etapa">
             <span class="etapa-mes">Nov</span>
             <p class="mono">Noviembre 2026</p>
             <h3>Bases de datos y APIs</h3>
-            <p>Primero SQL y MongoDB, después Express y NestJS. Añadí login con JWT y puse CI en cada pull request.</p>
+            <p>Primero SQL y MongoDB, después Express y NestJS. Login con JWT y CI en cada pull request.</p>
             <p class="chips"><span>PostgreSQL</span><span>NestJS</span><span>CI</span></p>
           </article>
           <article class="etapa etapa-final">
             <span class="etapa-mes">Ahora</span>
             <p class="mono">Lo siguiente</p>
             <h3>Mi primer equipo</h3>
-            <p>Quiero entrar en un equipo donde revisen mi código y yo pueda subir cosas a producción.</p>
+            <p>Busco mi primer trabajo como junior. Quiero entrar en un equipo donde revisen mi código y yo pueda subir cosas a producción.</p>
             <a class="enlace-flecha pequeno" href="#contacto"><span>Escríbeme</span> <i aria-hidden="true">→</i></a>
           </article>
         </div>
       </div>
     </section>
 
-    <!-- ============ STACK ============ -->
+    <!-- ============ HERRAMIENTAS ============ -->
     <section class="seccion stack-seccion">
       <div class="titulo">
         <span class="num">Herramientas</span>
-        <h2 class="partir">Con lo que trabajo</h2>
+        <h2 class="partir">Con lo que he trabajado</h2>
       </div>
       <div class="stack-grupos">
         <div class="grupo">
-          <p class="mono">Backend</p>
-          <ul><li>Node.js</li><li>NestJS</li><li>Express</li><li>JWT · argon2</li></ul>
+          <p class="mono">Frontend</p>
+          <ul><li>HTML</li><li>CSS · BEM</li><li>JavaScript</li><li>TypeScript</li></ul>
         </div>
         <div class="grupo">
-          <p class="mono">Frontend</p>
-          <ul><li>HTML semántico</li><li>CSS · BEM</li><li>JavaScript</li><li>TypeScript</li></ul>
+          <p class="mono">Backend</p>
+          <ul><li>Node.js</li><li>NestJS</li><li>Express</li><li>JWT</li></ul>
         </div>
         <div class="grupo">
           <p class="mono">Datos</p>
-          <ul><li>PostgreSQL</li><li>MongoDB</li><li>Supabase</li><li>SQL a mano</li></ul>
+          <ul><li>PostgreSQL</li><li>MongoDB</li><li>Supabase</li><li>SQL</li></ul>
         </div>
         <div class="grupo">
           <p class="mono">Flujo</p>
-          <ul><li>Git · GitHub</li><li>GitHub Actions</li><li>Docker</li><li>Postman · Render</li></ul>
+          <ul><li>Git · GitHub</li><li>GitHub Actions</li><li>Docker</li><li>Postman</li></ul>
         </div>
-      </div>
-    </section>
-
-    <!-- ============ APUNTES ============ -->
-    <section id="aprendido" class="seccion">
-      <div class="titulo">
-        <span class="num">03 / Apuntes</span>
-        <h2 class="partir">Lo que he aprendido</h2>
-        <p>Al lado de cada apunte pongo el repo del que sale.</p>
-      </div>
-
-      <div class="apuntes">
-        <article class="apunte">
-          <span class="apunte-num">01</span>
-          <h3>No me fío de lo que manda el usuario</h3>
-          <p>Si alguien publica un anuncio con 9999 visitas, ignoro ese número y le pongo 0. Las visitas las cuento yo.</p>
-          <span class="origen">api-rastro</span>
-        </article>
-        <article class="apunte">
-          <span class="apunte-num">02</span>
-          <h3>Lo que llega por la URL es texto</h3>
-          <p>Si buscas anuncios de hasta 380 €, a mí me llega <code>"380"</code>. Tuve que pasarlo a número porque la búsqueda me salía vacía.</p>
-          <span class="origen">api-rastro</span>
-        </article>
-        <article class="apunte">
-          <span class="apunte-num">03</span>
-          <h3>Las listas públicas también bloquean pagos</h3>
-          <p>EasyPrivacy me rompía algunas pasarelas de pago. Ahora, antes de usarla, le quito las reglas que afectan a pagos, antifraude e inicio de sesión.</p>
-          <span class="origen">PaySecure</span>
-        </article>
-        <article class="apunte">
-          <span class="apunte-num">04</span>
-          <h3>Quién puede hacer qué</h3>
-          <p>Escribí un guard que lee el token y mira el rol antes de dejar crear o borrar una clase. Las contraseñas las guardo cifradas.</p>
-          <span class="origen">api-gimnasio-fitval</span>
-        </article>
-        <article class="apunte">
-          <span class="apunte-num">05</span>
-          <h3><code>unknown</code> antes que <code>any</code></h3>
-          <p>Con <code>unknown</code>, TypeScript no me deja usar el valor hasta que compruebo qué tipo tiene. Así veo el fallo en VS Code antes de ejecutar nada.</p>
-          <span class="origen">Bikram-typescript</span>
-        </article>
-        <article class="apunte">
-          <span class="apunte-num">06</span>
-          <h3>La base de datos también pone reglas</h3>
-          <p>Para que un socio no tenga dos tarjetas puse un <code>UNIQUE</code> en la clave foránea. No tuve que tocar el código.</p>
-          <span class="origen">Proyecto-SQL-Gimnasio</span>
-        </article>
       </div>
     </section>
 
     <!-- ============ CONTACTO ============ -->
     <section id="contacto" class="contacto">
-      <span class="num">04 / Contacto</span>
-      <h2 class="contacto-titulo"><span class="linea"><span class="trozo">¿Trabajamos</span></span><span class="linea"><span class="trozo"><em>juntos?</em></span></span></h2>
-      <p>Si buscas a alguien para tu equipo o quieres preguntarme por algún proyecto, mándame un correo.</p>
+      <span class="num">03 / Contacto</span>
+      <h2 class="contacto-titulo"><span class="linea"><span class="trozo">¿Me das</span></span><span class="linea"><span class="trozo"><em>una oportunidad?</em></span></span></h2>
+      <p>Busco mi primer empleo o unas prácticas como desarrollador junior. Si crees que puedo encajar en tu equipo, mándame un correo.</p>
       <div class="contacto-acciones">
         <a class="boton magnetico" href="mailto:josebala115@gmail.com"><span>josebala115@gmail.com</span></a>
         <button class="boton boton-borde magnetico" id="copiar" type="button"><span>Copiar correo</span></button>
@@ -439,7 +383,7 @@
   <footer>
     <p class="pie-grande" aria-hidden="true">Shema</p>
     <div class="pie-linea">
-      <p>© 2026 Shema · Hecha a mano con HTML, CSS, JavaScript y GSAP.</p>
+      <p>© 2026 Shema · Hecha con HTML, CSS, JavaScript y GSAP.</p>
       <a href="#inicio">Volver arriba ↑</a>
     </div>
   </footer>

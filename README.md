@@ -2,22 +2,22 @@
 
 Mi portfolio, publicado en **https://jbalaguersalas.github.io/**
 
-La hice con HTML, CSS y JavaScript, sin frameworks. Para las animaciones uso GSAP con sus plugins ScrollTrigger y Flip, que cargo desde cdnjs. Son tres archivos: `index.html`, `style.css` y `script.js`.
+Soy desarrollador Full Stack junior y en esta web enseño los proyectos que he hecho en el bootcamp de The Bridge. La hice con HTML, CSS y JavaScript, sin frameworks. Para las animaciones uso GSAP con sus plugins ScrollTrigger y Flip, que cargo desde cdnjs. Son tres archivos: `index.html`, `style.css` y `script.js`.
 
 ## Qué tiene
 
 - **Pantalla de carga** con un contador hasta 100. Si recargas la página en la misma visita, dura menos.
-- **Portada** con un titular en el que la palabra naranja va cambiando (APIs, interfaces, extensiones, webs), un fondo de puntos que se apartan del ratón y una terminal que escribe sola.
-- **Proyectos**: nueve tarjetas con filtros (Backend, Frontend, TypeScript y Herramientas). La más grande es PaySecure, mi extensión de navegador. Cada tarjeta tiene un dibujo hecho con HTML y CSS, sin imágenes.
+- **Portada** con un titular en el que la palabra azul va cambiando (APIs, webs, interfaces), un fondo de puntos que se apartan del ratón y una terminal que escribe sola.
+- **Proyectos**: nueve tarjetas con filtros (Frontend, JavaScript, TypeScript y Backend). Cada tarjeta tiene un dibujo hecho con HTML y CSS, sin imágenes.
 - **Recorrido**: mis tres meses de bootcamp. En el ordenador la sección se queda fija y las tarjetas pasan de lado mientras bajas.
-- **Herramientas**, **apuntes** de lo que aprendí en cada repo y **contacto**, con un botón para copiar mi correo.
+- **Herramientas** y **contacto**, con un botón para copiar mi correo.
 
 ## Diseño
 
-Fondo negro, titulares grandes y estrechos y un solo color de acento, el naranja. Los datos van en letra monoespaciada, como en el código.
+Fondo casi negro con un toque azulado, titulares grandes y estrechos y un solo color de acento, el azul `#4da3ff`, el mismo que uso en mi perfil de GitHub. Los datos van en letra monoespaciada, como en el código.
 
 - Fuentes: **Archivo**, que es variable y me deja estrechar los titulares con `font-stretch`, e **IBM Plex Mono**.
-- La hice primero para móvil. Los saltos están en 720px, 900px, 1000px y 1100px.
+- La hice primero para móvil. Los saltos están en 480px, 720px, 900px, 1000px y 1100px.
 - Los colores están en variables en `:root`.
 
 ## Animaciones
