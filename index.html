@@ -3,7 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Shema | Desarrollador web</title>
+  <title>Shema | Desarrollador full stack</title>
+  <meta name="description" content="Portfolio de Shema, desarrollador full stack: APIs con NestJS y Express, PostgreSQL, MongoDB, Docker y webs con HTML, CSS y JavaScript.">
+  <meta property="og:title" content="Shema | Desarrollador full stack">
+  <meta property="og:description" content="APIs con NestJS y Express, bases de datos SQL y NoSQL, Docker y CI con GitHub Actions.">
+  <meta property="og:image" content="https://jbalaguersalas.github.io/avatar.jpg">
+  <meta property="og:url" content="https://jbalaguersalas.github.io/">
+  <meta name="theme-color" content="#000000">
   <link rel="icon" href="avatar.jpg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,6 +23,7 @@
     <nav>
       <a href="#proyectos">Proyectos</a>
       <a href="#herramientas">Herramientas</a>
+      <a href="#contacto">Contacto</a>
     </nav>
   </header>
 
@@ -24,12 +31,15 @@
 
     <!-- Presentación -->
     <section class="inicio">
-      <img class="foto" src="avatar.jpg" alt="Foto de perfil de Shema">
+      <img class="foto" src="avatar.jpg" alt="Foto de perfil de Shema" width="260" height="260">
       <div>
         <h1>Shema</h1>
-        <p class="subtitulo">Desarrollador web</p>
-        <p class="descripcion">Me gusta crear páginas web limpias y sencillas con HTML, CSS y JavaScript.</p>
-        <a class="boton" href="#proyectos">Ver mis proyectos</a>
+        <p class="subtitulo">Desarrollador full stack</p>
+        <p class="descripcion">Estudio Full Stack en The Bridge. Hago APIs con NestJS y Express, guardo los datos en PostgreSQL o MongoDB y maqueto webs con HTML y CSS.</p>
+        <div class="acciones">
+          <a class="boton" href="#proyectos">Ver mis proyectos</a>
+          <a class="boton boton--secundario" href="https://github.com/jbalaguersalas" target="_blank" rel="noopener">GitHub</a>
+        </div>
       </div>
     </section>
 
@@ -38,28 +48,64 @@
       <h2>Proyectos</h2>
 
       <div class="proyectos">
-        <a class="tarjeta" href="https://github.com/jbalaguersalas/web-personal">
-          <h3>Web personal</h3>
-          <p>Mi primera página personal hecha con HTML.</p>
-          <span class="etiqueta">HTML</span>
+        <a class="tarjeta tarjeta--destacada" href="https://github.com/jbalaguersalas/api-gimnasio-fitval" target="_blank" rel="noopener">
+          <h3>API gimnasio FitVal</h3>
+          <p>La API que usaría la web de un gimnasio: planes, horario de clases y login con JWT. Guardo las contraseñas con argon2 y solo el personal puede crear o borrar clases.</p>
+          <div class="etiquetas">
+            <span class="etiqueta">NestJS</span>
+            <span class="etiqueta">PostgreSQL</span>
+            <span class="etiqueta">JWT</span>
+            <span class="etiqueta">Docker</span>
+          </div>
         </a>
 
-        <a class="tarjeta" href="https://github.com/jbalaguersalas/web-cv">
+        <a class="tarjeta tarjeta--destacada" href="https://github.com/jbalaguersalas/api-rastro" target="_blank" rel="noopener">
+          <h3>API Rastro</h3>
+          <p>API para comprar y vender cosas de segunda mano. Busca anuncios por categoría, ciudad o precio y avisa si alguien oferta por algo ya vendido. Cada cambio pasó por una PR con lint automático.</p>
+          <div class="etiquetas">
+            <span class="etiqueta">Express</span>
+            <span class="etiqueta">TypeScript</span>
+            <span class="etiqueta">MongoDB</span>
+            <span class="etiqueta">GitHub Actions</span>
+          </div>
+        </a>
+
+        <a class="tarjeta" href="https://github.com/jbalaguersalas/nestjs-postgresql-supabase-render" target="_blank" rel="noopener">
+          <h3>API de libros y pedidos</h3>
+          <p>API REST con SQL parametrizado, DTOs validados, filtro global de errores y despliegue en Render con Supabase.</p>
+          <div class="etiquetas">
+            <span class="etiqueta">NestJS</span>
+            <span class="etiqueta">Supabase</span>
+            <span class="etiqueta">Render</span>
+          </div>
+        </a>
+
+        <a class="tarjeta" href="https://github.com/jbalaguersalas/Proyecto-SQL-Gimnasio" target="_blank" rel="noopener">
+          <h3>Base de datos de un gimnasio</h3>
+          <p>Diseño del modelo relacional, creación de tablas y consultas SQL sobre socios, clases y reservas.</p>
+          <div class="etiquetas">
+            <span class="etiqueta">SQL</span>
+            <span class="etiqueta">PostgreSQL</span>
+          </div>
+        </a>
+
+        <a class="tarjeta" href="https://github.com/jbalaguersalas/-Pr-ctica-Docker-Web-Minimalista" target="_blank" rel="noopener">
+          <h3>Web minimalista en Docker</h3>
+          <p>Portfolio responsive maquetado con BEM y servido desde un contenedor con Dockerfile y Compose.</p>
+          <div class="etiquetas">
+            <span class="etiqueta">HTML</span>
+            <span class="etiqueta">CSS</span>
+            <span class="etiqueta">Docker</span>
+          </div>
+        </a>
+
+        <a class="tarjeta" href="https://github.com/jbalaguersalas/web-cv" target="_blank" rel="noopener">
           <h3>Currículum web</h3>
           <p>Mi currículum convertido en una página web.</p>
-          <span class="etiqueta">HTML</span>
-        </a>
-
-        <a class="tarjeta" href="https://github.com/jbalaguersalas/Bikram-variables-bucles-condicionales">
-          <h3>Ejercicios de JavaScript</h3>
-          <p>Práctica de variables, bucles y condicionales.</p>
-          <span class="etiqueta">JavaScript</span>
-        </a>
-
-        <a class="tarjeta" href="https://github.com/jbalaguersalas/entrega-practica-git">
-          <h3>Práctica de Git</h3>
-          <p>Uso de ramas, commits y merge.</p>
-          <span class="etiqueta">HTML</span>
+          <div class="etiquetas">
+            <span class="etiqueta">HTML</span>
+            <span class="etiqueta">CSS</span>
+          </div>
         </a>
       </div>
     </section>
@@ -67,14 +113,46 @@
     <!-- Herramientas -->
     <section id="herramientas">
       <h2>Herramientas</h2>
+
+      <h3 class="grupo">Backend</h3>
+      <ul class="herramientas">
+        <li>Node.js</li>
+        <li>TypeScript</li>
+        <li>NestJS</li>
+        <li>Express</li>
+      </ul>
+
+      <h3 class="grupo">Bases de datos</h3>
+      <ul class="herramientas">
+        <li>PostgreSQL</li>
+        <li>MongoDB</li>
+        <li>Supabase</li>
+      </ul>
+
+      <h3 class="grupo">Frontend</h3>
       <ul class="herramientas">
         <li>HTML</li>
         <li>CSS</li>
         <li>JavaScript</li>
-        <li>Git</li>
-        <li>GitHub</li>
-        <li>VS Code</li>
       </ul>
+
+      <h3 class="grupo">Flujo de trabajo</h3>
+      <ul class="herramientas">
+        <li>Git</li>
+        <li>GitHub Actions</li>
+        <li>Docker</li>
+        <li>Render</li>
+      </ul>
+    </section>
+
+    <!-- Contacto -->
+    <section id="contacto">
+      <h2>Contacto</h2>
+      <p class="descripcion">Si buscas a alguien para tu equipo o quieres comentar algún proyecto, mándame un correo.</p>
+      <div class="acciones">
+        <a class="boton" href="mailto:josebala115@gmail.com">Enviar email</a>
+        <a class="boton boton--secundario" href="https://github.com/jbalaguersalas" target="_blank" rel="noopener">GitHub</a>
+      </div>
     </section>
 
   </main>

@@ -108,7 +108,34 @@ h1 {
   box-shadow: 0 0 20px rgba(77, 163, 255, 0.5);
 }
 
+/* ===== Botones ===== */
+.acciones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.boton--secundario {
+  border-color: var(--borde);
+  color: var(--gris);
+}
+
+.boton--secundario:hover {
+  background-color: transparent;
+  border-color: var(--azul);
+  color: var(--azul);
+  box-shadow: none;
+}
+
 /* ===== Secciones ===== */
+html {
+  scroll-behavior: smooth;
+}
+
+section[id] {
+  scroll-margin-top: 20px;
+}
+
 section {
   padding: 60px 0;
 }
@@ -150,7 +177,18 @@ h2 {
   margin-bottom: 16px;
 }
 
+.tarjeta--destacada {
+  border-color: rgba(77, 163, 255, 0.35);
+}
+
+.etiquetas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
 .etiqueta {
+  display: inline-block;
   font-size: 13px;
   color: var(--azul);
   border: 1px solid var(--borde);
@@ -159,6 +197,19 @@ h2 {
 }
 
 /* ===== Herramientas ===== */
+.grupo {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--gris);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 28px 0 12px;
+}
+
+.grupo:first-of-type {
+  margin-top: 0;
+}
+
 .herramientas {
   list-style: none;
   display: flex;
@@ -228,5 +279,24 @@ footer a {
 
   .proyectos {
     grid-template-columns: 1fr;
+  }
+
+  .inicio .acciones {
+    justify-content: center;
+  }
+
+  nav a {
+    margin-left: 16px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  * {
+    animation: none !important;
+    transition: none !important;
   }
 }
