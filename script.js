@@ -4,7 +4,7 @@ const usaRaton = window.matchMedia("(pointer: fine)").matches;
 const gsapHaCargado = window.gsap && window.ScrollTrigger && window.Flip;
 const hayAnimaciones = gsapHaCargado && !pideMenosMovimiento;
 
-const miCorreo = "josebala115@gmail.com";
+const miCorreo = "paysecuredev@protonmail.com";
 const colorAzul = "77, 163, 255";
 const colorPuntoApagado = "rgba(230, 235, 242, 0.11)";
 
