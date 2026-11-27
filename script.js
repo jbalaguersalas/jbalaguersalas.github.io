@@ -133,7 +133,7 @@
 
   /* ---------- Actividad de GitHub en directo ---------- */
   const actividad = $("#actividad");
-  const numRepos = $("#num-repos");
+  const numPrs = $("#num-prs");
   const USUARIO = "jbalaguersalas";
   const leerCache = (k) => { try { const v = JSON.parse(sessionStorage.getItem(k)); return v && Date.now() - v.t < 600000 ? v.d : null; } catch (e) { return null; } };
   const guardarCache = (k, d) => { try { sessionStorage.setItem(k, JSON.stringify({ t: Date.now(), d })); } catch (e) { /* sin almacenamiento */ } };
@@ -194,8 +194,9 @@
     }).catch(() => {
       actividad.innerHTML = '<li><span class="act-icono" aria-hidden="true">•</span><span class="act-texto"><span class="act-que">Ahora mismo no puedo cargar mi actividad.</span><span class="act-cuando">Puedes verla en mi perfil de GitHub.</span></span></li>';
     });
-    pedir(`https://api.github.com/users/${USUARIO}`, "gh-perfil").then((u) => {
-      if (numRepos && u.public_repos) { numRepos.dataset.cuenta = u.public_repos; numRepos.textContent = u.public_repos; }
+    // Pull requests fusionados en todos los repos (los míos y los del equipo)
+    pedir(`https://api.github.com/search/issues?q=author:${USUARIO}+type:pr+is:merged&per_page=1`, "gh-prs").then((r) => {
+      if (numPrs && r.total_count) { numPrs.dataset.cuenta = r.total_count; numPrs.textContent = r.total_count; }
     }).catch(() => { /* se queda el número escrito en el HTML */ });
   }
 
