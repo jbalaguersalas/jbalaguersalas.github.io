@@ -80,32 +80,74 @@
       <h2 class="serif sobre-titulo">Estoy empezando en el desarrollo web</h2>
       <p class="sobre-texto">Aquí están las prácticas que he hecho en el bootcamp.</p>
       <div class="abanico">
-        <article class="carta">
-          <p class="carta-etiqueta">Nivel</p>
+
+        <!-- 1 · Nivel: quién soy, en qué mes voy y los números -->
+        <article class="carta carta-nivel">
+          <div class="carta-cabeza">
+            <p class="carta-etiqueta">Nivel</p>
+            <p class="estado"><i aria-hidden="true"></i>Aprendiendo</p>
+          </div>
           <p class="carta-valor">Junior</p>
-          <p class="carta-nota">Empezando en el desarrollo web</p>
+          <p class="carta-nota">Empezando en el desarrollo web, en el bootcamp Full Stack de The Bridge.</p>
+          <ol class="meses" aria-label="Meses en el bootcamp">
+            <li class="hecho"><span>Sep</span></li>
+            <li class="hecho"><span>Oct</span></li>
+            <li class="hecho"><span>Nov</span></li>
+            <li class="ahora"><span>Ahora</span></li>
+          </ol>
+          <div class="este-mes">
+            <p>Ahora estoy con</p>
+            <p class="este-mes-tema">Bases de datos y APIs</p>
+            <p class="este-mes-tec">PostgreSQL · NestJS · GitHub Actions</p>
+          </div>
           <dl class="carta-datos">
-            <div><dt>Meses en The Bridge</dt><dd>3</dd></div>
-            <div><dt>Prácticas en esta web</dt><dd>9</dd></div>
-            <div><dt>Repositorios en GitHub</dt><dd>29</dd></div>
+            <div><dt>Meses en The Bridge</dt><dd data-cuenta="3">3</dd></div>
+            <div><dt>Prácticas en esta web</dt><dd data-cuenta="9">9</dd></div>
+            <div><dt>Repositorios en GitHub</dt><dd data-cuenta="29" id="num-repos">29</dd></div>
           </dl>
         </article>
-        <article class="carta">
-          <p class="carta-etiqueta">He practicado</p>
+
+        <!-- 2 · He practicado: las tecnologías, cuántas prácticas usan cada una -->
+        <article class="carta carta-tec">
+          <div class="carta-cabeza">
+            <p class="carta-etiqueta">He practicado</p>
+            <p class="carta-pista">Pulsa una para ver sus prácticas</p>
+          </div>
+          <div class="reparto">
+            <p class="reparto-barra" aria-hidden="true"><span style="--n:4"></span><span style="--n:4"></span><span style="--n:1"></span></p>
+            <p class="reparto-leyenda">Mis 9 prácticas: <span><i></i>4 frontend</span> <span><i></i>4 backend</span> <span><i></i>1 de TypeScript</span></p>
+          </div>
           <div class="carta-grupos">
-            <p><b>Frontend</b> <span>HTML</span><span>CSS</span><span>JavaScript</span><span>TypeScript</span></p>
-            <p><b>Backend</b> <span>Node.js</span><span>NestJS</span><span>Express</span><span>JWT</span></p>
-            <p><b>Datos</b> <span>SQL</span><span>PostgreSQL</span><span>MongoDB</span></p>
-            <p><b>Flujo</b> <span>Git</span><span>Docker</span><span>GitHub Actions</span></p>
+            <div class="grupo"><b>Frontend</b><p><button type="button" class="tec">HTML</button><button type="button" class="tec">CSS</button><button type="button" class="tec">JavaScript</button><button type="button" class="tec">TypeScript</button></p></div>
+            <div class="grupo"><b>Backend</b><p><button type="button" class="tec">Node.js</button><button type="button" class="tec">NestJS</button><button type="button" class="tec">Express</button><button type="button" class="tec">JWT</button></p></div>
+            <div class="grupo"><b>Datos</b><p><button type="button" class="tec">SQL</button><button type="button" class="tec">PostgreSQL</button><button type="button" class="tec">MongoDB</button></p></div>
+            <div class="grupo"><b>Flujo</b><p><button type="button" class="tec">Git</button><button type="button" class="tec">Docker</button><button type="button" class="tec">GitHub Actions</button></p></div>
           </div>
         </article>
-        <article class="carta">
+
+        <!-- 3 · Actividad en GitHub, en directo -->
+        <article class="carta carta-vivo">
+          <div class="carta-cabeza">
+            <p class="carta-etiqueta">Últimamente en GitHub</p>
+            <p class="en-vivo"><i aria-hidden="true"></i>En directo</p>
+          </div>
+          <ul class="actividad" id="actividad" aria-live="polite">
+            <li class="act-cargando"><span></span><span></span></li>
+            <li class="act-cargando"><span></span><span></span></li>
+            <li class="act-cargando"><span></span><span></span></li>
+          </ul>
+          <a class="carta-enlace" href="https://github.com/jbalaguersalas" target="_blank" rel="noopener">Ver mi perfil <span aria-hidden="true">↗</span></a>
+        </article>
+
+        <!-- 4 · Cómo aprendo -->
+        <article class="carta carta-aprendo">
           <p class="carta-etiqueta">Aprendo con</p>
           <ul class="carta-lista">
-            <li><b>El bootcamp</b> Full Stack de The Bridge, con prácticas cada semana.</li>
-            <li><b>La IA</b> me explica los errores y me ayuda cuando me atasco.</li>
+            <li><span class="icono" aria-hidden="true">{ }</span><div><b>El bootcamp</b> Full Stack de The Bridge, con prácticas cada semana.</div></li>
+            <li><span class="icono" aria-hidden="true">✦</span><div><b>La IA</b> me explica los errores y me ayuda cuando me atasco.</div></li>
           </ul>
         </article>
+
       </div>
     </section>
 

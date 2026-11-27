@@ -85,8 +85,111 @@
     });
   });
 
-  /* ---------- Luz que sigue al cursor en paneles y muro ---------- */
-  $$(".panel, .muro").forEach((el) => {
+  /* ---------- Desplazarse a una sección (con Lenis se cambia por su versión suave) ---------- */
+  let irA = (el) => el.scrollIntoView({ behavior: quieto ? "auto" : "smooth", block: "center" });
+
+  /* ---------- Tecnologías: cuántas prácticas usan cada una, y al pulsar se iluminan ---------- */
+  const usaTec = (t, tec) => {
+    const n = tec.toLowerCase();
+    return $$(".chips span", t).some((s) => s.textContent.trim().toLowerCase() === n) || t.dataset.tipo.split(" ").includes(n);
+  };
+  let quitarResalte;
+  function limpiarResalte() {
+    clearTimeout(quitarResalte);
+    tarjetas.forEach((t) => t.classList.remove("resaltada", "apagada"));
+  }
+  $$(".tec").forEach((b) => {
+    const tec = b.textContent.trim();
+    const n = tarjetas.filter((t) => usaTec(t, tec)).length;
+    if (!n) {
+      const s = document.createElement("span");
+      s.className = "tec"; s.textContent = tec;
+      return b.replaceWith(s);
+    }
+    b.dataset.n = n;
+    b.insertAdjacentHTML("beforeend", `<sup aria-hidden="true">${n}</sup>`);
+    b.setAttribute("aria-label", `${tec}: ver ${n === 1 ? "la práctica" : `las ${n} prácticas`} que la usan`);
+    b.addEventListener("click", () => {
+      const todos = $('.filtro[data-filtro="todos"]');
+      if (todos && !todos.classList.contains("activo")) todos.click();
+      limpiarResalte();
+      tarjetas.forEach((t) => t.classList.add(usaTec(t, tec) ? "resaltada" : "apagada"));
+      irA(tarjetas.find((t) => t.classList.contains("resaltada")));
+      quitarResalte = setTimeout(limpiarResalte, 5000);
+    });
+  });
+  filtros.forEach((f) => f.addEventListener("click", limpiarResalte));
+
+  /* ---------- Actividad de GitHub en directo ---------- */
+  const actividad = $("#actividad");
+  const numRepos = $("#num-repos");
+  const USUARIO = "jbalaguersalas";
+  const leerCache = (k) => { try { const v = JSON.parse(sessionStorage.getItem(k)); return v && Date.now() - v.t < 600000 ? v.d : null; } catch (e) { return null; } };
+  const guardarCache = (k, d) => { try { sessionStorage.setItem(k, JSON.stringify({ t: Date.now(), d })); } catch (e) { /* sin almacenamiento */ } };
+  async function pedir(url, k) {
+    const c = leerCache(k);
+    if (c) return c;
+    const r = await fetch(url, { headers: { Accept: "application/vnd.github+json" } });
+    if (!r.ok) throw new Error(r.status);
+    const d = await r.json();
+    guardarCache(k, d);
+    return d;
+  }
+  const rtf = new Intl.RelativeTimeFormat("es", { numeric: "auto" });
+  function haceCuanto(fecha) {
+    const s = (new Date(fecha) - Date.now()) / 1000;
+    const pasos = [[60, "second"], [60, "minute"], [24, "hour"], [7, "day"], [4.35, "week"], [12, "month"], [Infinity, "year"]];
+    let v = s;
+    for (const [lim, u] of pasos) { if (Math.abs(v) < lim) return rtf.format(Math.round(v), u); v /= lim; }
+  }
+  const svg = (d) => `<svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">${d}</svg>`;
+  const ICONOS = {
+    push: svg('<path d="M8 13V3M4 7l4-4 4 4"/>'),
+    merge: svg('<circle cx="4" cy="3.5" r="1.5"/><circle cx="4" cy="12.5" r="1.5"/><circle cx="12" cy="8" r="1.5"/><path d="M4 5v6M4 5c0 3 2 3 6.5 3"/>'),
+    pr: svg('<circle cx="4" cy="3.5" r="1.5"/><circle cx="4" cy="12.5" r="1.5"/><circle cx="12" cy="12.5" r="1.5"/><path d="M4 5v6M12 11V6.5c0-1.5-1-2.5-2.5-2.5H7"/>'),
+    nuevo: svg('<path d="M8 3v10M3 8h10"/>'),
+    otro: svg('<circle cx="8" cy="8" r="2"/>'),
+  };
+  function describir(e) {
+    const p = e.payload || {};
+    switch (e.type) {
+      case "PushEvent": {
+        const n = p.size || (p.commits || []).length;
+        return [ICONOS.push, n > 1 ? `Subió ${n} commits a` : "Subió cambios a"];
+      }
+      case "PullRequestEvent":
+        if (p.action === "merged" || (p.action === "closed" && p.pull_request && p.pull_request.merged)) return [ICONOS.merge, "Fusionó un pull request en"];
+        return [ICONOS.pr, p.action === "opened" ? "Abrió un pull request en" : "Pull request en"];
+      case "CreateEvent":
+        return [ICONOS.nuevo, p.ref_type === "repository" ? "Creó el repositorio" : "Creó una rama en"];
+      default: return [ICONOS.otro, "Actividad en"];
+    }
+  }
+  if (actividad) {
+    pedir(`https://api.github.com/users/${USUARIO}/events/public?per_page=30`, "gh-eventos").then((eventos) => {
+      const vistos = new Set();
+      const lista = eventos.filter((e) => {
+        const clave = e.type + e.repo.name;
+        if (vistos.has(clave)) return false;
+        vistos.add(clave); return true;
+      }).slice(0, 4);
+      if (!lista.length) throw new Error("vacío");
+      actividad.innerHTML = lista.map((e) => {
+        const [icono, que] = describir(e);
+        const repo = e.repo.name.replace(`${USUARIO}/`, "");
+        return `<li><a href="https://github.com/${e.repo.name}" target="_blank" rel="noopener"><span class="act-icono" aria-hidden="true">${icono}</span><span class="act-texto"><span class="act-que">${que}</span><span class="act-repo">${repo}</span><span class="act-cuando">${haceCuanto(e.created_at)}</span></span><span class="oculto"> (se abre en otra pestaña)</span></a></li>`;
+      }).join("");
+      if (window.gsap && !quieto) gsap.from($$("li", actividad), { opacity: 0, y: 10, duration: 0.5, stagger: 0.08, ease: "power2.out" });
+    }).catch(() => {
+      actividad.innerHTML = '<li><span class="act-icono" aria-hidden="true">•</span><span class="act-texto"><span class="act-que">Ahora mismo no puedo cargar mi actividad.</span><span class="act-cuando">Puedes verla en mi perfil de GitHub.</span></span></li>';
+    });
+    pedir(`https://api.github.com/users/${USUARIO}`, "gh-perfil").then((u) => {
+      if (numRepos && u.public_repos) { numRepos.dataset.cuenta = u.public_repos; numRepos.textContent = u.public_repos; }
+    }).catch(() => { /* se queda el número escrito en el HTML */ });
+  }
+
+  /* ---------- Luz que sigue al cursor en paneles, fichas y muro ---------- */
+  $$(".panel, .muro, .carta").forEach((el) => {
     el.addEventListener("pointermove", (e) => {
       const r = el.getBoundingClientRect();
       el.style.setProperty("--x", `${e.clientX - r.left}px`);
@@ -259,6 +362,7 @@
     lenis.on("scroll", ScrollTrigger.update);
     gsap.ticker.add((t) => lenis.raf(t * 1000));
     gsap.ticker.lagSmoothing(0);
+    irA = (el) => lenis.scrollTo(el, { duration: 1.4, offset: -120 });
     $$('a[href^="#"]').forEach((a) => {
       a.addEventListener("click", (e) => {
         const id = a.getAttribute("href");
@@ -351,9 +455,25 @@
     y: 80, opacity: 0, rotation: (i) => [-5, 0, 5][i], duration: 1.2, stagger: 0.12, ease: "expo.out",
     scrollTrigger: { trigger: ".abanico", start: "top 82%" },
   });
-  gsap.from(".carta-datos div, .carta-grupos p, .carta-lista li", {
+  gsap.from(".meses li, .carta-datos div, .grupo, .carta-lista li", {
     opacity: 0, x: -14, duration: 0.6, stagger: 0.05, ease: "power2.out",
     scrollTrigger: { trigger: ".abanico", start: "top 75%" },
+  });
+  gsap.from(".reparto-barra span", {
+    scaleX: 0, duration: 1, stagger: 0.12, ease: "expo.out",
+    scrollTrigger: { trigger: ".reparto", start: "top 85%" },
+  });
+  // Los números cuentan desde cero cuando aparecen
+  $$(".carta-datos dd[data-cuenta]").forEach((dd) => {
+    const n = { v: 0 };
+    ScrollTrigger.create({
+      trigger: dd, start: "top 90%", once: true,
+      onEnter: () => gsap.to(n, {
+        v: Number(dd.dataset.cuenta), duration: 1.4, ease: "power2.out",
+        onUpdate: () => (dd.textContent = Math.round(n.v)),
+        onComplete: () => (dd.textContent = dd.dataset.cuenta),
+      }),
+    });
   });
   if (conRaton) {
     fichas.forEach((c) => {
