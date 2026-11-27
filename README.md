@@ -2,34 +2,33 @@
 
 Mi portfolio, publicado en **https://jbalaguersalas.github.io/**
 
-Estoy empezando en el desarrollo web y en esta página enseño las prácticas que he hecho en el bootcamp Full Stack de The Bridge. La hice con HTML, CSS y JavaScript, sin frameworks. Para las animaciones uso GSAP con sus plugins ScrollTrigger y Flip, que cargo desde cdnjs. Son tres archivos: `index.html`, `style.css` y `script.js`.
+Estoy empezando en el desarrollo web y en esta página enseño las prácticas que he hecho en el bootcamp Full Stack de The Bridge. La hice con HTML, CSS y JavaScript, sin frameworks. Para las animaciones uso GSAP con ScrollTrigger y Flip, y Lenis para el scroll suave. Son tres archivos: `index.html`, `style.css` y `script.js`.
 
 Uso mucho la IA para aprender: me explica los errores y me ayuda cuando me atasco.
 
 ## Qué tiene
 
-- **Portada** con un titular en el que la palabra azul va cambiando (web, frontend, backend), un fondo de puntos que se apartan del ratón y una terminal que escribe sola. Los puntos solo se repintan mientras se mueve el ratón.
-- **Proyectos**: nueve tarjetas con filtros (Frontend, JavaScript, TypeScript y Backend). Cada tarjeta tiene un dibujo hecho con HTML y CSS, sin imágenes.
-- **Recorrido**: lo que vi en cada mes del bootcamp.
-- **Herramientas** y **contacto**, con un botón para copiar mi correo.
+- **Portada**: mi nombre en grande sobre mi foto. Donde las letras tocan la foto, los colores se invierten. Una luz sigue al ratón por la foto y las letras hacen una ola cuando pasas cerca.
+- **Banda ASCII**: una franja de caracteres que dibujan luz y sombra en movimiento. Cerca del ratón los caracteres se revuelven como en una terminal.
+- **Sobre mí**: tres fichas con mi nivel, lo que he practicado y cómo aprendo.
+- **Proyectos**: nueve tarjetas con filtros. Dos llevan capturas reales de la práctica que se desplazan al pasar el ratón, la de la varita mágica es una página de juguete que cambia de color y el resto enseña un trozo del código.
+- **Recorrido**: lo que vi cada mes del bootcamp, como una agenda.
+- **Herramientas**, **contacto** con un botón para copiar mi correo, y un pie con mi nombre gigante.
 
 ## Diseño
 
-Fondo casi negro con un toque azulado, titulares grandes y estrechos y un solo color de acento, el azul `#4da3ff`, el mismo que uso en mi perfil de GitHub. Los datos van en letra monoespaciada, como en el código.
+Me inspiré en la web de Griffin y en las plantillas Keynote y Soren que vi en godly.design.
 
-- Fuentes: **Archivo**, que es variable y me deja estrechar los titulares con `font-stretch`, e **IBM Plex Mono**.
-- La hice primero para móvil. Los saltos están en 480px, 720px, 900px y 1100px.
-- Los colores están en variables en `:root`.
+- Colores: negro cálido, crema y un solo acento lavanda. Están todos en variables en `:root`.
+- Fuentes: **Instrument Sans** para el nombre y los textos, **Newsreader** para los titulares e **IBM Plex Mono** para el código.
+- Funciona en móvil: la portada se recoloca y los filtros se pueden deslizar.
 
-## Animaciones
+## Accesibilidad
 
-- Los títulos se parten en palabras desde JavaScript y suben una a una al aparecer.
-- Las tarjetas suben un poco al pasar el ratón y llevan una luz azul que lo sigue.
-- Las animaciones de entrada duran menos de un segundo para que no haya que esperar.
-- Al filtrar, Flip mueve las tarjetas a su nuevo sitio en vez de saltar.
-
-En el móvil no hay luz en las tarjetas, porque no hay ratón. Si el sistema tiene activado "reducir movimiento", o si GSAP no carga, la web se ve entera sin animaciones.
+- Si el sistema tiene activado "reducir movimiento", o si GSAP no carga, la web se ve entera y quieta.
+- Todo se puede usar con el teclado y tiene un enlace para saltar a los proyectos.
+- Los enlaces que abren otra pestaña lo avisan a los lectores de pantalla.
 
 ## Cómo verla en local
 
-Abre `index.html` en el navegador. Necesitas internet para las fuentes y GSAP.
+Abre `index.html` en el navegador. Necesitas internet para las fuentes, GSAP y Lenis.
