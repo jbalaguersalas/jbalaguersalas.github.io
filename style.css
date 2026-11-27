@@ -567,7 +567,7 @@ html:not(.js) .filtro.activo { box-shadow: inset 0 -2px var(--texto); }
   .portada-foto { width: 118vw; bottom: auto; top: 12svh; }
   .palabra { align-self: end; }
   .portada-fila { justify-content: space-between; }
-  .portada-fila p:nth-of-type(3), .portada-fila i:nth-of-type(2) { display: none; }
+  .portada-fila p:nth-of-type(2), .portada-fila i:nth-of-type(2) { display: none; }
   .portada-pie { flex-direction: column; align-items: flex-start; }
   .fila { grid-template-columns: minmax(0, 1fr); gap: 8px; }
   .banda { height: 200px; }
