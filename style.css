@@ -152,7 +152,7 @@ code { font-family: var(--f-mono); font-size: .9em; color: var(--crema); }
   color: var(--crema);
   mix-blend-mode: difference;
 }
-.letra { display: inline-block; overflow: clip; padding-bottom: .02em; cursor: default; }
+.letra { display: inline-block; overflow-x: visible; overflow-y: clip; padding-bottom: .02em; cursor: default; }
 .letra-in { display: inline-block; }
 .portada-fila {
   display: flex; align-items: center; gap: clamp(12px, 3vw, 40px);
