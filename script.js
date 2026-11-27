@@ -48,10 +48,21 @@
   $$('a[target="_blank"]').forEach((a) => a.insertAdjacentHTML("beforeend", '<span class="oculto"> (se abre en otra pestaña)</span>'));
   window.addEventListener("resize", () => moverLinea($(".filtro.activo")));
 
+  // El número de cada filtro se cuenta solo, para que no se desfase al añadir proyectos
+  filtros.forEach((b) => {
+    const f = b.dataset.filtro, sup = $("sup", b);
+    if (sup) sup.textContent = f === "todos" ? tarjetas.length : tarjetas.filter((t) => t.dataset.tipo.split(" ").includes(f)).length;
+  });
+  const titulosRejilla = $$(".rejilla-titulo");
   function aplicarFiltro(filtro) {
     tarjetas.forEach((t) => {
       const tipos = t.dataset.tipo.split(" ");
       t.classList.toggle("oculta", filtro !== "todos" && !tipos.includes(filtro));
+    });
+    // Si un grupo se queda sin tarjetas, su título también se esconde
+    titulosRejilla.forEach((ti) => {
+      const rejilla = ti.nextElementSibling;
+      ti.classList.toggle("vacio", !!rejilla && !$$(".tarjeta:not(.oculta)", rejilla).length);
     });
   }
   let flipTl = null;

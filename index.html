@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Shema</title>
+  <title>Shema · Desarrollador Full Stack junior</title>
   <meta name="description" content="Shema, junior estudiante del bootcamp Full Stack de The Bridge. Aquí están las prácticas que he hecho en el curso.">
   <link rel="canonical" href="https://jbalaguersalas.github.io/">
   <meta property="og:type" content="website">
@@ -97,12 +97,12 @@
           </ol>
           <div class="este-mes">
             <p>Ahora estoy con</p>
-            <p class="este-mes-tema">Bases de datos y APIs</p>
-            <p class="este-mes-tec">PostgreSQL · NestJS · GitHub Actions</p>
+            <p class="este-mes-tema">Furniro, una tienda en equipo</p>
+            <p class="este-mes-tec">React · Redux Toolkit · NestJS · Jira</p>
           </div>
           <dl class="carta-datos">
             <div><dt>Meses en The Bridge</dt><dd data-cuenta="3">3</dd></div>
-            <div><dt>Prácticas en esta web</dt><dd data-cuenta="9">9</dd></div>
+            <div><dt>Proyectos en esta web</dt><dd data-cuenta="10">10</dd></div>
             <div><dt>Repositorios en GitHub</dt><dd data-cuenta="29" id="num-repos">29</dd></div>
           </dl>
         </article>
@@ -114,11 +114,11 @@
             <p class="carta-pista">Pulsa una para ver sus prácticas</p>
           </div>
           <div class="reparto">
-            <p class="reparto-barra" aria-hidden="true"><span style="--n:4"></span><span style="--n:4"></span><span style="--n:1"></span></p>
-            <p class="reparto-leyenda">Mis 9 prácticas: <span><i></i>4 frontend</span> <span><i></i>4 backend</span> <span><i></i>1 de TypeScript</span></p>
+            <p class="reparto-barra" aria-hidden="true"><span style="--n:5"></span><span style="--n:3"></span><span style="--n:2"></span></p>
+            <p class="reparto-leyenda">Mis 10 proyectos: <span><i></i>5 frontend</span> <span><i></i>3 backend</span> <span><i></i>2 de JS y TS</span></p>
           </div>
           <div class="carta-grupos">
-            <div class="grupo"><b>Frontend</b><p><button type="button" class="tec">HTML</button><button type="button" class="tec">CSS</button><button type="button" class="tec">JavaScript</button><button type="button" class="tec">TypeScript</button></p></div>
+            <div class="grupo"><b>Frontend</b><p><button type="button" class="tec">React</button><button type="button" class="tec">HTML</button><button type="button" class="tec">CSS</button><button type="button" class="tec">JavaScript</button><button type="button" class="tec">TypeScript</button></p></div>
             <div class="grupo"><b>Backend</b><p><button type="button" class="tec">Node.js</button><button type="button" class="tec">NestJS</button><button type="button" class="tec">Express</button><button type="button" class="tec">JWT</button></p></div>
             <div class="grupo"><b>Datos</b><p><button type="button" class="tec">SQL</button><button type="button" class="tec">PostgreSQL</button><button type="button" class="tec">MongoDB</button></p></div>
             <div class="grupo"><b>Flujo</b><p><button type="button" class="tec">Git</button><button type="button" class="tec">Docker</button><button type="button" class="tec">GitHub Actions</button></p></div>
@@ -154,31 +154,108 @@
     <!-- PROYECTOS -->
     <section id="proyectos" class="seccion">
       <div class="cabeza">
-        <h2 class="serif">Mis prácticas del bootcamp</h2>
-        <p>Son ejercicios y prácticas de clase. Pincha en cualquiera para ver el código.</p>
+        <h2 class="serif">Mis proyectos del bootcamp</h2>
+        <p>Arriba, los proyectos que están desplegados y se pueden probar. Debajo, más prácticas y ejercicios de clase.</p>
       </div>
 
       <div class="filtros" role="group" aria-label="Filtrar proyectos">
-        <button class="filtro activo" data-filtro="todos" aria-pressed="true">Todos <sup>9</sup></button>
+        <button class="filtro activo" data-filtro="todos" aria-pressed="true">Todos <sup>10</sup></button>
         <button class="filtro" data-filtro="frontend" aria-pressed="false">Frontend <sup>4</sup></button>
         <button class="filtro" data-filtro="javascript" aria-pressed="false">JavaScript <sup>2</sup></button>
-        <button class="filtro" data-filtro="typescript" aria-pressed="false">TypeScript <sup>4</sup></button>
+        <button class="filtro" data-filtro="typescript" aria-pressed="false">TypeScript <sup>5</sup></button>
         <button class="filtro" data-filtro="backend" aria-pressed="false">Backend <sup>4</sup></button>
         <span class="filtro-linea" aria-hidden="true"></span>
       </div>
 
+      <p class="rejilla-titulo"><span>Proyectos destacados</span><i aria-hidden="true"></i><span class="rejilla-nota">Desplegados y con demo</span></p>
       <div class="rejilla">
 
-        <a class="tarjeta grande" data-tipo="frontend" href="https://github.com/jbalaguersalas/-Pr-ctica-Docker-Web-Minimalista" target="_blank" rel="noopener">
+        <article class="tarjeta grande con-demo" data-tipo="frontend typescript">
           <div class="panel panel-foto" aria-hidden="true">
-            <img src="img/docker.jpg" alt="" width="960" height="1650" loading="lazy">
+            <img src="img/rastro.jpg" alt="" width="960" height="600" loading="lazy">
+            <span class="panel-sello">En línea</span>
           </div>
           <div class="tarjeta-texto">
-            <h3>Maqueta de Figma en Docker</h3>
-            <p>Práctica de maquetación: pasar a HTML y CSS el diseño de Figma de un portfolio inventado, empezando por la versión de móvil. Después la metí en un contenedor de Docker con nginx.</p>
-            <p class="chips"><span>HTML</span><span>CSS</span><span>Docker</span><span>3 páginas</span></p>
+            <h3><a class="tarjeta-enlace" href="https://rastro-jbalaguer.netlify.app" target="_blank" rel="noopener">Rastro: web de segunda mano</a></h3>
+            <p>Web de compraventa hecha con React y TypeScript, conectada a mi API de Express y MongoDB. Tiene listado con filtros por categoría, ciudad y precio, ficha del anuncio como comprador o vendedor, y formulario para publicar. La primera versión iba con json-server.</p>
+            <p class="chips"><span>React</span><span>TypeScript</span><span>Redux Toolkit</span><span>React Router</span><span>Netlify</span></p>
+            <p class="tarjeta-botones"><a class="boton-demo" href="https://rastro-jbalaguer.netlify.app" target="_blank" rel="noopener">Ver demo <span aria-hidden="true">↗</span></a><a class="boton-codigo" href="https://github.com/jbalaguersalas/Rastro-con-React" target="_blank" rel="noopener">Código</a></p>
+          </div>
+        </article>
+
+        <article class="tarjeta con-demo" data-tipo="backend typescript">
+          <div class="panel" aria-hidden="true">
+            <p class="panel-cabeza">// nestjs</p>
+<pre><span class="c-lav">@Delete</span>(<span class="c-crema">':id'</span>)
+<span class="c-lav">@UseGuards</span>(AuthGuard, StaffGuard)
+remove(<span class="c-lav">@Param</span>(<span class="c-crema">'id'</span>, ParseIntPipe) id) {
+  <span class="c-lav">return</span> this.classesService.remove(id);
+}</pre>
+            <span class="panel-sello">En línea</span>
+          </div>
+          <div class="tarjeta-texto">
+            <h3><a class="tarjeta-enlace" href="https://api-gimnasio-fitval.onrender.com/docs" target="_blank" rel="noopener">API gimnasio FitVal</a></h3>
+            <p>API para un gimnasio con NestJS: planes, horario de clases y login con JWT. Permisos por rol, tests e2e y lint automático en cada pull request.</p>
+            <p class="chips"><span>NestJS</span><span>PostgreSQL</span><span>JWT</span><span>Swagger</span></p>
+            <p class="tarjeta-botones"><a class="boton-demo" href="https://api-gimnasio-fitval.onrender.com/docs" target="_blank" rel="noopener">Probar la API <span aria-hidden="true">↗</span></a><a class="boton-codigo" href="https://github.com/jbalaguersalas/api-gimnasio-fitval" target="_blank" rel="noopener">Código</a></p>
+          </div>
+        </article>
+
+        <article class="tarjeta con-demo" data-tipo="backend typescript">
+          <div class="panel" aria-hidden="true">
+            <p class="panel-cabeza">// git</p>
+<pre>main
+├─ <span class="c-lav">feature/create-listing</span>
+└─ <span class="c-lav">feature/offers</span>
+   <span class="c-gris">pull request a main</span></pre>
+            <span class="panel-sello">En línea</span>
+          </div>
+          <div class="tarjeta-texto">
+            <h3><a class="tarjeta-enlace" href="https://api-rastro-lo94.onrender.com/api/listings" target="_blank" rel="noopener">API Rastro</a></h3>
+            <p>La API que usa la web de Rastro: anuncios y ofertas. Trabajé cada parte en su rama con pull requests.</p>
+            <p class="chips"><span>Express</span><span>TypeScript</span><span>MongoDB</span></p>
+            <p class="tarjeta-botones"><a class="boton-demo" href="https://api-rastro-lo94.onrender.com/api/listings" target="_blank" rel="noopener">Ver los datos <span aria-hidden="true">↗</span></a><a class="boton-codigo" href="https://github.com/jbalaguersalas/api-rastro" target="_blank" rel="noopener">Código</a></p>
+          </div>
+        </article>
+
+        <a class="tarjeta" data-tipo="backend typescript" href="https://github.com/jbalaguersalas/nestjs-postgresql-supabase-render" target="_blank" rel="noopener">
+          <div class="panel" aria-hidden="true">
+            <p class="panel-cabeza">// postgresql</p>
+<pre><span class="c-lav">await</span> client.query(<span class="c-crema">'BEGIN'</span>);
+<span class="c-crema">`UPDATE books SET stock = stock - $1</span>
+<span class="c-crema"> WHERE id = $2`</span>
+<span class="c-lav">await</span> client.query(<span class="c-crema">'COMMIT'</span>);</pre>
+          </div>
+          <div class="tarjeta-texto">
+            <h3>Libros y pedidos</h3>
+            <p>API con NestJS y PostgreSQL. Partí del código que hicimos en clase con el profesor y le añadí los pedidos y los ejercicios del tema.</p>
+            <p class="chips"><span>NestJS</span><span>PostgreSQL</span><span>Supabase</span></p>
           </div>
         </a>
+
+        <article class="tarjeta con-demo" data-tipo="frontend typescript">
+          <div class="panel" aria-hidden="true">
+            <p class="panel-cabeza">// redux toolkit · carrito</p>
+<pre><span class="c-lav">itemAdded</span>: (state, action) =&gt; {
+  <span class="c-lav">if</span> (getAddToCartError(
+      state.items, item))
+    <span class="c-lav">return</span> state; <span class="c-gris">// sin stock</span>
+  <span class="c-gris">// si ya está, sumo la cantidad</span>
+}</pre>
+            <span class="panel-sello panel-sello-equipo">En equipo</span>
+          </div>
+          <div class="tarjeta-texto">
+            <h3><a class="tarjeta-enlace" href="https://github.com/migueldonaire/furniro-bootcamp-fullstack/pull/37" target="_blank" rel="noopener">Furniro: tienda de muebles</a></h3>
+            <p>Proyecto en equipo de todo el bootcamp, con tareas en Jira y revisión de pull requests: tienda en React, backoffice y API en NestJS. Yo hice añadir al carrito con control de stock y la página del carrito con IVA y totales, con sus tests.</p>
+            <p class="chips"><span>React</span><span>TypeScript</span><span>Redux Toolkit</span><span>Tests</span></p>
+            <p class="tarjeta-botones"><a class="boton-demo" href="https://github.com/migueldonaire/furniro-bootcamp-fullstack/pull/37" target="_blank" rel="noopener">Mi pull request <span aria-hidden="true">↗</span></a><a class="boton-codigo" href="https://github.com/migueldonaire/furniro-bootcamp-fullstack" target="_blank" rel="noopener">Repo del equipo</a></p>
+          </div>
+        </article>
+
+      </div>
+
+      <p class="rejilla-titulo rejilla-titulo-ejercicios"><span>Más proyectos y ejercicios</span><i aria-hidden="true"></i></p>
+      <div class="rejilla rejilla-ejercicios">
 
         <a class="tarjeta" data-tipo="typescript" href="https://github.com/jbalaguersalas/Bikram-typescript" target="_blank" rel="noopener">
           <div class="panel" aria-hidden="true">
@@ -193,22 +270,6 @@
             <h3>Ejercicios de TypeScript</h3>
             <p>Veinte ejercicios de clase para practicar tipos, interfaces, clases y genéricos.</p>
             <p class="chips"><span>TypeScript</span><span>20 ejercicios</span></p>
-          </div>
-        </a>
-
-        <a class="tarjeta" data-tipo="backend typescript" href="https://github.com/jbalaguersalas/api-gimnasio-fitval" target="_blank" rel="noopener">
-          <div class="panel" aria-hidden="true">
-            <p class="panel-cabeza">// nestjs</p>
-<pre><span class="c-lav">@Delete</span>(<span class="c-crema">':id'</span>)
-<span class="c-lav">@UseGuards</span>(AuthGuard, StaffGuard)
-remove(<span class="c-lav">@Param</span>(<span class="c-crema">'id'</span>, ParseIntPipe) id) {
-  <span class="c-lav">return</span> this.classesService.remove(id);
-}</pre>
-          </div>
-          <div class="tarjeta-texto">
-            <h3>API gimnasio FitVal</h3>
-            <p>Práctica de API para un gimnasio con NestJS: planes, horario de clases y login con JWT.</p>
-            <p class="chips"><span>NestJS</span><span>PostgreSQL</span><span>JWT</span><span>9 rutas</span></p>
           </div>
         </a>
 
@@ -228,22 +289,7 @@ remove(<span class="c-lav">@Param</span>(<span class="c-crema">'id'</span>, Pars
           </div>
         </a>
 
-        <a class="tarjeta" data-tipo="backend typescript" href="https://github.com/jbalaguersalas/api-rastro" target="_blank" rel="noopener">
-          <div class="panel" aria-hidden="true">
-            <p class="panel-cabeza">// git</p>
-<pre>main
-├─ <span class="c-lav">feature/create-listing</span>
-└─ <span class="c-lav">feature/offers</span>
-   <span class="c-gris">pull request a main</span></pre>
-          </div>
-          <div class="tarjeta-texto">
-            <h3>API Rastro</h3>
-            <p>Práctica de API para una app inventada de compraventa de segunda mano. Trabajé cada parte en su rama con pull requests.</p>
-            <p class="chips"><span>Express</span><span>TypeScript</span><span>MongoDB</span></p>
-          </div>
-        </a>
-
-        <a class="tarjeta" data-tipo="frontend javascript" href="https://github.com/jbalaguersalas/JS-Asynchronous-code" target="_blank" rel="noopener">
+        <a class="tarjeta" data-tipo="javascript" href="https://github.com/jbalaguersalas/JS-Asynchronous-code" target="_blank" rel="noopener">
           <div class="panel" aria-hidden="true">
             <p class="panel-cabeza">// request</p>
 <pre><span class="c-lav">GET</span> dog.ceo/api/breeds/image/random
@@ -268,32 +314,14 @@ remove(<span class="c-lav">@Param</span>(<span class="c-crema">'id'</span>, Pars
           </div>
         </a>
 
-        <a class="tarjeta" data-tipo="backend typescript" href="https://github.com/jbalaguersalas/nestjs-postgresql-supabase-render" target="_blank" rel="noopener">
-          <div class="panel" aria-hidden="true">
-            <p class="panel-cabeza">// postgresql</p>
-<pre><span class="c-lav">await</span> client.query(<span class="c-crema">'BEGIN'</span>);
-<span class="c-crema">`UPDATE books SET stock = stock - $1</span>
-<span class="c-crema"> WHERE id = $2`</span>
-<span class="c-lav">await</span> client.query(<span class="c-crema">'COMMIT'</span>);</pre>
+        <a class="tarjeta grande" data-tipo="frontend" href="https://github.com/jbalaguersalas/-Pr-ctica-Docker-Web-Minimalista" target="_blank" rel="noopener">
+          <div class="panel panel-foto" aria-hidden="true">
+            <img src="img/docker.jpg" alt="" width="960" height="1650" loading="lazy">
           </div>
           <div class="tarjeta-texto">
-            <h3>Libros y pedidos</h3>
-            <p>Práctica de API con NestJS y PostgreSQL. Partí del código que hicimos en clase con el profesor y le añadí los pedidos y los ejercicios del tema.</p>
-            <p class="chips"><span>NestJS</span><span>PostgreSQL</span><span>Supabase</span></p>
-          </div>
-        </a>
-
-        <a class="tarjeta ancha" data-tipo="backend" href="https://github.com/jbalaguersalas/Proyecto-SQL-Gimnasio" target="_blank" rel="noopener">
-          <div class="panel" aria-hidden="true">
-            <p class="panel-cabeza">// sql</p>
-<pre><span class="c-lav">socios</span>    id, nombre, plan_id
-<span class="c-lav">clases</span>    id, monitor_id, hora
-<span class="c-lav">reservas</span>  socio_id, clase_id</pre>
-          </div>
-          <div class="tarjeta-texto">
-            <h3>Modelo SQL del gimnasio</h3>
-            <p>Práctica de bases de datos: las tablas de un gimnasio y consultas con JOIN.</p>
-            <p class="chips"><span>SQL</span><span>PostgreSQL</span><span>8 tablas</span></p>
+            <h3>Maqueta de Figma en Docker</h3>
+            <p>Pasar a HTML y CSS el diseño de Figma de un portfolio, empezando por móvil, y servirlo en un contenedor de Docker con nginx.</p>
+            <p class="chips"><span>HTML</span><span>CSS</span><span>Docker</span></p>
           </div>
         </a>
 
@@ -336,8 +364,8 @@ remove(<span class="c-lav">@Param</span>(<span class="c-crema">'id'</span>, Pars
         <li class="fila fila-pausa">
           <p class="fila-hora"><b>Ahora</b></p>
           <div>
-            <h3>Seguir aprendiendo</h3>
-            <p>Sigo con el bootcamp y practicando fuera de clase.</p>
+            <h3>React y proyectos completos</h3>
+            <p>React con Redux Toolkit: la web de Rastro, conectada a mi propia API. Y ahora Furniro, una tienda de muebles que hacemos entre toda la clase con Jira y pull requests.</p>
           </div>
         </li>
       </ol>
@@ -357,6 +385,8 @@ remove(<span class="c-lav">@Param</span>(<span class="c-crema">'id'</span>, Pars
         <span>PostgreSQL</span><span>MongoDB</span><span>Supabase</span><span>SQL</span>
         <p class="muro-grupo">Flujo</p>
         <span>Git y GitHub</span><span>GitHub Actions</span><span>Docker</span><span>Postman</span>
+        <p class="muro-grupo">React</p>
+        <span>React</span><span>Redux Toolkit</span><span>React Router</span><span>Vite</span>
         <p class="muro-grupo">Y además</p>
         <span class="muro-ancho">IA para aprender</span>
       </div>
